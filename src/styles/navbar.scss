@@ -1,0 +1,151 @@
+@import './variables';
+
+header {
+    background-color: $color-darkblue;
+    
+    .divHeader {
+        max-width: 1440px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+
+       >a{
+            font-family: $font-title;
+            font-size: 45px;
+            color: white;
+        }
+        .navbar {
+            display: flex;
+            ul{
+                display: flex;
+                gap: 10px;
+                li{
+                    a{
+                        color:white;
+                        font-family: $font-text;
+                        transition: all 0.3s ease-in-out;
+
+                        &:hover{
+                            transition: all 0.3s ease-in-out;
+                            color: rgba(255, 255, 255, 0.493);
+                        }
+                    }
+                }
+            }
+            
+        }
+        div{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            a{
+                font-family: $font-text;
+                color: white;
+                
+            }
+            a:nth-child(1){
+                transition: all 0.3s ease-in-out;
+
+                &:hover{
+                    transition: all 0.3s ease-in-out;
+                    color: rgba(255, 255, 255, 0.493);
+                }
+            }
+            a:nth-child(2){
+                background: rgba(255, 255, 255, 0.2); 
+                backdrop-filter: blur(10px);         
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 16px;                  
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
+                padding: 4px 9px;
+                transition: all 0.3s ease-in-out;
+
+                &:hover{
+                    transition: all 0.3s ease-in-out;
+                    background: rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+                }
+            }
+        }
+        .navbarBurger{
+            display: none;
+
+            .divBurger{
+                display: none;
+                cursor: pointer;
+                font-size: 1.5em;  
+            }
+            .navbarList{
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+
+                .active{
+                    color: $color-red;
+                    padding: 0.2em;
+                }
+            }
+        }
+    }
+}
+
+// Media Queries
+@media screen and (max-width: 767px){
+    header{
+        .divHeader{
+
+            .navbar{
+                display: none;
+            }
+            div{
+                display: none;
+            }
+
+            .navbarBurger{
+                display: flex;
+                flex-direction: column;
+                color: white;
+                .divBurger{
+                    display: block;
+
+                }
+                .navbarList {
+                    position: absolute;
+                    top: 50px;
+                    right: 0;
+                    flex-direction: column;
+                    width: 200px;
+                    height: 230px;
+                    background-color: $color-darkblue;
+
+                    z-index: 100;
+                    display: none;
+    
+                    &.show{
+                        display: flex;
+                    }
+                }
+                li {
+                    position: relative;
+                    padding: 0.5rem;
+                    
+    
+                    a{
+                        color: white;
+                        text-decoration: none;
+                        padding: 0.3rem;
+    
+                        &:hover{
+                            color: rgba(255, 255, 255, 0.493);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

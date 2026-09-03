@@ -1,0 +1,47 @@
+@import './variables';
+
+footer{
+    background-color: $color-darkblue;
+    
+    div{
+        display: flex;
+        justify-content: space-between;
+        max-width: 1440px;
+        margin: auto;
+        text-align: center;
+        padding: 0 15px;
+        align-items: center;
+
+        >a{
+            color: white;
+            font-family: $font-title;
+            font-size: 35px;
+        }
+
+        span{
+            color: lightgray;
+            font-size: 13px;
+        }
+
+        article{
+
+            a{
+                color: white;
+                font-family: $font-text;
+            }
+        }
+    }
+}
+
+// Media Queries
+@media screen and (max-width: 767px){
+    footer{
+    
+    div{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 15px;
+    }
+}
+}

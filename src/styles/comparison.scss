@@ -1,0 +1,54 @@
+@import './variables';
+
+.comparisonImage{
+    position: relative;
+
+    .bgImageComparison{
+
+        background-image: url('/assets/compateur.png');
+        height: 400px;
+        background-size: cover;
+        background-position: center 55%;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+    
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.55) 0%,
+                    rgba(0, 0, 0, 0.25) 45%,
+                    rgba(0, 0, 0, 0.05) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.45) 0%,
+                    transparent 60%
+                );
+    
+            z-index: 1;
+        } 
+    
+        div{
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            top: 130px;
+    
+            h1{
+                color: white;
+                font-size: 70px;
+                font-weight: normal;
+            } 
+            p{
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,119 @@
+@import './variables';
+
+.firstDivRegister{
+    position: relative;
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 15px;
+
+    .arrowBack{
+        color: black;
+        font-size: 20px;
+        font-weight: 900;
+        background: rgba(255, 255, 255, 0.2); 
+        backdrop-filter: blur(10px);         
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 16px;                  
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
+        padding: 6px 10px;
+        margin-top: 20px;
+        position: absolute;
+        top: -90px;
+        left: 10px;
+    }
+
+.divRegister{
+    text-align: center;
+
+    .registerArticle{
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+        margin-top: 80px;
+        background-color: white;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); 
+        padding: 35px 25px 45px 25px;
+        border-radius: 8px;
+
+    form{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+
+        label{
+            font-family: $font-text;
+            text-align: left;
+        }
+        input{
+            padding: 9px 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+
+        }
+    }
+    .forgotPassLink{
+        margin-top: 14px;
+        display: flex;
+        justify-content: end;
+        color: $color-red;
+        font-family: $font-text;
+        font-size: 12px;
+    }
+    button{
+        margin-top: 35px;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 9px;
+        font-family: $font-text;
+        font-weight: 600;
+        background-color: $color-red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    div{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        p{
+        margin-bottom: 40px;
+        padding: 0 5px;
+        
+        }
+        span{
+            border-top: 1px solid lightgrey;
+            margin-top: 10px;
+        }
+    }
+    
+    .googleLink{
+        border: 1px solid rgba(255, 0, 0, 0.266);
+        border-radius: 8px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); 
+        color: black;
+        font-family: $font-text;
+        display: flex;
+        width: 85%;
+        margin: auto;
+        justify-content: center;
+        padding: 8px;
+    }
+}
+>div{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    a{
+        font-family: $font-text;
+        color: $color-red;
+    }
+}
+}
+}
+

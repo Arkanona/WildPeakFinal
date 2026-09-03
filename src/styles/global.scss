@@ -1,0 +1,30 @@
+@import './variables';
+
+/* Général */
+
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+body{
+    background-color: $background-white;
+}
+img{
+    object-fit: cover;
+    width: 100%;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+ul {
+    padding: 0;
+}
+h1, h2, h3{
+    font-family: $font-title;
+}
+p, span{
+    font-family: $font-text;
+}
