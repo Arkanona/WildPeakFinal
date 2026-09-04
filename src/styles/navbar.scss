@@ -1,5 +1,6 @@
 @import './variables';
 
+// Style du header
 header {
     background-color: $color-darkblue;
     
@@ -15,6 +16,12 @@ header {
             font-family: $font-title;
             font-size: 45px;
             color: white;
+        }
+        .logoImage{
+            display: none;
+        }
+        .logoText{
+            display: block;
         }
         .navbar {
             display: flex;
@@ -97,6 +104,7 @@ header {
 // Media Queries
 @media screen and (max-width: 767px){
     header{
+
         .divHeader{
 
             .navbar{

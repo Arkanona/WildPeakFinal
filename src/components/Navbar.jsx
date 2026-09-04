@@ -15,7 +15,7 @@ function Navbar () {
         <>
         <header>
         <div className="divHeader">
-            <Link to='/'>WILDPEAK</Link>
+            <Link to='/'>WILDPEAK</Link>   
             <nav className='navbar'>
                 <ul>
                     <li><Link to='/'>Accueil</Link></li>

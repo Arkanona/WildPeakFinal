@@ -1,0 +1,18 @@
+import '/Formation/React/WildPeak/frontend/src/styles/home.scss';
+
+function HomeImage(){
+
+    return (
+        <>
+        <section className='homeImage'>
+            <div className='bgImageHome'>
+                <div>
+                    <h1>TA PROCHAINE AVENTURE COMMENCE ICI</h1>
+                    <p>Découvre, compare et explore les attractions qui te feront vivre tes prochaines sensations fortes.</p>
+                </div>
+            </div>
+        </section>
+        </>
+    )
+}
+export default HomeImage

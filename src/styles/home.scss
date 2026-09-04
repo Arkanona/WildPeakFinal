@@ -1,14 +1,15 @@
 @import './variables';
 
-.parkImage{
+// Style pour la page d'accueil
+.homeImage{
     position: relative;
 
-    .bgImagePark{
+    .bgImageHome{
 
-        background-image: url('/parks/ImageParcs.png');
+        background-image: url('/assets/Accueil.png');
         height: 400px;
         background-size: cover;
-        background-position: center 50%;
+        background-position: center 55%;
         background-repeat: no-repeat;
         overflow: hidden;
     
@@ -27,7 +28,7 @@
                 linear-gradient(
                     to top,
                     rgba(0, 0, 0, 0.45) 0%,
-                    transparent 60%
+                    transparent 85%
                 );
     
             z-index: 1;
@@ -40,6 +41,7 @@
             z-index: 2;
             text-align: center;
             top: 130px;
+            padding: 0 15px;
     
             h1{
                 color: white;
@@ -55,13 +57,17 @@
 
 // Media Queries
 @media screen and (max-width: 767px) {
-    .parkImage{
+    .homeImage{
     
-        .bgImagePark{
+        .bgImageHome{
 
             div{
-                top: 55px;
+        
+                h1{
+                    font-size: 45px;
+                } 
+
             }
         }
-    }  
+    }
 }
