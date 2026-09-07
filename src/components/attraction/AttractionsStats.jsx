@@ -7,7 +7,6 @@ function AttractionsStats({datas}){
 
     const { id } = useParams()
 
-
     const park = datas.find((park) => park.attractions.some((attraction) => String(attraction.slug) === id) )
 
     const attraction = park?.attractions.find(

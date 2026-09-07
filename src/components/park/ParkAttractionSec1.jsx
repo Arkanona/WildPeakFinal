@@ -1,5 +1,4 @@
 import '/Formation/React/WildPeak/frontend/src/styles/attractionDetails.scss';
-
 import { useParams } from 'react-router-dom';
 
 function ParkAttractionSec({datas}){
@@ -7,6 +6,7 @@ function ParkAttractionSec({datas}){
     const { id } = useParams()
 
     const park = datas.find((park) => park.id === id)
+
 
     return (
         <>

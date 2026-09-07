@@ -11,6 +11,7 @@
       {
         "id": 1,
         "nom": "Avengers Assemble: Flight Force",
+        "slug":"avengers-assemble-flight-force",
         "img": "../assets/AvengersAssemble.png",
         "alt": "Vue de l’attraction Avengers Assemble: Flight Force à Disneyland Paris",
         "parc_zone": "Disney Adventure World — Avengers Campus",
@@ -35,6 +36,7 @@
       {
         "id": 2,
         "nom": "The Twilight Zone Tower of Terror",
+        "slug":"the-twilight-zone-tower-of-terror",
         "img": "../assets/TowerofTerror.png",
         "alt": "Vue de l’attraction The Twilight Zone Tower of Terror à Disneyland Paris",
         "parc_zone": "Disney Adventure World",
@@ -60,6 +62,7 @@
       {
         "id": 3,
         "nom": "Star Wars Hyperspace Mountain",
+        "slug":"star-wars-hyperspace-mountain",
         "img": "../assets/Space_Mountain_Mission_2.jpg",
         "alt": "Vue de l’attraction Star Wars Hyperspace Mountain à Disneyland Paris",
         "parc_zone": "Parc Disneyland — Discoveryland",
@@ -84,6 +87,7 @@
       {
         "id": 4,
         "nom": "Indiana Jones et le Temple du Péril",
+        "slug":"indiana-jones-et-le-temple-du-peril",
         "img": "../assets/indiana-jones-et-le-temple-du-peril.jpg",
         "alt": "Vue de l’attraction Indiana Jones et le Temple du Péril à Disneyland Paris",
         "parc_zone": "Parc Disneyland — Adventureland",
@@ -109,6 +113,7 @@
       {
         "id": 5,
         "nom": "RC Racer",
+        "slug":"rc-racer",
         "img": "../assets/RC_Racer_HK.jpg",
         "alt": "Vue de l’attraction RC Racer à Disneyland Paris",
         "parc_zone": "Disney Adventure World — Toy Story Playland",
@@ -133,6 +138,7 @@
       {
         "id": 6,
         "nom": "Big Thunder Mountain",
+        "slug":"big-thunder-mountain",
         "img": "../assets/BTM_1.png",
         "alt": "Vue de l’attraction Big Thunder Mountain à Disneyland Paris",
         "parc_zone": "Parc Disneyland — Frontierland",
@@ -157,6 +163,7 @@
       {
         "id": 7,
         "nom": "Crush's Coaster",
+        "slug":"crushs-coaster",
         "img": "../assets/crush-coaster.jpg",
         "alt": "Vue de l’attraction Crush's Coaster à Disneyland Paris",
         "parc_zone": "Disney Adventure World — Worlds of Pixar",
@@ -181,6 +188,7 @@
       {
         "id": 8,
         "nom": "Star Tours : L'Aventure Continue",
+        "slug":"star-tours-laventure-continue",
         "img": "../assets/Star-Tour.jpg",
         "alt": "Vue de l’attraction Star Tours : L'Aventure Continue à Disneyland Paris",
         "parc_zone": "Parc Disneyland — Discoveryland",
@@ -204,6 +212,7 @@
       {
         "id": 9,
         "nom": "Toy Soldiers Parachute Drop",
+        "slug":"toy-soldiers-parachute-drop",
         "img": "../assets/Toy_Soldiers_Parachute_Drop.jpg",
         "alt": "Vue de l’attraction Toy Soldiers Parachute Drop à Disneyland Paris",
         "parc_zone": "Disney Adventure World — Toy Story Playland",
@@ -237,6 +246,7 @@
       {
         "id": 1,
         "nom": "Voltron Nevera powered by Rimac",
+        "slug":"voltron-nevera-powered-by-rimac",
         "img": "../assets/voltron_sommer_europa-park.jpg",
         "alt": "Vue de l’attraction Voltron Nevera powered by Rimac à Europa-Park",
         "parc_zone": "Zone Croatie",
@@ -264,6 +274,7 @@
       {
         "id": 2,
         "nom": "Silver Star",
+        "slug":"silver-star",
         "img": "../assets/silverstar-en-image.jpg",
         "alt": "Vue de l’attraction Silver Star à Europa-Park",
         "parc_zone": "Zone France",
@@ -291,6 +302,7 @@
       {
         "id": 3,
         "nom": "Blue Fire Megacoaster",
+        "slug":"blue-fire-megacoaster",
         "alt": "Vue de l’attraction Blue Fire Megacoaster à Europa-Park",
         "parc_zone": "Zone Islande",
         "type": "Launch Coaster (extérieur/intérieur)",
@@ -318,6 +330,7 @@
       {
         "id": 4,
         "nom": "Wodan Timburcoaster",
+        "slug":"wodan-timburcoaster",
         "alt": "Vue de l’attraction Wodan Timburcoaster à Europa-Park",
         "parc_zone": "Zone Allemagne — Dark Forest",
         "type": "Montagne russe en bois (extérieur)",
@@ -344,6 +357,7 @@
       {
         "id": 5,
         "nom": "Eurosat — CanCan Coaster",
+        "slug":"eurosat-cancan-coaster",
         "alt": "Vue de l’attraction Eurosat — CanCan Coaster à Europa-Park",
         "parc_zone": "Zone France",
         "type": "Montagne russe (intérieur)",
@@ -368,6 +382,7 @@
       {
         "id": 6,
         "nom": "Euro-Mir",
+        "slug":"euro-mir",
         "alt": "Vue de l’attraction Euro-Mir à Europa-Park",
         "parc_zone": "Zone Russie",
         "type": "Montagne russe interactive (intérieur/extérieur)",
@@ -392,6 +407,7 @@
       {
         "id": 7,
         "nom": "Atlantica SuperSplash",
+        "slug":"atlantica-supersplash",
         "alt": "Vue de l’attraction Atlantica SuperSplash à Europa-Park",
         "parc_zone": "Zone Islande",
         "type": "Attraction aquatique (log flume)",
@@ -416,6 +432,7 @@
       {
         "id": 8,
         "nom": "Poseidon",
+        "slug":"poseidon",
         "alt": "Vue de l’attraction Poseidon à Europa-Park",
         "parc_zone": "Zone Grèce",
         "type": "Attraction aquatique (water coaster)",
@@ -451,6 +468,7 @@
       {
         "id": 1,
         "nom": "Shambhala",
+        "slug":"shambhala",
         "img": "../assets/shambhala.jpg",
         "alt": "Vue de l’attraction Shambhala à PortAventura Park",
         "parc_zone": "PortAventura Park — China",
@@ -476,6 +494,7 @@
       {
         "id": 2,
         "nom": "Dragon Khan",
+        "slug":"dragon-khan",
         "img": "../assets/dragon-khan.jpg",
         "alt": "Vue de l’attraction Dragon Khan à PortAventura Park",
         "parc_zone": "PortAventura Park — China",
@@ -501,6 +520,7 @@
       {
         "id": 3,
         "nom": "Furius Baco",
+        "slug":"furius-baco",
         "img": "../assets/furius-baco.jpg",
         "alt": "Vue de l’attraction Furius Baco à PortAventura Park",
         "parc_zone": "PortAventura Park — Mediterrània",
@@ -526,6 +546,7 @@
       {
         "id": 4,
         "nom": "Uncharted: The Enigma of Penitence",
+        "slug":"uncharted-the-enigma-of-penitence",
         "img": "../assets/uncharted.jpg",
         "alt": "Vue de l’attraction Uncharted: The Enigma of Penitence à PortAventura Park",
         "parc_zone": "PortAventura Park — Far West",
@@ -552,6 +573,7 @@
       {
         "id": 5,
         "nom": "Hurakan Condor",
+        "slug":"hurakan-condor",
         "img": "../assets/hurakan-condor.jpg",
         "alt": "Vue de l’attraction Hurakan Condor à PortAventura Park",
         "parc_zone": "PortAventura Park — México",
@@ -576,6 +598,7 @@
       {
         "id": 6,
         "nom": "Stampida",
+        "slug":"stampida",
         "img": "../assets/stampida.jpg",
         "alt": "Vue de l’attraction Stampida à PortAventura Park",
         "parc_zone": "PortAventura Park — Far West",
@@ -602,6 +625,7 @@
       {
         "id": 7,
         "nom": "Tutuki Splash",
+        "slug":"tutuki-splash",
         "img": "../assets/tutuki-splash.jpg",
         "alt": "Vue de l’attraction Tutuki Splash à PortAventura Park",
         "parc_zone": "PortAventura Park — Polynesia",
@@ -627,6 +651,7 @@
       {
         "id": 8,
         "nom": "Angkor",
+        "slug":"angkor",
         "img": "../assets/angkor.jpg",
         "alt": "Vue de l’attraction Angkor à PortAventura Park",
         "parc_zone": "PortAventura Park — China",
@@ -663,6 +688,7 @@
       {
         "id": 1,
         "nom": "Toutatis",
+        "slug":"toutatis",
         "img": "../assets/Toutatis.jpg",
         "alt": "Vue de l’attraction Toutatis à Parc Astérix",
         "parc_zone": "Parc Astérix — Festival Toutatis",
@@ -689,6 +715,7 @@
       {
         "id": 2,
         "nom": "OzIris",
+        "slug":"oziris",
         "img": "../assets/oziris.jpg",
         "alt": "Vue de l’attraction OzIris à Parc Astérix",
         "parc_zone": "Parc Astérix — Égypte",
@@ -715,6 +742,7 @@
       {
         "id": 3,
         "nom": "Tonnerre 2 Zeus",
+        "slug":"tonnerre-2-zeus",
         "img": "../assets/tonnerre-de-zeus.jpg",
         "alt": "Vue de l’attraction Tonnerre 2 Zeus à Parc Astérix",
         "parc_zone": "Parc Astérix — Grèce Antique",
@@ -741,6 +769,7 @@
       {
         "id": 4,
         "nom": "Goudurix",
+        "slug":"goudurix",
         "img": "../assets/Goudurix.jpg",
         "alt": "Vue de l’attraction Goudurix à Parc Astérix",
         "parc_zone": "Parc Astérix — Les Vikings",
@@ -767,6 +796,7 @@
       {
         "id": 5,
         "nom": "La Trace du Hourra",
+        "slug":"la-trace-du-hourra",
         "img": "../assets/trace-du-hourra.jpg",
         "alt": "Vue de l’attraction La Trace du Hourra à Parc Astérix",
         "parc_zone": "Parc Astérix — Bienvenue chez les Gaulois",
@@ -792,6 +822,7 @@
       {
         "id": 6,
         "nom": "Pégase Express",
+        "slug":"pegase-express",
         "img": "../assets/pegase-express.png",
         "alt": "Vue de l’attraction Pégase Express à Parc Astérix",
         "parc_zone": "Parc Astérix — Grèce Antique",
@@ -817,6 +848,7 @@
       {
         "id": 7,
         "nom": "Discobélix",
+        "slug":"discobelix",
         "img": "../assets/discobelix.jpg",
         "alt": "Vue de l’attraction Discobélix à Parc Astérix",
         "parc_zone": "Parc Astérix — Grèce Antique",
@@ -842,6 +874,7 @@
       {
         "id": 8,
         "nom": "Menhir Express",
+        "slug":"menhir-express",
         "img": "../assets/menhir-express.png",
         "alt": "Vue de l’attraction Menhir Express à Parc Astérix",
         "parc_zone": "Parc Astérix — Bienvenue chez les Gaulois",

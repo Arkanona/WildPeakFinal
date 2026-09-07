@@ -34,32 +34,32 @@ function Navbar () {
                 </div>
                 <ul className={`navbarList ${isMenuOpen ? 'show' : ''}`}>
                     <li className='navbarItem'>
-                        <NavLink exact to="/" onClick={toggleMenu}>
+                        <NavLink end to="/" onClick={toggleMenu}>
                             Accueil
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink exact to="/parcs" onClick={toggleMenu}>
+                        <NavLink end to="/parcs" onClick={toggleMenu}>
                             Parcs
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink exact to="#" onClick={toggleMenu}>
+                        <NavLink end to="#" onClick={toggleMenu}>
                             Attractions
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink exact to="/comparateur" onClick={toggleMenu}>
+                        <NavLink end to="/comparateur" onClick={toggleMenu}>
                             Comparateur
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink exact to="/connexion" onClick={toggleMenu}>
+                        <NavLink end to="/connexion" onClick={toggleMenu}>
                             Connexion
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink exact to="/inscription" onClick={toggleMenu}>
+                        <NavLink end to="/inscription" onClick={toggleMenu}>
                             Inscription
                         </NavLink>
                     </li>
