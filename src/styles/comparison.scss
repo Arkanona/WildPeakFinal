@@ -52,3 +52,19 @@
         }
     }
 }
+
+// Media Queries
+@media screen and (max-width: 767px){
+   .comparisonImage{
+
+        .bgImageComparison{
+        
+            div{
+                padding: 0 15px;
+                h1{
+                    font-size: 60px;
+                } 
+            }
+        }
+    } 
+}

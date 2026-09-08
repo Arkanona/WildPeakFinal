@@ -1,5 +1,4 @@
 import '/Formation/React/WildPeak/frontend/src/styles/comparisonCollapse.scss';
-
 import { useState } from 'react';
 import { Collapse } from 'react-collapse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
