@@ -11,7 +11,7 @@ function ParkAttractionSec({datas}){
     return (
         <>
         <section className='secParkDetail'>
-            <div className='bgImagePark' style={{backgroundImage: `url(${park.img})`}}>
+            <div className='bgImagePark' style={{backgroundImage: `url(${park.img_bg})`}}>
                 <div className='divTextPark'>
                     <div>
                         <p>{park.pays} •</p>

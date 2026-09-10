@@ -2,7 +2,8 @@
   {
     "id": "Disneyland-Paris",
     "parc": "Disneyland Paris",
-    "img": "../parks/Disney.jpg",
+    "img": "/parks/Disney.webp",
+    "img_bg": "/parks/DisneyBg.webp",
     "description": "Disneyland Paris est l’un des plus grands complexes de loisirs d’Europe. Situé à Marne-la-Vallée, il propose deux parcs remplis d’attractions, de spectacles et d’univers Disney. On y retrouve des zones inspirées de Disney, Pixar, Marvel et Star Wars. Le parc s’adresse aussi bien aux familles qu’aux amateurs de sensations fortes. C’est une destination incontournable pour vivre une expérience immersive et magique.",
     "creation_date": "1992",
     "pays": "France",
@@ -237,7 +238,8 @@
   {
     "id": "Europa-Park",
     "parc": "Europa-Park",
-    "img": "../parks/Europa-park.jpg",
+    "img": "/parks/Europa-park.webp",
+    "img_bg": "/parks/Disney.webp",
     "description": "Europa-Park est l’un des plus grands parcs d’attractions d’Europe. Situé à Rust, en Allemagne, il propose de nombreux quartiers inspirés de différents pays européens. Le parc possède plus de 100 attractions et spectacles, dont plusieurs montagnes russes à sensations fortes. Il se distingue par ses décors immersifs, ses attractions variées et son ambiance familiale.",
     "creation_date": "1975",
     "pays": "Allemagne",
@@ -459,7 +461,8 @@
   {
     "id": "PortAventura-Park",
     "parc": "PortAventura Park",
-    "img": "../parks/PortAventura.png",
+    "img": "/parks/PortAventura.webp",
+    "img_bg": "/parks/Disney.webp",
     "description": "PortAventura Park est l’un des plus grands parcs à thèmes d’Espagne. Situé à Vila-seca, près de Salou, il propose six univers thématiques inspirés de différentes régions du monde. Le parc est notamment connu pour ses montagnes russes spectaculaires comme Shambhala, Dragon Khan et Furius Baco. Il combine attractions à sensations fortes, attractions familiales, spectacles et décors immersifs.",
     "creation_date": "1995",
     "pays": "Espagne",
@@ -679,7 +682,8 @@
   {
     "id": "Parc-Asterix",
     "parc": "Parc Astérix",
-    "img": "../parks/ParcAsterix.png",
+    "img": "/parks/ParcAsterix.webp",
+    "img_bg": "/parks/Disney.webp",
     "description": "Le Parc Astérix est l’un des principaux parcs d’attractions français. Situé à Plailly, dans l’Oise, il s’inspire de l’univers de la bande dessinée Astérix et propose plusieurs zones thématiques autour des Gaulois, de la Grèce Antique, de l’Égypte et des Vikings. Le parc est particulièrement connu pour ses montagnes russes à sensations fortes, tout en proposant de nombreuses attractions familiales et aquatiques.",
     "creation_date": "1989",
     "pays": "France",

@@ -8,6 +8,8 @@ import ParkImage from "../components/park/ParkBgImage";
 function Parks() {
     return (
         <>
+        <title>Parcs - WildPeak</title>
+        <meta name="description" content="Découvrez les principaux parcs d’attractions européens, leurs informations, leurs univers et les attractions qu’ils proposent." />     
         <Navbar/>
         <main>
             <ParkImage/>

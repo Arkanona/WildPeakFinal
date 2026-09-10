@@ -1,12 +1,12 @@
 import '/Formation/React/WildPeak/frontend/src/styles/cardAttraction.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom';
 
 function CardAttraction({datas}){
 
-    const navigate = useNavigate()
+   
     const { id } = useParams()
 
     const park = datas.find((park) => park.id === id)
@@ -20,7 +20,7 @@ function CardAttraction({datas}){
             </div>
             <div className='cardsContainerAttraction'>
                 {park.attractions.map((attraction) => (
-                    <a key={attraction.id} onClick={() => navigate(`/attractions/${attraction.slug}`)}>
+                    <Link to={`/attractions/${attraction.slug}`} key={attraction.id}>
                     
                     <article>
                     <img src={attraction.img} alt={attraction.alt} />
@@ -37,7 +37,7 @@ function CardAttraction({datas}){
                         </div>
                     </div>
                     </article>
-                </a>
+                </Link>
                 ))}                        
             </div>           
         </div>

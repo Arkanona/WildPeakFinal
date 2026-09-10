@@ -10,6 +10,9 @@ import data from '../data/attraction.json';
 function AttractionDetails() {
     return (
         <>
+        <meta content="text/html;charset=UTF-8" />
+        <title>Attractions - WildPeak</title>
+        <meta name="description" content="Découvrez les attractions des parcs européens et consultez leurs principales caractéristiques, informations et statistiques." />
         <Navbar/>
         <main>
             <section className='secParkDetail'>

@@ -9,6 +9,8 @@ import ComparisonBalanced from "../components/comparison/ComparisonBalanced";
 function AttractionComparison() {
     return (
         <>
+        <title>Comparateur - WildPeak</title>
+        <meta name="description" content="Comparez les attractions des parcs européens grâce à leurs statistiques et caractéristiques principales." />
         <Navbar/>
         <main>
             <ComparisonImage/>

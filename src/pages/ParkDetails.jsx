@@ -8,6 +8,8 @@ import data from '../data/attraction.json';
 function ParksDetails() {
     return (
         <>
+        <title>Parcs - WildPeak</title>
+        <meta name="description" content="Connectez-vous à WildPeak, un site de comparateur d'attractions." />
         <Navbar/>
         <main>
             <ParkAttractionSec1 datas={data}/>
