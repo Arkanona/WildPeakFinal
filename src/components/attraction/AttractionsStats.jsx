@@ -2,16 +2,19 @@ import '/Formation/React/WildPeak/frontend/src/styles/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate, faGaugeHigh, faArrowUpLong, faMapLocationDot, faStopwatch, faGear, faCalendarDays, faRulerVertical} from '@fortawesome/free-solid-svg-icons'
+import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
+
 
 function AttractionsStats({datas}){
 
-    const { id } = useParams()
+    const { slug } = useParams()
 
-    const park = datas.find((park) => park.attractions.some((attraction) => String(attraction.slug) === id) )
+    // const park = datas.find((park) => park.attractions.some((attraction) => String(attraction.slug) === slug) )
 
-    const attraction = park?.attractions.find(
-        (attraction) => String(attraction.slug) === id
-    )
+    // const attraction = park?.attractions.find(
+    //     (attraction) => String(attraction.slug) === slug
+    // )
+    const { attraction } = findAttractionBySlug(datas, slug)
 
     return (
         <>

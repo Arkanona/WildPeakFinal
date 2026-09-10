@@ -19,7 +19,7 @@ function App() {
         <Route path="/connexion" element={<LoginPage />} />
         <Route path="/parcs" element={<Parks />} />
         <Route path="/parcs/:id" element={<ParksDetails />} />
-        <Route path="/attractions/:id" element={<AttractionDetails />} />
+        <Route path="/attractions/:slug" element={<AttractionDetails />} />
         <Route path="/comparateur" element={<AttractionComparison />} />
       </Routes>
     </Router>

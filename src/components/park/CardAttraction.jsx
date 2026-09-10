@@ -5,11 +5,10 @@ import { faRotate } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom';
 
 function CardAttraction({datas}){
-
    
     const { id } = useParams()
-
     const park = datas.find((park) => park.id === id)
+
 
     return (
         <>
@@ -21,7 +20,6 @@ function CardAttraction({datas}){
             <div className='cardsContainerAttraction'>
                 {park.attractions.map((attraction) => (
                     <Link to={`/attractions/${attraction.slug}`} key={attraction.id}>
-                    
                     <article>
                     <img src={attraction.img} alt={attraction.alt} />
                     <div>

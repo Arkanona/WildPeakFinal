@@ -5,9 +5,19 @@ import Attractions from "../components/attraction/AttractionsSec1";
 import AttractionsStats from "../components/attraction/AttractionsStats";
 import AboutAttractions from "../components/attraction/AboutAttractions";
 import data from '../data/attraction.json';
+import { Navigate, useParams } from "react-router-dom";
 
 
 function AttractionDetails() {
+    const { slug } = useParams();
+
+const attraction = data
+    .flatMap((park) => park.attractions)
+    .find((attraction) => attraction.slug === slug);
+
+    if(!attraction){
+        return <Navigate to={'/'}/>
+    }
     return (
         <>
         <meta content="text/html;charset=UTF-8" />

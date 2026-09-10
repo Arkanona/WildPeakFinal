@@ -6,6 +6,7 @@ import ParkImage from "../components/park/ParkBgImage";
 
 
 function Parks() {
+    
     return (
         <>
         <title>Parcs - WildPeak</title>

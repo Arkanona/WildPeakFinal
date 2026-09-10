@@ -1,6 +1,6 @@
 import '/Formation/React/WildPeak/frontend/src/styles/cardParks.scss';
 import { Link } from 'react-router-dom';
-
+// import { useParams } from 'react-router-dom';
 
 
 function CardParks({datas}) {
@@ -9,7 +9,13 @@ function CardParks({datas}) {
     // if(false){
     //     return <Navigate to={'/'} />
     // }
+    // const { id } = useParams()
 
+    // const park = datas.find((park) => park.id === id)
+
+    // if(!park){
+    //     return <Navigate to={'/'}/>
+    // }
 
     return (
         <>
