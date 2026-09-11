@@ -1,6 +1,5 @@
 import '../../styles/comparisonCollapse.scss';
 import { useState } from 'react';
-import { Collapse } from 'react-collapse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,49 +21,41 @@ function ComparisonCollapse({datas}){
     )
 
     return (
-        <>
         <section className='secCollapse'>
-            <div className='divCollapse'>
-                <div className='collapseCard'>
-                    <button onClick={() => setVisibleCol(!visibleCol)}>
-                        <span>Selectionner des attractions à comparer...</span>
-                        <div>
-                            <span>0/4Test</span>
-                            <FontAwesomeIcon icon={faChevronDown} className={`fa-solid fa-arrow-down ${visibleCol ? 'rotate' : ''}`}/>
-                        </div>
-                    </button>
-                    <Collapse isOpened={visibleCol}>
-                        <div className='collapseInner'>
-                            <div className='divInput'>
-                                <div > {/* mettre un label*/}
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                    <input 
-                                        type="text"
-                                        id='collapseInput'
-                                        placeholder='Rechercher une attraction...' 
-                                        value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
-
-                                    />
-                                </div>
-                            </div>
-                            <div className='collapseContent'>{/* mettre une section */}
-                                {filteredAttractions.map((attraction) => (
-                                <div key={attraction.slug} className='collapseAttractions'>
-                                    <img src={attraction.img} alt={attraction.nom} />
-                                    <div>
-                                        <h2>{attraction.nom}</h2>
-                                        <p>{attraction.parc}</p>
-                                    </div>
-                                </div>
-                                ))}
-                            </div>
-                        </div>
-                    </Collapse>
+            <button onClick={() => setVisibleCol(!visibleCol)}>
+                <span>Selectionner des attractions à comparer...</span>
+                <div>
+                    <span>0/4Test</span>
+                    <FontAwesomeIcon icon={faChevronDown} className={`fa-solid fa-arrow-down ${visibleCol ? 'rotate' : ''}`}/>
                 </div>
-            </div>
+            </button>
+            {visibleCol && (
+                <>
+                <div className='search'>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <input 
+                        type="text"
+                        id='collapseInput'
+                        placeholder='Rechercher une attraction...' 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+
+                    />
+                </div>
+                <section className='collapseContent'>
+                    {filteredAttractions.map((attraction) => (
+                    <article key={attraction.slug}>
+                        <img src={attraction.img} alt={attraction.nom} />
+                        <div>
+                            <h2>{attraction.nom}</h2>
+                            <p>{attraction.parc}</p>
+                        </div>
+                    </article>
+                    ))}
+                </section>
+                </>
+            )}
         </section>
-        </>
     )
 }
 export default ComparisonCollapse
