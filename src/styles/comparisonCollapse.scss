@@ -197,3 +197,57 @@
         }
     }
 }
+
+
+.allArticles img {
+    max-width: 120px;
+}
+
+.allArticles > article {
+    display: grid;
+    grid-template-columns: 120px auto;
+    gap:14px;
+}
+.comparator {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    width: 100%;
+    bottom: 25px;
+    z-index: 1;
+}
+.search {
+    margin-top: 12px;
+    position: relative;
+    background-color: #fff;
+    padding: 12px;
+    border: 1px solid #c1c1c1;
+    border-radius: 12px 12px 0 0;
+}
+#searchInput {
+    width: calc(100% - 28px);
+    position: relative;
+    height: 35px;
+    padding-left: 28px;
+    padding-right: 0px;
+    border-radius: 12px;
+    border: 1px solid #c1c1c1;
+}
+section.comparator > div > svg {
+    position: absolute;
+    z-index: 9;
+    top: 12px;
+    left: 8px;
+}
+.comparator button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 16px 20px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
