@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/comparison.scss';
+import '../../styles/comparison.scss';
 
 
 function ComparisonImage(){

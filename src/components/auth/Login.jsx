@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/login.scss';
+import '../../styles/login.scss';
 
 function Login () {
     return (

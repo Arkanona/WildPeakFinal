@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/comparisonCollapse.scss';
+import '../../styles/comparisonCollapse.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faScaleBalanced } from '@fortawesome/free-solid-svg-icons';
 

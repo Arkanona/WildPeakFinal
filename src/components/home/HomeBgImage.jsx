@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/home.scss';
+import '../../styles/home.scss';
 
 function HomeImage(){
 

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import '/Formation/React/WildPeak/frontend/src/styles/attractionDetails.scss';
+import '../../styles/attractionDetails.scss';
 import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
 
 function AboutAttractions ({datas}){

@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/register.scss';
+import '../../styles/register.scss';
 
 function Register () {
     return (

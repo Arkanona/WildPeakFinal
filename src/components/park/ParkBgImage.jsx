@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/parkImage.scss';
+import '../../styles/parkImage.scss';
 
 
 function ParkImage(){

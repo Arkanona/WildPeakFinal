@@ -1,4 +1,4 @@
-import '/Formation/React/WildPeak/frontend/src/styles/attractionDetails.scss';
+import '../../styles/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate, faGaugeHigh, faArrowUpLong, faMapLocationDot, faStopwatch, faGear, faCalendarDays, faRulerVertical} from '@fortawesome/free-solid-svg-icons'
