@@ -1,22 +1,12 @@
-import '../../styles/attractionDetails.scss';
+import '../../styles/attraction/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
 
 
 function Attractions({datas}){
 
-
     const { slug } = useParams()
-
-    // const park = datas.find((park) => 
-    //     park.attractions.some((attraction) => String(attraction.slug) === slug) )
-
-    // const attraction = park?.attractions.find(
-    //     (attraction) => String(attraction.slug) === slug
-    // )
     const { park, attraction } = findAttractionBySlug(datas, slug)
-
-    
 
     return (
         <>

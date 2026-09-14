@@ -1,4 +1,4 @@
-import '../../styles/comparison.scss';
+import '../../styles/comparison/comparison.scss';
 
 
 function ComparisonImage(){

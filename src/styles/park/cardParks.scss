@@ -1,37 +1,37 @@
-@import '../styles/variables';
+@import '../variables';
 
 
-.divCardAttraction{
+.divCardPark{
     max-width: 1200px;
     margin: auto;
 
-    .divTitleAttraction{
+    .divTitleParks{
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
         margin-top: 20px;
         margin-bottom: 20px;
-        padding: 0 15px;
 
+        span:nth-child(1){
+            border-top: 1px solid red;
+            width: 12%;
+            margin-left: 15px;
+        }
+        span:nth-child(3){
+            border-top: 1px solid black;
+            width: 55%;
+        }
         h2{
             font-weight: 400;
-            font-size: 30px;
+            font-size: 35px;
 
-        }
-
-        p{
-            font-size: 30px;
-            font-weight: 400;
-            background-color: lightgray;
-            padding: 4px;
-            border-radius: 18px;
         }
     }
 
-    .cardsContainerAttraction{
+    .cardsContainer{
         padding: 0 15px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 20px;
         margin-bottom: 40px;
 
@@ -78,39 +78,28 @@
         
                 }
             }
-            .divStatAttraction{
-                display: flex;
-                gap: 8px;
-                margin-top: 10px;
-
-                p{
-                    font-size: 11px;
-                    font-weight: 600;
-                }
-
-                span{
-                    font-size: 11px;
-                }
-            }
         } 
     }
 }
 
 // Media Queries
-@media screen and (max-width: 1024px) {
-    .divCardAttraction{
-    
-        .cardsContainerAttraction{
-            grid-template-columns: 1fr 1fr;
-        }
-    }
-}
-
 @media screen and (max-width: 767px) {
-    .divCardAttraction{
-    
-        .cardsContainerAttraction{
-            grid-template-columns: 1fr;
+    .divCardPark{
+
+        .divTitleParks{
+            flex-direction: column;
+
+            span:nth-child(1){
+                width: 50%;
+            }
+            span:nth-child(3){
+                width: 35%;
+            }
+        }
+
+        .cardsContainer{
+            grid-template-columns: 1fr ;
+
         }
     }
 }

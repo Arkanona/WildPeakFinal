@@ -1,4 +1,4 @@
-import '../../styles/comparisonCollapse.scss';
+import '../../styles/comparison/comparisonCollapse.scss';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';

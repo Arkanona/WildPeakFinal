@@ -1,7 +1,6 @@
-@import './variables';
+@import '../variables';
 
-// Style pour la connexion
-.firstDivLogin{
+.firstDivRegister{
     position: relative;
     max-width: 1440px;
     margin: auto;
@@ -23,10 +22,10 @@
         left: 10px;
     }
 
-.divLogin{
+.divRegister{
     text-align: center;
 
-    .loginArticle{
+    .registerArticle{
         max-width: 500px;
         margin: auto;
         text-align: center;

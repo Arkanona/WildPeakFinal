@@ -1,4 +1,4 @@
-import '../../styles/parkImage.scss';
+import '../../styles/park/parkImage.scss';
 
 
 function ParkImage(){

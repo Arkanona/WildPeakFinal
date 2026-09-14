@@ -1,4 +1,4 @@
-import '../../styles/attractionDetails.scss';
+import '../../styles/attraction/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 
 function ParkAttractionSec({datas}){

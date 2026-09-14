@@ -1,4 +1,4 @@
-import '../../styles/cardAttraction.scss';
+import '../../styles/park/cardAttraction.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'

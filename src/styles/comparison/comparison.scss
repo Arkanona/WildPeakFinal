@@ -1,12 +1,11 @@
-@import './variables';
+@import '../variables';
 
-// Style pour la page d'accueil
-.homeImage{
+.comparisonImage{
     position: relative;
 
-    .bgImageHome{
+    .bgImageComparison{
 
-        background-image: url('/assets/Accueil.png');
+        background-image: url('/assets/compateur.png');
         height: 400px;
         background-size: cover;
         background-position: center 55%;
@@ -28,7 +27,7 @@
                 linear-gradient(
                     to top,
                     rgba(0, 0, 0, 0.45) 0%,
-                    transparent 85%
+                    transparent 60%
                 );
     
             z-index: 1;
@@ -41,7 +40,6 @@
             z-index: 2;
             text-align: center;
             top: 130px;
-            padding: 0 15px;
     
             h1{
                 color: white;
@@ -56,18 +54,17 @@
 }
 
 // Media Queries
-@media screen and (max-width: 767px) {
-    .homeImage{
-    
-        .bgImageHome{
+@media screen and (max-width: 767px){
+   .comparisonImage{
 
-            div{
+        .bgImageComparison{
         
+            div{
+                padding: 0 15px;
                 h1{
-                    font-size: 45px;
+                    font-size: 60px;
                 } 
-
             }
         }
-    }
+    } 
 }

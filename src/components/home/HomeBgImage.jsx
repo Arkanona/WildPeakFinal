@@ -1,4 +1,4 @@
-import '../../styles/home.scss';
+import '../../styles/home/home.scss';
 
 function HomeImage(){
 
