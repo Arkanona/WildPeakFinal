@@ -22,9 +22,9 @@ function Parks() {
         <meta name="description" content="Découvrez les principaux parcs d’attractions européens, leurs informations, leurs univers et les attractions qu’ils proposent." />     
         <Navbar/>
         <main>
-            <ParkImage/>
+            <ParkImage parks={parks}/>
             <section className='sectionCardPark'>
-                <CardParks datas={parks}/>
+                <CardParks parks={parks}/>
             </section>
         </main>
         <Footer/>
