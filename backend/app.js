@@ -11,7 +11,7 @@ require('./config/db')
 const authRoutes = require('./routes/authRoutes')
 
 const corsOption = {
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:5173'
 }
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,

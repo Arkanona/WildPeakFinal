@@ -1,8 +1,8 @@
-const mutler = require('multer')
+const multer = require('multer')
 
-const storage = mutler.memoryStorage()
+const storage = multer.memoryStorage()
 
-const upload = mutler({
+const upload = multer({
     storage,
     // Limitation à 5 Mo max
     limits: {
