@@ -1,46 +1,30 @@
-// const mongoose = require('mongoose') 
 const bcrypt = require('bcryptjs')
+const pool = require('../config/db')
 
-const userSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: [true, 'Name is required'],
-            trim: true
-        },
-        email: {
-            type: String,
-            required: [true, 'Email is required'],
-            unique: true,
-            lowercase: true,
-            trim: true
-        },
-        password: {
-            type: String,
-            required: [true, 'Password is required'],
-            minlenght: 7,
-            trim: true,
-            select: false
-        },
-        role: {
-            type: [String],
-            enum: ['user', 'captain', 'admin', 'organizer', 'player'],
-            default: ['user'],
-        }
-    },
-    {
-        timestamps: true,
-    }
-)
+exports.createUser = async (name, email, password) => {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt)
 
-userSchema.pre('save', async function (){
-    if(!this.isModified('password')) return;
-    const salt = await bcrypt.genSalt(10)
-    this.password = await bcrypt.hash(this.password, salt)
-})
+    const result = await pool.query(
+        `INSERT INTO user (name, email, password)
+         VALUES ($1, $2, $3)
+         RETURNING id, name, email, created_at`,
+        [name, email.toLowerCase().trim(), hashedPassword]
+    )
 
-userSchema.methods.comparePassword = async function (enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.password)
+    return result.rows[0];
 }
 
-module.exports = mongoose.model('User', userSchema)
+exports.findUserByEmail = async (email) => {
+    const result = await pool.query(
+        `SELECT * FROM user WHERE email = $1`,
+        [email.toLowerCase().trim()]
+    )
+
+    return result.rows[0];
+}
+
+exports.comparePassword = async (enteredPassword, hashedPassword) => {
+    return await bcrypt.compare(enteredPassword, hashedPassword)
+}
+

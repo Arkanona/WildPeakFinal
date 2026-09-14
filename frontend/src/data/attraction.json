@@ -45,7 +45,6 @@
         "niveau_sensation": "extreme",
         "vitesse_max_kmh": 49,
         "hauteur_m": 55,
-        "hauteur_chute_m": 38,
         "duree_min": 2,
         "taille_minimum_cm": 102,
         "inversions": 0,
@@ -259,7 +258,6 @@
         "longueur_m": 1385,
         "duree_min": 3,
         "taille_minimum_cm": 130,
-        "age_minimum": 7,
         "inversions": 7,
         "description": "Nouveauté 2024 et attraction la plus intense du parc. Premier Stryker Coaster au monde, avec quatre accélérations par catapulte magnétique dont une en marche arrière. Départ à 105 degrés, 7 inversions dont un Inverted Top Hat spectaculaire. Record du monde d'inversions pour un coaster à propulsion. Le parcours met particulièrement en valeur les sensations liées à propulsion magnetique, inversions multiples, airtime, tout en conservant une expérience cohérente avec son univers. Grâce à son type multi-launch coaster (stryker coaster), Voltron Nevera powered by Rimac propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
@@ -287,9 +285,7 @@
         "longueur_m": 1620,
         "duree_min": 3,
         "taille_minimum_cm": 140,
-        "age_minimum": 11,
         "inversions": 0,
-        "forces_g_max": 4,
         "description": "L'un des plus grands et plus hauts grand-huit en acier d'Europe. Première descente de 65 mètres à 130 km/h, deux dos de chameau avec plus de 20 secondes d'apesanteur cumulées. Visible depuis l'autoroute, c'est l'emblème historique d'Europa-Park. Le parcours met particulièrement en valeur les sensations liées à vitesse extreme, hauteur vertigineuse, airtime, tout en conservant une expérience cohérente avec son univers. Grâce à son type hypercoaster (extérieur), Silver Star propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
           "vitesse extreme",
@@ -314,9 +310,7 @@
         "longueur_m": 1056,
         "duree_sec": 200,
         "taille_minimum_cm": 130,
-        "age_minimum": 7,
         "inversions": 4,
-        "forces_g_max": 3.8,
         "description": "Catapulté de 0 à 100 km/h en 2,5 secondes depuis une zone de dark ride. Enchaîne 4 inversions dont le plus haut looping d'Europe pour un launch coaster. Parcours de 1056 mètres entre les roches escarpées de l'Islande. Le parcours met particulièrement en valeur les sensations liées à catapulte, inversions, looping, tout en conservant une expérience cohérente avec son univers. Grâce à son type launch coaster (extérieur/intérieur), Blue Fire Megacoaster propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
           "catapulte",
@@ -342,9 +336,7 @@
         "longueur_m": 1050,
         "duree_min": 2,
         "taille_minimum_cm": 120,
-        "age_minimum": 6,
         "inversions": 0,
-        "forces_g_max": 3.5,
         "description": "L'une des meilleures montagnes russes en bois d'Europe. Structure imposante de 40 mètres qui croise d'autres coasters du parc. Parcours chaotique et rugueux caractéristique du bois, avec des accélérations verticales jusqu'à 3,5 G. Le parcours met particulièrement en valeur les sensations liées à rugosité du bois, vitesse, forces g, tout en conservant une expérience cohérente avec son univers. Grâce à son type montagne russe en bois (extérieur), Wodan Timburcoaster propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
           "rugosité du bois",
@@ -369,7 +361,6 @@
         "longueur_m": null,
         "duree_min": 3,
         "taille_minimum_cm": 120,
-        "age_minimum": 6,
         "inversions": 0,
         "description": "Montagne russe entièrement dans l'obscurité, thématisée sur le French CanCan depuis 2018. Inaugurée en 1989, c'est l'une des plus anciennes attractions du parc. Virages serrés et ambiance festive dans le noir. Le parcours met particulièrement en valeur les sensations liées à obscurite totale, virages serres, vitesse moderee, tout en conservant une expérience cohérente avec son univers. Grâce à son type montagne russe (intérieur), Eurosat — CanCan Coaster propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
@@ -394,7 +385,6 @@
         "longueur_m": null,
         "duree_min": 6,
         "taille_minimum_cm": 120,
-        "age_minimum": 6,
         "inversions": 0,
         "description": "Montagne russe mixte combinant dark ride et sections extérieures dans l'univers russe et spatial. Les wagons pivotent sur eux-mêmes pour que les passagers fassent face aux décors. L'une des plus longues attractions du parc. Le parcours met particulièrement en valeur les sensations liées à rotation des wagons, dark ride, decor immersif, tout en conservant une expérience cohérente avec son univers. Grâce à son type montagne russe interactive (intérieur/extérieur), Euro-Mir propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
@@ -419,7 +409,6 @@
         "longueur_m": null,
         "duree_min": 5,
         "taille_minimum_cm": 100,
-        "age_minimum": null,
         "inversions": 0,
         "description": "Parcours aquatique avec deux descentes vertigineuses. Les bateaux spéciaux glissent le long d'une piste immersive avant les chutes. L'attraction est moins humide que la plupart des flumes mais les descentes procurent de bonnes sensations. Le parcours met particulièrement en valeur les sensations liées à descentes, eau, frissons moderes, tout en conservant une expérience cohérente avec son univers. Grâce à son type attraction aquatique (log flume), Atlantica SuperSplash propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
@@ -444,7 +433,6 @@
         "longueur_m": null,
         "duree_min": 5,
         "taille_minimum_cm": 130,
-        "age_minimum": null,
         "inversions": 0,
         "description": "Water coaster dans l'univers de la Grèce antique. Parcours aquatique avec montées et descentes spectaculaires. Combinaison de sensations de coaster et d'éclaboussures garanties. Le parcours met particulièrement en valeur les sensations liées à descentes aquatiques, eclaboussures, frissons, tout en conservant une expérience cohérente avec son univers. Grâce à son type attraction aquatique (water coaster), Poseidon propose une expérience plus complète et immersive, aussi bien par son tracé que par la mise en scène qui accompagne le trajet.",
         "sensations": [
