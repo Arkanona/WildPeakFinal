@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 // import data from '../data/attraction.json';
 import ParkImage from "../components/park/ParkBgImage";
-import { getParks } from "../services/api";
+import { getParks, getAttractions } from "../services/api";
 
 
 function Parks() {
@@ -16,6 +16,13 @@ function Parks() {
             .then(data => setParks(data))
             .catch(error => console.error(error))
     }, [])
+    const [ attractions, setAttractions ] = useState([])
+    
+        useEffect(() => {
+            getAttractions()
+                .then(data => setAttractions(data))
+                .catch(error => console.error(error))
+        }, [])
     return (
         <>
         <title>Parcs - WildPeak</title>
@@ -24,7 +31,7 @@ function Parks() {
         <main>
             <ParkImage parks={parks}/>
             <section className='sectionCardPark'>
-                <CardParks parks={parks}/>
+                <CardParks parks={parks} attractions={attractions}/>
             </section>
         </main>
         <Footer/>
