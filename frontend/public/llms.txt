@@ -1,0 +1,38 @@
+# WildPeak
+
+> WildPeak est une application web permettant de découvrir et comparer des attractions de grands parcs de loisirs européens. Le site centralise des informations utiles sur les parcs et leurs attractions afin d'aider les visiteurs à choisir et comparer leurs expériences.
+
+WildPeak présente notamment des informations sur Disneyland Paris, Parc Astérix, Europa-Park et PortAventura.
+
+Informations importantes :
+
+- Les fiches des parcs présentent leurs informations générales et leurs attractions.
+- Les fiches des attractions regroupent leurs principales caractéristiques et statistiques.
+- Le comparateur permet de sélectionner plusieurs attractions afin de comparer facilement leurs données.
+- Les informations disponibles peuvent évoluer et doivent être vérifiées sur les pages correspondantes du site.
+- Les noms, marques et logos des parcs appartiennent à leurs propriétaires respectifs.
+- WildPeak est un projet indépendant et n'est pas un site officiel des parcs présentés.
+
+## Pages principales
+
+- [Accueil](/): Présentation générale de WildPeak et accès aux principales fonctionnalités.
+- [Parcs](/parcs): Liste des parcs disponibles sur WildPeak et accès à leurs fiches détaillées.
+- [Comparateur d'attractions](/comparateur): Outil permettant de sélectionner et comparer plusieurs attractions selon leurs caractéristiques et statistiques.
+
+## Contenu des parcs
+
+- [Parcs disponibles](/parcs): Informations générales sur les parcs référencés, notamment leur nom, pays, localisation, année d'ouverture, description et attractions associées.
+
+## Contenu des attractions
+
+- [Attractions via les parcs](/parcs): Accès aux attractions référencées pour chaque parc, avec leurs informations détaillées telles que le parc, la zone, l'année d'ouverture, la taille minimale requise et les autres caractéristiques disponibles.
+
+## Comparaison
+
+- [Comparer des attractions](/comparateur): Permet de rechercher, sélectionner et comparer plusieurs attractions afin d'analyser leurs statistiques et caractéristiques.
+
+## Optional
+
+- [Connexion](/connexion): Page de connexion utilisateur.
+- [Inscription](/inscription): Page de création de compte utilisateur.
+- [Sitemap](/sitemap.xml): Liste des URL publiques du site, si le sitemap est disponible.

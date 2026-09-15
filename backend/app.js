@@ -15,11 +15,11 @@ const parkRoutes = require('./routes/parkRoutes')
 const attractionRoutes = require('./routes/attractionRoutes')
 
 const corsOption = {
-    origin: 'http://localhost:5173'
+    origin: ['http://localhost:5173', 'http://localhost:4173']
 }
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    limit: 100,
+    limit: 1000,
     message: { status: 429, error: 'Too many request'}
 })
 
