@@ -1,16 +1,16 @@
-export function findAttractionBySlug(datas, slug) {
-    for (const park of datas) {
-        const attraction = park.attractions.find(
-            (attraction) => String(attraction.slug) === slug
-        )
+// export function findAttractionBySlug(datas, slug) {
+//     for (const park of datas) {
+//         const attraction = park.attractions.find(
+//             (attraction) => String(attraction.slug) === slug
+//         )
 
-        if (attraction) {
-            return { park, attraction }
-        }
-    }
+//         if (attraction) {
+//             return { park, attraction }
+//         }
+//     }
 
-    return {
-        park: undefined,
-        attraction: undefined
-    }
-}
+//     return {
+//         park: undefined,
+//         attraction: undefined
+//     }
+// }

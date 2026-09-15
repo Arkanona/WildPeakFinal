@@ -7,7 +7,7 @@ exports.getAttraction = async (req, res) => {
         return res.status(200).json(result.rows)
 
     } catch (err) {
-        console.error('ERREUR GET ATTRACRTIONS :', err)
+        console.error('ERREUR GET ATTRACTIONS :', err)
 
         return res.status(500).json({message: 'Error retrieving attractions', error: err.message})
     }

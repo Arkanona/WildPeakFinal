@@ -6,6 +6,8 @@ import AttractionsStats from "../components/attraction/AttractionsStats";
 import AboutAttractions from "../components/attraction/AboutAttractions";
 import data from '../data/attraction.json';
 import { Navigate, useParams } from "react-router-dom";
+import { getParks, getAttractions } from "../services/api";
+import { useEffect, useState } from "react";
 
 
 function AttractionDetails() {
@@ -15,6 +17,22 @@ const attraction = data
     .flatMap((park) => park.attractions)
     .find((attraction) => attraction.slug === slug);
 
+    const [ attractions, setAttractions ] = useState([])
+    
+    useEffect(() => {
+        getAttractions()
+            .then(data => setAttractions(data))
+            .catch(error => console.error(error))
+    }, [])
+
+    const [ parks, setParks ] = useState([])
+    
+    useEffect(() => {
+        getParks()
+            .then(data => setParks(data))
+            .catch(error => console.error(error))
+    }, [])
+    
     if(!attraction){
         return <Navigate to={'/'}/>
     }
@@ -26,10 +44,10 @@ const attraction = data
         <Navbar/>
         <main>
             <section className='secParkDetail'>
-                <Attractions datas={data}/>
-                <AttractionsStats datas={data}/>
+                <Attractions attractions={attractions} parks={parks}/>
+                <AttractionsStats attractions={attractions}/>
             </section>
-            <AboutAttractions datas={data}/>
+            <AboutAttractions attractions={attractions}/>
         </main>
         <Footer/>
         </>
