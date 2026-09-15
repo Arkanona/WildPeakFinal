@@ -6,9 +6,9 @@ exports.createUser = async (name, email, password) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     const result = await pool.query(
-        `INSERT INTO user (name, email, password)
-         VALUES ($1, $2, $3)
-         RETURNING id, name, email, created_at`,
+        `INSERT INTO user (name, email, password, role)
+         VALUES ($1, $2, $3, $4)
+         RETURNING id_user, name_user, email_user, role_user created_at`,
         [name, email.toLowerCase().trim(), hashedPassword]
     )
 
@@ -17,7 +17,7 @@ exports.createUser = async (name, email, password) => {
 
 exports.findUserByEmail = async (email) => {
     const result = await pool.query(
-        `SELECT * FROM user WHERE email = $1`,
+        `SELECT * FROM user WHERE email_user = $1`,
         [email.toLowerCase().trim()]
     )
 

@@ -1,27 +1,30 @@
 import '../../styles/attraction/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 
-function ParkAttractionSec({datas}){
+function ParkAttractionSec({parks}){
 
     const { id } = useParams()
 
-    const park = datas.find((park) => park.id === id)
+    const park = parks.find((park) => park.slug_park === id)
 
+    // if (!park) {
+    //     return <p>Parc not found</p>
+    // }
 
     return (
         <>
         <section className='secParkDetail'>
-            <div className='bgImagePark' style={{backgroundImage: `url(${park.img_bg})`}}>
+            <div className='bgImagePark' style={{backgroundImage: `url(http://localhost:3000${park?.imgbg_park})`}}>
                 <div className='divTextPark'>
                     <div>
-                        <p>{park.pays} •</p>
-                        <p>{park.ville} •</p>
-                        <p>{park.creation_date}</p>
+                        <p>{park?.country_park} •</p>
+                        <p>{park?.place_park} •</p>
+                        <p>{park?.opening_year_park}</p>
                     </div>
-                    <h1>{park.parc}</h1>
+                    <h1>{park?.name_park}</h1>
                 </div>
             </div>
-            <p>{park.description}</p>
+            <p>{park?.description_park}</p>
         </section>
         </>
     )

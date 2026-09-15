@@ -12,6 +12,7 @@ require('./config/db')
 // Routes
 const authRoutes = require('./routes/authRoutes')
 const parkRoutes = require('./routes/parkRoutes')
+const attractionRoutes = require('./routes/attractionRoutes')
 
 const corsOption = {
     origin: 'http://localhost:5173'
@@ -38,6 +39,7 @@ app.use('/upload', express.static(path.join(process.cwd(), 'upload')))
 
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/parks', parkRoutes)
+app.use('/api/v1/attractions', attractionRoutes)
 
 
 app.get('/', (req, res) => {

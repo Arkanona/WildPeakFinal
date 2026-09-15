@@ -14,7 +14,7 @@ function CardParks({parks}) {
             </div>
             <div className='cardsContainer'> 
                 {parks.map((park) => (
-                    <Link to={`/parcs/${park.id_parc}`} key={park.id_park}>
+                    <Link to={`/parcs/${park.slug_park}`} key={park.id_park}>
                         <article>
                         <img src={`http://localhost:3000${park.img_park}`} alt={park.name_park} />
                         <div>

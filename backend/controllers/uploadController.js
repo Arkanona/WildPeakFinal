@@ -9,7 +9,6 @@ exports.updateParkImage = async (req, res) => {
         const { id } = req.params
 
         if (!req.file) {
-            console.log('ERREUR - Aucun fichier')
             return res.status(400).json({message: 'Image not found'})}
 
         const park = await pool.query(
@@ -18,9 +17,7 @@ exports.updateParkImage = async (req, res) => {
         )
 
         if (park.rowCount === 0) {
-            return res.status(404).json({
-                message: 'Park not found'
-            })
+            return res.status(404).json({message: 'Park not found'})
         }
 
         const uploadFolder = path.join(
