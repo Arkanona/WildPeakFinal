@@ -12,7 +12,6 @@ const generateToken = (id) => {
     })
 }
 
-
 exports.register = async (req, res) => {
     try{
 
@@ -44,9 +43,7 @@ exports.register = async (req, res) => {
         if(existingUser){
             return res.status(400).json({ message: 'Invalid email'})
         }
-        console.log(email)
 
-        console.log(password)
         const user = await User.createUser(name, email, password)
 
         const token = generateToken(user.id_user)
@@ -73,24 +70,24 @@ exports.login = async (req, res) => {
         if(!email || !password){
             return res.status(400).json({ message: 'Please provide email and password '})
         }
-
-        const user = await User.findOne({ email }).select('+password')
+        const user = await User.findUserByEmail(email)
         if(!user){
             return res.status(401).json({ message: 'Invalid credentials'})
         }
+        console.log(email)
 
-        const isMatch = await user.comparePassword(password)
+        const isMatch = await User.comparePassword(password, user.pass_hash_user)
         if(!isMatch){
             return res.status(401).json({ message: 'Invalid credentials'})
         }
 
-        const token = generateToken(user._id)
+        const token = generateToken(user.id_user)
 
         res.status(200).json({
             message: 'User login successfuly',
             token,
             user: {
-                id: user._id_user,
+                id: user.id_user,
                 name: user.name_user,
                 email: user.email_user,
                 role: user.role_user,

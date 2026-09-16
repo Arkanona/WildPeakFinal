@@ -79,6 +79,12 @@ describe('Authentification', () => {
                 )
         })
 
+        test("Essaye de s'inscrire avec un mdp érroné", async () => {
+
+            User.findUserByEmail.mockResolvedValue(null)
+
+            
+        })
     })
 
 })
