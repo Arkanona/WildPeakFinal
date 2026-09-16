@@ -15,11 +15,12 @@ const generateToken = (id) => {
 
 exports.register = async (req, res) => {
     try{
-        const { name, email, password } = req.body
 
+        const { name, email, password } = req.body
         if(!name || !email || !password){
             return res.status(400).json({ message: 'Pleaser provide name, email and password'})
         }
+        
         const isPasswordOK = validator.isStrongPassword(password, {
             minLength: 7,
             minLowercase: 1,
@@ -27,37 +28,37 @@ exports.register = async (req, res) => {
             minNumbers: 1,
             minSymbols: 1
         })
-
+        
+        
         if(!isPasswordOK){
             return res.status(400).json({ message: 'Password must have 1 lower, 1 upper, 1 number, and 1 symbol and must be at least 6 characters long'})
         }
+
         const isEmailOK = validator.isEmail(email)
 
         if(!isEmailOK){
             return res.status(400).json({ message: 'You must provid a valid email'})
         }
-        const existingUser = await User.findOne({ email })
+        
+        const existingUser = await User.findUserByEmail( email )
         if(existingUser){
             return res.status(400).json({ message: 'Invalid email'})
         }
+        console.log(email)
 
-        const user = await User.create({
-            name,
-            email,
-            password,
-            role: role || 'user'
-        })
+        console.log(password)
+        const user = await User.createUser(name, email, password)
 
-        const token = generateToken(user._id)
+        const token = generateToken(user.id_user)
 
         res.status(201).json({
             message: 'User register successfully',
             token,
             user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user.role,
+                id: user.id_user,
+                name: user.name_user,
+                email: user.email_user,
+                role: user.role_user,
             }
         })
     } catch (err) {
@@ -67,7 +68,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const { email, password, } = req.body
+        const { email, password } = req.body
 
         if(!email || !password){
             return res.status(400).json({ message: 'Please provide email and password '})
@@ -89,10 +90,10 @@ exports.login = async (req, res) => {
             message: 'User login successfuly',
             token,
             user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user.role,
+                id: user._id_user,
+                name: user.name_user,
+                email: user.email_user,
+                role: user.role_user,
             }
         })
 

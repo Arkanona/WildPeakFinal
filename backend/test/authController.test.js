@@ -1,10 +1,14 @@
-jest.mock('../config/db', () => ({
-    pool: {
-        query: jest.fn()
-    }
+jest.mock('../models/userModel', () => ({
+    findUserByEmail: jest.fn(),
+    createUser: jest.fn(),
+    comparePassword: jest.fn()
 }))
 
-const { pool } = require('../config/db')
+jest.mock('jsonwebtoken', () => ({
+    sign: jest.fn(() => 'fake-token')
+}))
+
+const User = require('../models/userModel')
 const { register } = require('../controllers/authController')
 
 const createMockRes = () => ({
@@ -32,20 +36,13 @@ describe('Authentification', () => {
 
         test('Doit pouvoir inscrire un utilisateur valide', async () => {
 
-            // SELECT pour vérifier si l'email existe
-            pool.query.mockResolvedValueOnce({
-                rows: []
-            })
+            User.findUserByEmail.mockResolvedValue(null)
 
-            // INSERT du nouvel utilisateur
-            pool.query.mockResolvedValueOnce({
-                rows: [
-                    {
-                        id_user: 1,
-                        name_user: 'Alice Tester',
-                        email_user: 'test_auth@example.com'
-                    }
-                ]
+            User.createUser.mockResolvedValue({
+                id_user: 1,
+                name_user: 'Alice Tester',
+                email_user: 'test_auth@example.com',
+                role_user: 'user'
             })
 
             const req = {
@@ -62,10 +59,24 @@ describe('Authentification', () => {
 
             expect(res.statusCode).toBe(201)
 
-            expect(res.body.user.email_user)
-                .toBe('test_auth@example.com')
+            expect(res.body.token).toBe('fake-token')
 
-            expect(pool.query).toHaveBeenCalledTimes(2)
+            expect(res.body.user).toEqual({
+                id: 1,
+                name: 'Alice Tester',
+                email: 'test_auth@example.com',
+                role: 'user'
+            })
+
+            expect(User.findUserByEmail)
+                .toHaveBeenCalledWith('test_auth@example.com')
+
+            expect(User.createUser)
+                .toHaveBeenCalledWith(
+                    'Alice Tester',
+                    'test_auth@example.com',
+                    'Password123!'
+                )
         })
 
     })
