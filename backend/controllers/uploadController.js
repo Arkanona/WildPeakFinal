@@ -2,6 +2,7 @@ const { pool } = require('../config/db')
 const sharp = require('sharp')
 const path = require('path')
 const fs = require('fs/promises')
+const Upload = require('../models/uploadModel')
 
 exports.updateParkImage = async (req, res) => {
     try {
@@ -12,16 +13,13 @@ exports.updateParkImage = async (req, res) => {
             return res.status(400).json({message: 'Image not found'})}
 
         // On récupère le parc
-        const result = await pool.query(
-            'SELECT id_park, img_park, imgbg_park FROM park WHERE id_park = $1',
-            [id]
-        )
+        const result = await Upload.selectAttraction(id)
 
         if (result.rowCount === 0) {
             return res.status(404).json({message: 'Park not found'})
         }
 
-        const park = result.rows[0]
+        // const park = result.rows[0]
 
         // dossier upload
         const uploadFolder = path.join(
@@ -76,14 +74,7 @@ exports.updateParkImage = async (req, res) => {
         const backgroundImageUrl = `/upload/park/${backgroundFilename}`
 
         // mise à jour BDD
-        const updatePark = await pool.query(
-            `UPDATE park
-            SET img_park = $1,
-                imgbg_park = $2
-            WHERE id_park = $3
-            RETURNING id_park, name_park, img_park, imgbg_park`,
-            [ cardImageUrl,backgroundImageUrl,id ]
-        )
+        const updatePark = await Upload.updateParkDb(cardImageUrl, backgroundImageUrl, id)
 
         // 8. Suppression des anciennes images
         const oldImages = [
@@ -110,7 +101,7 @@ exports.updateParkImage = async (req, res) => {
             }
         }
 
-        return res.status(200).json({message: 'Park image updated', park: updatePark.rows[0]})
+        return res.status(200).json({message: 'Park image updated', park: updatePark})
 
     } catch (err) {
         console.error('ERREUR UPLOAD :', err)

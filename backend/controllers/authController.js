@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const validator = require('validator')
+const bcrypt = require('bcryptjs')
+
 
 const JWT_SECRET = process.env.JWT_SECRET
 const JWT_EXPIRES_IN = '365d'
@@ -39,8 +41,8 @@ exports.register = async (req, res) => {
             return res.status(400).json({ message: 'You must provid a valid email'})
         }
         
-        const existingUser = await User.findUserByEmail( email )
-        if(existingUser){
+        const isExistingUser = await User.findUserByEmail( email )
+        if(isExistingUser){
             return res.status(400).json({ message: 'Invalid email'})
         }
 
@@ -74,9 +76,11 @@ exports.login = async (req, res) => {
         if(!user){
             return res.status(401).json({ message: 'Invalid credentials'})
         }
-        console.log(email)
 
-        const isMatch = await User.comparePassword(password, user.pass_hash_user)
+        const salt = await bcrypt.genSalt(10); 
+        const hashedPassword = await bcrypt.hash(password, salt)
+
+        const isMatch = await bcrypt.compare(pass_hash_user, hashedPassword)
         if(!isMatch){
             return res.status(401).json({ message: 'Invalid credentials'})
         }

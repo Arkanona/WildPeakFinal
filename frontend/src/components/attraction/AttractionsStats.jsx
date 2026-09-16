@@ -2,7 +2,6 @@ import '../../styles/attraction/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate, faGaugeHigh, faArrowUpLong, faMapLocationDot, faStopwatch, faGear, faCalendarDays, faRulerVertical} from '@fortawesome/free-solid-svg-icons'
-// import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
 
 
 function AttractionsStats({attractions = []}){
@@ -15,8 +14,7 @@ function AttractionsStats({attractions = []}){
     if (!attraction) {
         return <p>Chargement...</p>
     }
-    // const { attraction } = findAttractionBySlug(datas, slug)
-    console.log(attraction)
+
     return (
         <>
         <div className='paddingAttraction'>

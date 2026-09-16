@@ -1,7 +1,7 @@
 import '../../styles/park/cardParks.scss';
 import { Link } from 'react-router-dom';
 
-function CardParks({parks, attractions}) {
+function CardParks({parks = [], attractions}) {
 
     return (
         <>

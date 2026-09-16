@@ -1,10 +1,10 @@
-const { pool } = require('../config/db')
+const Attraction = require('../models/attractionModel')
 
 exports.getAttraction = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM attraction ORDER BY id_attraction')
+        const attraction = await Attraction.findAllAttraction()
 
-        return res.status(200).json(result.rows)
+        return res.status(200).json(attraction)
 
     } catch (err) {
         console.error('ERREUR GET ATTRACTIONS :', err)

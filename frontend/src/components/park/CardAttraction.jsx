@@ -18,7 +18,7 @@ function CardAttraction({ parks, attractions }){
     const parkAttractions = attractions.filter(
         (attraction) => attraction.id_park === park.id_park
     )
-    console.log(parkAttractions)
+
     return (
         <>
         <div className='divCardAttraction'>

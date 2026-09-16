@@ -80,21 +80,32 @@
         position: absolute;
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        max-height: 300px;
+        max-height: 340px;
         overflow-y: auto;
         background-color: white;
         border: 1px solid #E5E7EB;
         border-radius: 0 0 16px 16px;
-        padding: 20px;
-        width: calc(100% - 72px);
+        width: calc(100% - 32px);
         box-shadow: 3px 4px 6px -1px #0000001A;
-
+        
 
         article{
             display: grid;
             grid-template-columns: 120px auto;
             gap:14px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            padding: 10px 20px;
+
+            &:hover{
+                transition: all 0.3s ease-in-out;
+                background-color: #E5E7EB;
+                
+            }
+
+            .selected{
+                background-color: #E5E7EB;
+            }
             
             img{
                 width: 120px;

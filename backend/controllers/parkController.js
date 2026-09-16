@@ -1,10 +1,10 @@
-const { pool } = require('../config/db')
+const Park = require('../models/parkModel')
 
 exports.getParks = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM park ORDER BY id_park')
+        const park = await Park.findAllPark()
 
-        return res.status(200).json(result.rows)
+        return res.status(200).json(park)
 
     } catch (err) {
         console.error('ERREUR GET PARKS :', err)
