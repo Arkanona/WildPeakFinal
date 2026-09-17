@@ -21,7 +21,45 @@
         cursor: pointer;
         font-size: 1rem;
         box-shadow: 0px 4px 6px -1px #0000001A;
+        
+        .selectedAttractions{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            flex: 1;
+            min-width: 0;
+
+            .emptySelection{
+                grid-column: 1 / -1;
+                white-space: nowrap;
+                text-align: left;
+            }
+            .selectedBadge {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 12px;
+                justify-content: space-between;
+                border-radius: 8px;
+                background-color: #E63946;
+                color: white;
+                min-width: 0;
     
+                .selectedBadgeName{
+                    flex: 1;
+                    min-width: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .removeBadge{
+                    flex-shrink: 0;
+                }
+
+            }
+            
+
+        }
 
         svg{
             font-size: 1rem;
@@ -32,9 +70,12 @@
             font-weight: 500;
             color: rgba(0, 0, 0, 0.519);
         }
-        >div{
+        .collapseInfo{
             display: flex;
-            gap: 5px;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 12px;
+            margin-left: 16px;
             
             span{
                 font-size: 14px;
@@ -99,11 +140,11 @@
 
             &:hover{
                 transition: all 0.3s ease-in-out;
-                background-color: #E5E7EB;
+                background-color: #e5e7eb83;
                 
             }
 
-            .selected{
+            &.selected{
                 background-color: #E5E7EB;
             }
             

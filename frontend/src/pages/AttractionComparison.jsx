@@ -32,7 +32,7 @@ function AttractionComparison() {
         <main>
             <ComparisonImage/>
             <ComparisonCollapse attractions={attractions} parks={parks} selectedAttraction={selectedAttraction} setSelectedAttraction={setSelectedAttraction}/>
-            <ComparisonBalanced/>
+            <ComparisonBalanced selectedAttraction={selectedAttraction}/>
         </main>
         <Footer/>
         </>

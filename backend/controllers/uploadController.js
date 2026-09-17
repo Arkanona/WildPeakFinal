@@ -123,6 +123,7 @@ exports.updateAttractionImage = async (req, res) => {
             'SELECT id_attraction, img_attraction, imgbg_attraction FROM attraction WHERE id_attraction = $1',
             [id]
         )
+        // const result = await Upload.selectAttraction(id)
 
         if (result.rowCount === 0) {
             return res.status(404).json({message: 'Attraction not found'})
@@ -191,6 +192,8 @@ exports.updateAttractionImage = async (req, res) => {
             RETURNING id_attraction, name_attraction, img_attraction, imgbg_attraction`,
             [ cardImageUrl,backgroundImageUrl,id ]
         )
+
+        // const updateAttraction = await Upload.updateAttractionDb(cardImageUrl, backgroundImageUrl, id)
 
         // 8. Suppression des anciennes images
         const oldImages = [
