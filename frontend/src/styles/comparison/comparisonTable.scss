@@ -1,2 +1,128 @@
 @import '../variables';
 
+.comparisonTable {
+    max-width: 1200px;
+    margin: auto;
+
+    .comparisonRow {
+        display: grid;
+        border-bottom: 1px solid #E5E7EB;
+
+        a{
+            color: black;
+            border-right: 1px solid #E5E7EB;
+            transition: all ease-in-out 0.3s;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &:hover{
+                background-color: #E5E7EB;
+                transition: all ease-in-out 0.3s;
+                border-radius: 8px 8px 0 0;
+
+            }
+        }
+
+        .comparisonCell {
+            padding: 24px;
+            text-align: center;
+            border-right: 1px solid #E5E7EB;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &.bestStat{
+                background-color: #157b9d6f;
+            }
+
+            img{
+                border-radius: 8px;
+                margin-bottom: 8px;
+            }
+            h2{
+                font-weight: 400;
+            }
+
+            span {
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+// Media Queries
+@media screen and (max-width: 767px){
+    
+    .comparisonTable {
+
+    .comparisonRow {
+        display: grid;
+        border-bottom: 1px solid #E5E7EB;
+        grid-template-columns: repeat(2, minmax(0px, 1fr )) !important;
+
+        a{
+            color: black;
+            border-right: 1px solid #E5E7EB;
+            transition: all ease-in-out 0.3s;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &:hover{
+                background-color: #E5E7EB;
+                transition: all ease-in-out 0.3s;
+                border-radius: 8px 8px 0 0;
+
+            }
+        }
+
+        .comparisonCell {
+            padding: 24px;
+            text-align: center;
+            border-right: 1px solid #E5E7EB;
+            min-width: 0;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &.bestStat{
+                background-color: #157b9d6f;
+            }
+
+            img{
+                border-radius: 8px;
+                margin-bottom: 8px;
+            }
+            h2{
+                font-weight: 400;
+            }
+
+            span {
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: 500;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+        }
+    }
+}
+
+}

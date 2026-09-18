@@ -33,6 +33,10 @@ function ComparisonCollapse({attractions= [], parks = [], selectedAttraction = [
         ...selectedAttraction,
         attraction
     ])
+
+    if(selectedAttraction.length === 3) {
+        setVisibleCol(false)
+    }
     }
 
     const filteredAttractions = attractions.filter((attraction) =>

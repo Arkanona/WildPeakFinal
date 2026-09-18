@@ -133,7 +133,7 @@
         article{
             display: grid;
             grid-template-columns: 120px auto;
-            gap:14px;
+            gap: 14px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             padding: 10px 20px;
@@ -145,7 +145,7 @@
             }
 
             &.selected{
-                background-color: #E5E7EB;
+                background-color: #e63947ab;
             }
             
             img{
@@ -202,10 +202,52 @@
     
     .secCollapse{
 
+        > button {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+
+            .selectedAttractions {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                width: 100%;
+
+                .emptySelection{
+                    white-space: wrap;
+                }
+                
+                .selectedBadge {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 6px;
+                    width: auto;
+                    padding: 8px 10px;
+                    
+                    .removeBadge {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+
+
+        .collapseInfo {
+            gap: 10px;
+            margin-left: 0;
+            position: static;
+            transform: none;
+        }
+
         .collapseContent{
     
             article{
-    
+                gap: 0;
+
                 img{
                     width: 85px;
                     height: 80px;
