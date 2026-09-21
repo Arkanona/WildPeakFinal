@@ -119,11 +119,7 @@ exports.updateAttractionImage = async (req, res) => {
             return res.status(400).json({message: 'Image not found'})}
 
         // On récupère le parc
-        const result = await pool.query(
-            'SELECT id_attraction, img_attraction, imgbg_attraction FROM attraction WHERE id_attraction = $1',
-            [id]
-        )
-        // const result = await Upload.selectAttraction(id)
+        const result = await Upload.selectAttraction(id)
 
         if (result.rowCount === 0) {
             return res.status(404).json({message: 'Attraction not found'})
@@ -184,16 +180,7 @@ exports.updateAttractionImage = async (req, res) => {
         const backgroundImageUrl = `/upload/attraction/${backgroundFilename}`
 
         // mise à jour BDD
-        const updateAttraction = await pool.query(
-            `UPDATE attraction
-            SET img_attraction = $1,
-                imgbg_attraction = $2
-            WHERE id_attraction = $3
-            RETURNING id_attraction, name_attraction, img_attraction, imgbg_attraction`,
-            [ cardImageUrl,backgroundImageUrl,id ]
-        )
-
-        // const updateAttraction = await Upload.updateAttractionDb(cardImageUrl, backgroundImageUrl, id)
+        const updateAttraction = await Upload.updateAttractionDb(cardImageUrl, backgroundImageUrl, id)
 
         // 8. Suppression des anciennes images
         const oldImages = [

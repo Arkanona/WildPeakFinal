@@ -21,4 +21,11 @@ exports.findUserByEmail = async (email) => {
     return rows[0] || null;
 }
 
+exports.findUserById = async (id) => {
+    const { rows } = await pool.query(
+        `SELECT * FROM "users" WHERE id_user = $1`,
+        [id]
+    )
 
+    return rows[0] || null;
+}
