@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
 
         const { name, email, password } = req.body
         if(!name || !email || !password){
-            return res.status(400).json({ message: 'Pleaser provide name, email and password'})
+            return res.status(400).json({ message: 'Please provide name, email and password'})
         }
         
         const isPasswordOK = validator.isStrongPassword(password, {
@@ -32,7 +32,7 @@ exports.register = async (req, res) => {
         
         
         if(!isPasswordOK){
-            return res.status(400).json({ message: 'Password must have 1 lower, 1 upper, 1 number, and 1 symbol and must be at least 6 characters long'})
+            return res.status(400).json({ message: 'Password must have 1 lower, 1 upper, 1 number, and 1 symbol and must be at least 7 characters long'})
         }
 
         const isEmailOK = validator.isEmail(email)
@@ -43,10 +43,12 @@ exports.register = async (req, res) => {
         
         const isExistingUser = await User.findUserByEmail( email )
         if(isExistingUser){
-            return res.status(400).json({ message: 'Invalid email'})
+            return res.status(400).json({ message: 'Email invalide'})
         }
+        const salt = await bcrypt.genSalt(10); 
+        const hashedPassword = await bcrypt.hash(password, salt)
 
-        const user = await User.createUser(name, email, password)
+        const user = await User.createUser(name, email, hashedPassword)
 
         const token = generateToken(user.id_user)
 
@@ -74,15 +76,12 @@ exports.login = async (req, res) => {
         }
         const user = await User.findUserByEmail(email)
         if(!user){
-            return res.status(401).json({ message: 'Invalid credentials'})
+            return res.status(401).json({ message: 'Identifiant incrorrect'})
         }
 
-        const salt = await bcrypt.genSalt(10); 
-        const hashedPassword = await bcrypt.hash(password, salt)
-
-        const isMatch = await bcrypt.compare(pass_hash_user, hashedPassword)
+        const isMatch = await bcrypt.compare(password, user.pass_hash_user)
         if(!isMatch){
-            return res.status(401).json({ message: 'Invalid credentials'})
+            return res.status(401).json({ message: 'Identifiant incorrect'})
         }
 
         const token = generateToken(user.id_user)

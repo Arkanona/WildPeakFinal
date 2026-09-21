@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Register from "../components/auth/Register";
 
 function RegisterPage() {
@@ -7,7 +8,7 @@ function RegisterPage() {
         <meta name="description" content="Inscrivez-vous à WildPeak, un site de comparateur d'attractions." />
         <main>
             <div className="firstDivRegister">
-            <a href="/" className="arrowBack">←</a>
+            <Link to="/" className="arrowBack">←</Link>
             <Register/>
             </div>
         </main>

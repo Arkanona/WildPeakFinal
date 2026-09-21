@@ -1,31 +1,84 @@
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/auth/register.scss';
+import { useState } from 'react';
+import useAuthStore from '../../store/authStore';
 
 function Register () {
+
+    const register = useAuthStore((state) => state.register)
+    const error = useAuthStore((state) => state.error)
+
+    const [passwordError, setPasswordError] = useState('')
+
+    const navigate = useNavigate()
+
+    const  [form, setForm]  = useState({
+        name:'',
+        email:'',
+        password:'',
+        confirmPassword:''
+    })
+
+
+    const handleChange = (e) => {
+        setForm({
+            ...form, [e.target.name]: e.target.value
+        })
+    }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        setPasswordError('')
+
+        if (form.password !== form.confirmPassword){
+            setPasswordError('Les mots de passe ne correspondent pas !')
+            return
+        }
+
+        try{
+            await register({
+                name: form.name,
+                email: form.email,
+                password: form.password
+            })
+            navigate('/connexion')
+        } catch(error){
+            console.error(error)
+        } 
+    }
     return (
         <>
         <div className='divRegister'>
             <article className='registerArticle'>
-                <form action="#">
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="name">Prénom :</label>
+                    <input type="text" name='name' id='name' placeholder='Prénom' value={form.name} onChange={handleChange}/>
                     <label htmlFor="email">E-mail :</label>
-                    <input type="email" name="email" id="email" placeholder="mail@exemple.com"/>
+                    <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange}/>
                     
-                    <label htmlFor="pass">Mot de passe :</label>
-                        <input type="pass" name="pass" id="pass" placeholder="Mot de passe"/>
+                    <label htmlFor="password">Mot de passe :</label>
+                        <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange}/>
                     
-                    <label htmlFor="pass">Confirmez mot de passe :</label>
-                        <input type="pass" name="pass" id="pass" placeholder="Confirmez mot de passe"/>
-                </form>
+                    <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez mot de passe" value={form.confirmPassword} onChange={handleChange}/>
                 <button type="submit">S'inscrire</button>
+                </form>
+                {passwordError && (
+                    <p className='errorPass'>{passwordError}</p>
+                )}
+                {error && <p className='errorPass'>{error}</p>}
                 <div>
                     <span></span>
                     <p>Ou s'inscrire avec</p>
                     <span></span>
                 </div>
-                <a href="#" className='googleLink'>GOOGLE</a>
+                <Link to="#" className='googleLink'>GOOGLE</Link>
             </article>
             <div>
                 <p>Vous avez déjà un compte ?</p>
-                <a href="/connexion">Connectez-vous</a>
+                <Link to="/connexion">Connectez-vous</Link>
             </div>
         </div>
         </>

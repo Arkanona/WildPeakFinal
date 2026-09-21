@@ -52,6 +52,34 @@
 
         }
     }
+    .errorPass{
+        margin-bottom: 13px;
+        color: $color-red;
+    }
+    // .registerPopup {
+    //     display: flex;
+    //     flex-direction: column;
+    //     position: fixed;
+    //     top: 50%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     background-color: white;
+    //     padding: 30px;
+    //     border-radius: 12px;
+    //     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    //     z-index: 1000;
+
+    //     button{
+    //         margin-top: 10px;
+    //         margin-bottom: 5px;
+    //     }
+
+    //     p {
+    //         margin-bottom: 20px;
+    //         font-weight: 600;
+    //     }
+    // }
+
     .forgotPassLink{
         margin-top: 14px;
         display: flex;

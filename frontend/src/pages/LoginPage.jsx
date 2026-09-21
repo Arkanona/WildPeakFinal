@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Login from "../components/auth/Login";
 
 function LoginPage() {
@@ -7,7 +8,7 @@ function LoginPage() {
         <meta name="description" content="Connecter vous à WildPeak, un site de comparateur d'attractions." />
         <main>
             <div className="firstDivLogin">
-            <a href="/" className="arrowBack">←</a>
+            <Link to="/" className="arrowBack">←</Link>
             <Login/>
             </div>
         </main>

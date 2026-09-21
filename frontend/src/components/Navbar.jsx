@@ -1,15 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/navbar.scss';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark, faUser, faRightFromBracket  } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import useAuthStore from '../store/authStore';
+
 
 function Navbar () {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const toggleMenu = () => {
         setIsMenuOpen(prev => !prev)
+    }
+    const navigate = useNavigate()
+    const { user, logout } = useAuthStore()
+
+    const handleLogout = () => {
+        logout()
+        navigate('/')
     }
     return (
         <>
@@ -25,8 +34,19 @@ function Navbar () {
                 </ul>
             </nav>
             <div>
-                <Link to='/connexion'>Connexion</Link>
-                <Link to='/inscription'>Inscription</Link>
+                {user ? (
+                    // Ce qui s'affiche si l'utilisateur est connecté
+                    <>
+                    <Link to='#' className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
+                    <button onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
+                    </>
+                ) : (
+                    // Ce qui s'affiche si l'utilisateur n'est pas connecté
+                    <>
+                    <Link to='/connexion'>Connexion</Link>
+                    <Link to='/inscription'>Inscription</Link> 
+                    </>
+                )}
             </div>
             <nav className='navbarBurger'>
                 <div className='divBurger' onClick={toggleMenu}>
