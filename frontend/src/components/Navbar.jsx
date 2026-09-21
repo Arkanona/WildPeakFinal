@@ -37,7 +37,7 @@ function Navbar () {
                 {user ? (
                     // Ce qui s'affiche si l'utilisateur est connecté
                     <>
-                    <Link to='#' className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
+                    <Link to='/profile' className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
                     <button onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
                     </>
                 ) : (
@@ -73,16 +73,29 @@ function Navbar () {
                             Comparateur
                         </NavLink>
                     </li>
-                    <li className='navbarItem'>
-                        <NavLink end to="/connexion" onClick={toggleMenu}>
-                            Connexion
-                        </NavLink>
-                    </li>
-                    <li className='navbarItem'>
-                        <NavLink end to="/inscription" onClick={toggleMenu}>
-                            Inscription
-                        </NavLink>
-                    </li>
+                    {user ? (
+                        <>
+                        <li className='navbarItem'>
+                            <NavLink end to='/profile'>Profile</NavLink>
+                        </li>
+                        <li className='navbarItem'>
+                            <button onClick={handleLogout}>Déconnexion</button>
+                        </li>
+                        </>
+                    ) : (
+                        <>
+                        <li className='navbarItem'>
+                            <NavLink end to="/connexion" onClick={toggleMenu}>
+                                Connexion
+                            </NavLink>
+                        </li>
+                        <li className='navbarItem'>
+                            <NavLink end to="/inscription" onClick={toggleMenu}>
+                                Inscription
+                            </NavLink>
+                        </li>
+                        </>
+                    )}
                 </ul>
             </nav>
         </div>

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import CardParks from "../components/park/CardParks";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-// import data from '../data/attraction.json';
 import ParkImage from "../components/park/ParkBgImage";
 import { getParks, getAttractions } from "../services/api";
 
