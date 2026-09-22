@@ -38,7 +38,7 @@ function Navbar () {
                     // Ce qui s'affiche si l'utilisateur est connecté
                     <>
                     <Link to='/profile' className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
-                    <button onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></button>
+                    <Link className='linkLogout' onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></Link>
                     </>
                 ) : (
                     // Ce qui s'affiche si l'utilisateur n'est pas connecté
@@ -79,7 +79,7 @@ function Navbar () {
                             <NavLink end to='/profile'>Profile</NavLink>
                         </li>
                         <li className='navbarItem'>
-                            <button onClick={handleLogout}>Déconnexion</button>
+                            <Link onClick={handleLogout}>Déconnexion</Link>
                         </li>
                         </>
                     ) : (

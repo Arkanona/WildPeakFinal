@@ -43,7 +43,7 @@ header {
             }
             
         }
-        div{
+        >div{
             display: flex;
             gap: 10px;
             align-items: center;
@@ -90,6 +90,9 @@ header {
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
                 }
+            }
+            a.linkLogout{
+                background: none;
             }
         }
         .navbarBurger{
