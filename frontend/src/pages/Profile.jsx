@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProfileFirstSec from "../components/profile/ProfileFirstSec";
+import ProfileFavorite from "../components/profile/ProfileFavorite";
 
 
 function Profile() {
@@ -13,6 +14,7 @@ function Profile() {
         <Navbar/>
         <main>
             <ProfileFirstSec/>
+            <ProfileFavorite/>
         </main>
         <Footer/>
         </>

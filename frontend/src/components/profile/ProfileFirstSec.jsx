@@ -1,8 +1,11 @@
 import '../../styles/profile/profileFirstSec.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import useFavoriteStore from '../../store/favorisStore';
 
 function ProfileFirstSec(){
+
+    const favorites = useFavoriteStore((state) => state.favorites)
 
     return(
 
@@ -14,6 +17,8 @@ function ProfileFirstSec(){
                 <span></span>
             </div>
         </section>
+        {favorites.length === 0 && (
+
         <section className='secHeart'>
             <div>
                 <span><FontAwesomeIcon icon={faHeart} /></span>
@@ -21,6 +26,7 @@ function ProfileFirstSec(){
                 <p> Commencez à explorer les attractions et appuyez <br /> sur l'icône en forme de cœur  pour enregistrer vos favoris ici.</p>
             </div>
         </section>
+        )}
         </>
     )
 }
