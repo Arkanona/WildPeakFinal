@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom';
+import FavoriteButton from '../attraction/FavoriteButton';
 
 function CardAttraction({ parks, attractions }){
    
@@ -30,6 +31,7 @@ function CardAttraction({ parks, attractions }){
                 {parkAttractions.map((attraction) => (
                     <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                     <article>
+                    <FavoriteButton attractionId={attraction.id_attraction}/>
                     <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                     <div>
                         <h3>{attraction.name_attraction}</h3>
