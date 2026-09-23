@@ -8,7 +8,7 @@ import FavoriteButton from '../attraction/FavoriteButton';
 function CardAttraction({ parks, attractions }){
    
     const { id } = useParams()
-    // const park = attractions.find((park) => park.slug_park === id)
+
     const park = parks.find((park) => park.slug_park === id
     )
 

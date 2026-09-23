@@ -7,10 +7,6 @@ function ParkAttractionSec({parks}){
 
     const park = parks.find((park) => park.slug_park === id)
 
-    // if (!park) {
-    //     return <p>Parc not found</p>
-    // }
-
     return (
         <>
         <section className='secParkDetail'>

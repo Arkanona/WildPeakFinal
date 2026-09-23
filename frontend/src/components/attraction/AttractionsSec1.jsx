@@ -1,6 +1,5 @@
 import '../../styles/attraction/attractionDetails.scss';
 import { useParams } from 'react-router-dom';
-// import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
 
 
 function Attractions({attractions = [], parks = []}){

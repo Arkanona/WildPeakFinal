@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import '../../styles/attraction/attractionDetails.scss';
-// import { findAttractionBySlug } from '../../utils/findAttractionBySlug';
 
 function AboutAttractions ({attractions = []}){
 
@@ -11,7 +10,7 @@ function AboutAttractions ({attractions = []}){
     if (!attraction) {
         return <p>Chargement...</p>
     }
-    // const { attraction } = findAttractionBySlug(datas, slug)
+
 
     return (
         <>

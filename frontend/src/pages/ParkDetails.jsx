@@ -3,17 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CardAttraction from "../components/park/CardAttraction";
 import ParkAttractionSec1 from "../components/park/ParkAttractionSec1";
-// import data from '../data/attraction.json';
 import { getAttractions, getParks } from "../services/api";
 import { useState, useEffect } from "react";
 
 function ParksDetails() {
-    // const { id } = useParams()
-    // const park = data.find((park) => park.id === id)
-    
-    // if(!park){
-    //     return <Navigate to={'/'}/>
-    // }
+
     const [ attractions, setAttractions ] = useState([])
 
     useEffect(() => {
