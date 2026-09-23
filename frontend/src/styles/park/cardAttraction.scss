@@ -65,7 +65,11 @@
                     }
     
                     &.active{
-                    background-color: rgba(255, 0, 0, 0.7);
+                        background-color: rgba(255, 0, 0, 0.7);
+                    }
+
+                    .svg-inline--fa{
+                        vertical-align: -0.215em;
                     }
                 }
     
