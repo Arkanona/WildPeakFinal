@@ -14,9 +14,11 @@ function Contact() {
         <title>Contact - WildPeak</title>
         <meta name="description" content="Page contact de WildPeak." />
         <Navbar/>
-        <ContactImage/>
-        <ContactFirstSec/>
-        <ContactQuestion/>
+        <main>
+            <ContactImage/>
+            <ContactFirstSec/>
+            <ContactQuestion/>
+        </main>
         <Footer/>
         </>
     )

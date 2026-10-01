@@ -48,13 +48,17 @@ function ContactFirstSec(){
                     <p>Vous pouvez également nous contacter directement via les moyens ci-dessous</p>
                     <div>
                         <FontAwesomeIcon icon={faEnvelope} />
-                        <h3>E-mail</h3>
-                        <p>arkanona@gmail.com <br />Nous répondons sous 24 à 48h.</p>
+                        <div>
+                            <h3>E-mail</h3>
+                            <p>arkanona@gmail.com <br />Nous répondons sous 24 à 48h.</p>
+                        </div>
                     </div>
                     <div>
                         <FontAwesomeIcon icon={faLocationDot} />
-                        <h3>Notre siège</h3>
-                        <p>WildPeak <br />Brignoles, France <br />(Projet non commercial)</p>
+                        <div>
+                            <h3>Notre siège</h3>
+                            <p>WildPeak <br />Brignoles, France <br />(Projet non commercial)</p>
+                        </div>
                     </div>
                 </div>
                 <ContactLocation/>
