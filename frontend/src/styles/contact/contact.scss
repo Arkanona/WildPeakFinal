@@ -1,0 +1,71 @@
+@import '../variables';
+
+.contactImage{
+    position: relative;
+    
+    
+    .bgImageContact{
+        background-image: url('/assets/contactBg.webp');
+        height: 400px;
+        background-size: cover;
+        background-position: center 45%;
+        background-repeat: no-repeat;
+        // border-radius: 0 0 50% 50% / 0 0 12% 12%;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+    
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(0, 0, 0, 0.35) 0%,
+                    rgba(0, 0, 0, 0.25) 45%,
+                    rgba(0, 0, 0, 0.05) 100%
+                ),
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.35) 0%,
+                    transparent 85%
+                );
+    
+            z-index: 1;
+        } 
+
+        div{
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            text-align: start;
+            top: 80px;
+            padding: 0 15px;
+    
+            h1{
+                color: white;
+                font-size: 70px;
+                font-weight: normal;
+            } 
+            p{
+                color: white;
+            }
+        }
+    }
+
+    .bgImageContact::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -90px;
+        transform: translateX(-50%);
+
+        width: 100%;
+        height: 180px;
+
+        background: #F8F9FA; /* même couleur que la section d’après */
+        border-radius: 50%;
+        z-index: 5;
+    }
+}

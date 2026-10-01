@@ -69,6 +69,7 @@ header {
             }
             a:nth-child(1){
                 transition: all 0.3s ease-in-out;
+                font-size: 20px;
 
                 &:hover{
                     transition: all 0.3s ease-in-out;
@@ -93,6 +94,7 @@ header {
             }
             a.linkLogout{
                 background: none;
+                font-size: 20px;
             }
         }
         .navbarBurger{

@@ -9,6 +9,7 @@ import ParksDetails from "./pages/ParkDetails";
 import AttractionDetails from "./pages/AttractionDetails";
 import AttractionComparison from "./pages/AttractionComparison";
 import Profile from "./pages/Profile";
+import Contact from "./pages/Contact";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/attractions/:slug" element={<AttractionDetails />} />
         <Route path="/comparateur" element={<AttractionComparison />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

@@ -29,3 +29,4 @@ exports.findUserById = async (id) => {
 
     return rows[0] || null;
 }
+

@@ -38,7 +38,7 @@ function ProfileFavorite(){
         <section className='cardAttraction'>
             <div className='cardsContainerAttraction'>
             {favoriteAttractions.map((attraction) => (
-                <Link to={`/attractions/${attraction.slug}`} key={attraction.id_attraction}>
+                <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                     <article >
                         <FavoriteButton attractionId={attraction.id_attraction}/>
                         <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />

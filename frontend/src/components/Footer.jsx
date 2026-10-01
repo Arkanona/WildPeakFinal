@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import '../styles/footer.scss';
 
 function Footer () {
@@ -5,10 +6,11 @@ function Footer () {
         <>
         <footer>
             <div>
-                <a href="/">WILDPEAK</a>
+                <Link to="/">WILDPEAK</Link>
                 <span>© 2026 WildPeak. Tout droit réservés.</span>
                 <article>
-                    <a href="#">Mentions Légales</a>
+                    <Link to="#">Mentions Légales</Link>
+                    <Link to="/contact">Contact</Link>
                 </article>
             </div>
         </footer>
