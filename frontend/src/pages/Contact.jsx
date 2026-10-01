@@ -1,6 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactImage from "../components/contact/ContactBgImage";
+import ContactFirstSec from "../components/contact/ContactFirstSec";
+import ContactQuestion from "../components/contact/ContactQuestion";
 
 
 function Contact() {
@@ -13,6 +15,8 @@ function Contact() {
         <meta name="description" content="Page contact de WildPeak." />
         <Navbar/>
         <ContactImage/>
+        <ContactFirstSec/>
+        <ContactQuestion/>
         <Footer/>
         </>
     )

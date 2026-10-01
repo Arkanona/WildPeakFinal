@@ -2,8 +2,7 @@
 
 .contactImage{
     position: relative;
-    
-    
+     
     .bgImageContact{
         background-image: url('/assets/contactBg.webp');
         height: 400px;
@@ -58,14 +57,165 @@
         content: "";
         position: absolute;
         left: 50%;
-        bottom: -90px;
+        bottom: -52px;
         transform: translateX(-50%);
-
         width: 100%;
-        height: 180px;
-
-        background: #F8F9FA; /* même couleur que la section d’après */
+        height: 104px;
+        background: #F8F9FA; 
         border-radius: 50%;
         z-index: 5;
     }
+}
+
+.contactSec{
+    position: relative;
+    z-index: 50;
+    max-width: 1200px;
+    height: 600px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.125fr) minmax(300px, 1fr);    
+    gap: 20px;
+    align-items: start;
+
+    .formContact{
+        // max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background-color: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 12px 3px #0000001A;
+
+
+        h2{
+            font-family: $font-text;
+        }
+        p{
+            margin-bottom: 10px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+
+            >div{
+                display: flex;
+                gap: 20px;
+
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                }
+            }
+            
+            label{
+                margin-bottom: 6px;
+                font-family: $font-text;
+                font-weight: 600;
+                font-size: 15px;
+
+                >span{
+                    color: #e63946;
+                }
+            }
+
+            input{
+                margin-bottom: 20px;
+                padding: 8px;
+                outline: none;
+                border-radius: 8px;
+                border: 2px solid lightgray;
+            }
+            .messageGroup{
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+
+                textarea{
+                    font-family: $font-text;
+                    padding: 8px;
+                    outline: none;
+                    border-radius: 8px;
+                    border: 2px solid lightgray;
+                    resize: none;
+                    margin-bottom: 8px;
+                }
+
+                p{
+                    align-self: flex-end;
+                    font-size: 14px;
+                }
+            }
+            button{
+                padding: 12px 20px;
+                font-size: 16px;
+                border: none;
+                color: white;
+                background-color: #e63946;
+                border-radius: 8px;
+            }
+            .divCheck{
+                margin: 20px 0;
+                gap: 10px;
+
+                input{
+                    width: 18px;
+                    height: 18px;
+                    cursor: pointer;
+                }
+
+                span{
+                    display: inline;
+                    
+                    label{
+                        font-weight: 400;
+                    }
+                    a{
+                        color: #e63946;
+                    }
+                }
+            }
+        }
+    }
+
+    aside{
+        width: 100%;
+        border-radius: 8px;
+        display: grid;
+        gap: 20px;
+
+        .contactInfo, .contactLocation{
+            background-color: white;
+            box-shadow: 0px 4px 12px 3px #0000001A;
+            padding: 25px;
+            border-radius: 8px;
+
+        }
+
+        .contactLocation{
+
+            .customMarker{
+        
+                background: transparent;
+                border: none;
+        
+                svg{
+                    width: 30px;
+                    height: 30px;
+                    color: #e63946;
+                }
+            }
+        
+            .leaflet-container {
+                width: 100%;
+                height: 200px;
+                border-radius: 12px;
+            }
+        }
+
+    }
+    
 }
