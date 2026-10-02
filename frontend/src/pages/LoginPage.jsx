@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import Login from "../components/auth/Login";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 
 function LoginPage() {
     return (
@@ -8,7 +11,7 @@ function LoginPage() {
         <meta name="description" content="Connecter vous à WildPeak, un site de comparateur d'attractions." />
         <main>
             <div className="firstDivLogin">
-            <Link to="/" className="arrowBack">←</Link>
+            <Link to="/" className="arrowBack"><FontAwesomeIcon icon={faArrowLeft} /></Link>
             <Login/>
             </div>
         </main>

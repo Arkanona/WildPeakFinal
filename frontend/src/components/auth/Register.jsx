@@ -3,6 +3,7 @@ import '../../styles/auth/register.scss';
 import { useState } from 'react';
 import useAuthStore from '../../store/authStore';
 
+
 function Register () {
 
     const register = useAuthStore((state) => state.register)
