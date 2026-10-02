@@ -193,6 +193,19 @@
                 padding: 8px;
                 border-radius: 8px;
             }
+
+            .fieldError {
+                color: #e63946;
+                font-size: 13px;
+                margin-top: -12px;
+                margin-bottom: 12px;
+            }
+            .fieldErrorMessage{
+                color: #e63946;
+                font-size: 13px;
+                margin-top: 0;
+                margin-bottom: 12px;
+            }
         }
     }
 
@@ -224,6 +237,7 @@
                     font-size: 25px;
                     color: white;
                     height: 30px;
+                    width: 30px;
                 }
                      
                 >div{
