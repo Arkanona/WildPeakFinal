@@ -69,12 +69,6 @@ function Register () {
                     <p className='errorPass'>{passwordError}</p>
                 )}
                 {error && <p className='errorPass'>{error}</p>}
-                <div>
-                    <span></span>
-                    <p>Ou s'inscrire avec</p>
-                    <span></span>
-                </div>
-                <Link to="#" className='googleLink'>GOOGLE</Link>
             </article>
             <div>
                 <p>Vous avez déjà un compte ?</p>

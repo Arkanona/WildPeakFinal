@@ -52,12 +52,6 @@ function Login () {
                  {error && <p className='errorPass'>{error}</p>}
                 </form>
                 <a href="#" className='forgotPassLink'>Mot de passe oublié ?</a>
-                <div>
-                    <span></span>
-                    <p>Ou se connecter avec</p>
-                    <span></span>
-                </div>
-                <Link to="#" className='googleLink'>GOOGLE</Link>
             </article>
             <div>
                 <p>Pas de compte ?</p>

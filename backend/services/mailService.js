@@ -45,7 +45,7 @@ exports.sendContactMail = async ({
                     `
       })
     }
-  );
+  )
 
   if (!response.ok) {
     const error = await response.json();

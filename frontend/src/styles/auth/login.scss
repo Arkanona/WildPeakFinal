@@ -16,6 +16,7 @@
         -webkit-backdrop-filter: blur(10px);
         border-radius: 16px;                  
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
+        border: 2px solid lightgray;
         padding: 6px 10px;
         margin-top: 20px;
         position: absolute;
@@ -44,12 +45,14 @@
             label{
                 font-family: $font-text;
                 text-align: left;
+                font-size: 16px;
+                font-weight: 600;
             }
             input{
                 padding: 9px 10px;
-                border-radius: 5px;
-                border: none;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+                border-radius: 8px;
+                border: 2px solid lightgray;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.125); 
 
             }
         }
@@ -92,19 +95,6 @@
                 border-top: 1px solid lightgrey;
                 margin-top: 10px;
             }
-        }
-        
-        .googleLink{
-            border: 1px solid rgba(255, 0, 0, 0.266);
-            border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); 
-            color: black;
-            font-family: $font-text;
-            display: flex;
-            width: 85%;
-            margin: auto;
-            justify-content: center;
-            padding: 8px;
         }
     }
     >div{
