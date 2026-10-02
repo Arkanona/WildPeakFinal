@@ -9,28 +9,30 @@ function ContactQuestion() {
     return (
         <section className='contactQuestion'>
             <div>
-                <h2>Question fréquentes</h2>
+                <h2>Question <span>fréquentes</span></h2>
                 <span></span>
-                <article>
-                    <FontAwesomeIcon icon={faCircleQuestion} />
-                    <h3>Problèmes sur le site ?</h3>
-                    <p>Une erreur ou un bug ? <br />Dites-nous en plus via le formulaire.</p>
-                </article>
-                <article>
-                    <FontAwesomeIcon icon={faLightbulb} />
-                    <h3>Suggestion</h3>
-                    <p>Vous avez une idées pour améliorer WildPeak ? On adore vos retours !</p>
-                </article>
-                <article>
-                    <FontAwesomeIcon icon={faHandshake} />
-                    <h3>Partenariat</h3>
-                    <p>Vous représenter un parc ou une entreprise ? Contactez-nous.</p>
-                </article>
-                <article>
-                    <FontAwesomeIcon icon={faShieldHalved} />
-                    <h3>Données personnelles</h3>
-                    <p>Une question sur vos données ? Consultez notre <Link to="#">politique de confidentialité</Link>.</p>
-                </article>
+                <div>
+                    <article>
+                        <FontAwesomeIcon icon={faCircleQuestion} />
+                        <h3>Problèmes sur le site ?</h3>
+                        <p>Une erreur ou un bug ? <br />Dites-nous en plus via le formulaire.</p>
+                    </article>
+                    <article>
+                        <FontAwesomeIcon icon={faLightbulb} />
+                        <h3>Suggestion</h3>
+                        <p>Vous avez une idées pour améliorer WildPeak ? On adore vos retours !</p>
+                    </article>
+                    <article>
+                        <FontAwesomeIcon icon={faHandshake} />
+                        <h3>Partenariat</h3>
+                        <p>Vous représenter un parc ou une entreprise ? Contactez-nous.</p>
+                    </article>
+                    <article>
+                        <FontAwesomeIcon icon={faShieldHalved} />
+                        <h3>Données personnelles</h3>
+                        <p>Une question sur vos données ? Consultez notre <Link to="#">politique de confidentialité</Link>.</p>
+                    </article>
+                </div>
             </div>
         </section>
     )
