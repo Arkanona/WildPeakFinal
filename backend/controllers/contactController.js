@@ -2,7 +2,7 @@ const { sendContactMail } = require("../services/mailService");
 
 exports.sendMessage = async (req, res) => {
     try{
-        const {
+        let {
             firstname,
             lastname,
             email,

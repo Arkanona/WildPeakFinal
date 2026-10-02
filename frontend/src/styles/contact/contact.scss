@@ -151,15 +151,6 @@
                     font-size: 14px;
                 }
             }
-            button{
-                padding: 12px 20px;
-                font-size: 16px;
-                border: none;
-                color: white;
-                background-color: #e63946;
-                border-radius: 8px;
-                cursor: pointer;
-            }
             .divCheck{
                 margin: 20px 0;
                 gap: 10px;
@@ -181,6 +172,26 @@
                         
                     }
                 }
+            }
+
+            button{
+                padding: 12px 20px;
+                font-size: 16px;
+                border: none;
+                color: white;
+                background-color: #e63946;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .successMessage{
+                text-align: center;
+                margin-top: 10px;
+                color: #109468;
+                background-color: #0b986920;
+                border: 1px solid #109468;
+                padding: 8px;
+                border-radius: 8px;
             }
         }
     }
@@ -212,6 +223,7 @@
                 svg{
                     font-size: 25px;
                     color: white;
+                    height: 30px;
                 }
                      
                 >div{

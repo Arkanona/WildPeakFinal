@@ -31,6 +31,7 @@ function Navbar () {
                     <li><Link to='/parcs'>Parcs</Link></li>
                     <li><Link to='#'>Attractions</Link></li>
                     <li><Link to='/comparateur'>Comparateur</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li>
                 </ul>
             </nav>
             <div>
@@ -71,6 +72,11 @@ function Navbar () {
                     <li className='navbarItem'>
                         <NavLink end to="/comparateur" onClick={toggleMenu}>
                             Comparateur
+                        </NavLink>
+                    </li>
+                    <li className='navbarItem'>
+                        <NavLink end to="/contact" onClick={toggleMenu}>
+                            Contact
                         </NavLink>
                     </li>
                     {user ? (

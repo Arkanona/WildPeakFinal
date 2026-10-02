@@ -1,37 +1,59 @@
-const nodemailer = require('nodemailer')
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-
-    auth:{
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASSWORD
-    }
-})
-
 exports.sendContactMail = async ({
-    firstname,
-    lastname,
-    email,
-    message
+  firstname,
+  lastname,
+  email,
+  message
 }) => {
+  const response = await fetch(
+    "https://api.brevo.com/v3/smtp/email",
+    {
+      method: "POST",
 
-    await transporter.sendMail({
-        from: process.env.MAIL_USER,
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+        "Accept": "application/json"
+      },
 
-        to: process.env.MAIL_USER,
+      body: JSON.stringify({
+        sender: {
+          name: "WildPeak",
+          email: process.env.BREVO_SENDER_EMAIL
+        },
 
-        replyTo: email,
+        to: [
+          {
+            email: process.env.BREVO_RECEIVER_EMAIL,
+            name: "WildPeak"
+          }
+        ],
 
-        subject:`Nouveau message WildPeak - ${firstname} ${lastname}`,
+        replyTo: {
+          email: email,
+          name: `${firstname} ${lastname}`
+        },
 
-        text: `
-        Nom : ${lastname}
-        Prénom : ${firstname}
-        E-mail : ${email}
+        subject: `Nouveau message WildPeak - ${firstname} ${lastname}`,
 
-        Message :
-        ${message}
-        `
-    })
-}
+        textContent: `
+            Nom : ${lastname}
+            Prénom : ${firstname}
+            E-mail : ${email}
+
+            Message :
+            ${message}
+                    `
+      })
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.json();
+
+    console.error(error);
+
+    throw new Error("Erreur lors de l'envoi de l'e-mail.");
+  }
+
+  return response.json();
+};

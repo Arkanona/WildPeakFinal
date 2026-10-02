@@ -4,43 +4,52 @@ import { Link } from 'react-router-dom';
 
 function ContactForm(){
 
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const [confidentiality, setConfidentiality] = useState(false);
+    const [firstname, setFirstname] = useState("")
+    const [lastname, setLastname] = useState("")
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+    const [confidentiality, setConfidentiality] = useState(false)
+    const [successMessage, setSuccessMessage] = useState('')
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/api/contact",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            firstname,
-            lastname,
-            email,
-            message,
-            confidentiality
-          })
+        const response = await fetch(
+            "http://localhost:3000/api/v1/contact",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstname,
+                    lastname,
+                    email,
+                    message,
+                    confidentiality
+                })
+            }
+        );
+
+        const data = await response.json()
+
+        if (!response.ok) {
+            throw new Error(data.message)
         }
-      );
 
-      const data = await response.json()
+        setFirstname("")
+        setLastname("")
+        setEmail("")
+        setMessage("")
+        setConfidentiality(false)
 
-      if (!response.ok) {
-        throw new Error(data.message)
-      }
+        setSuccessMessage("Message bien envoyé !")
 
-    } catch (error) {
-      console.error(error.message)
+        } catch (error) {
+            console.error(error.message)
+        }
     }
-  }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -69,6 +78,11 @@ function ContactForm(){
                 </span>
             </div>
             <button type="submit">Envoyer le message</button>
+            {successMessage && (
+            <p className="successMessage">
+                {successMessage}
+            </p>
+            )}
         </form>      
     )
 }
