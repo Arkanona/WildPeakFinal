@@ -53,7 +53,6 @@ function ResetPass () {
     }
         
     return (
-        <>
         <div className='divResetPass'>
             <article className='resetArticle'>
                 <h1>Réinitialiser le mot de passe</h1>
@@ -78,7 +77,6 @@ function ResetPass () {
                 <Link to="/connexion">Connectez-vous</Link>
             </div>
         </div>
-        </>
     )
 }
 export default ResetPass

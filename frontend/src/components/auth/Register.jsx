@@ -50,7 +50,6 @@ function Register () {
         } 
     }
     return (
-        <>
         <div className='divRegister'>
             <article className='registerArticle'>
                 <form onSubmit={handleSubmit}>
@@ -76,7 +75,6 @@ function Register () {
                 <Link to="/connexion">Connectez-vous</Link>
             </div>
         </div>
-        </>
     )
 }
 export default Register

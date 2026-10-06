@@ -4,7 +4,6 @@ import '../../styles/comparison/comparison.scss';
 function ComparisonImage(){
 
     return (
-        <>
         <section className='comparisonImage'>
             <div className='bgImageComparison'>
                 <div>
@@ -13,7 +12,6 @@ function ComparisonImage(){
                 </div>
             </div>
         </section>
-        </>
     )
 }
 export default ComparisonImage

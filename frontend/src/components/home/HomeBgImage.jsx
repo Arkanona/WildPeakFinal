@@ -3,7 +3,6 @@ import '../../styles/home/home.scss';
 function HomeImage(){
 
     return (
-        <>
         <section className='homeImage'>
             <div className='bgImageHome'>
                 <div>
@@ -12,7 +11,6 @@ function HomeImage(){
                 </div>
             </div>
         </section>
-        </>
     )
 }
 export default HomeImage

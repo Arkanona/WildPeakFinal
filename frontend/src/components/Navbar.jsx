@@ -21,7 +21,6 @@ function Navbar () {
         navigate('/')
     }
     return (
-        <>
         <header>
         <div className="divHeader">
             <Link to='/'>WILDPEAK</Link>   
@@ -106,8 +105,7 @@ function Navbar () {
             </nav>
         </div>
         </header>
-        </>
     )
-};
+}
 
 export default Navbar

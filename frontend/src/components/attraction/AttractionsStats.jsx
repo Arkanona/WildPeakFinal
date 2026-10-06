@@ -5,7 +5,6 @@ import { faRotate, faGaugeHigh, faArrowUpLong, faMapLocationDot, faStopwatch, fa
 
 function AttractionsStats({attraction}){
 
-
     return (
         <div className='paddingAttraction'>
             <div className='statAttraction'>

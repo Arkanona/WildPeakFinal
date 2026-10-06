@@ -3,7 +3,6 @@ import '../../styles/contact/contact.scss';
 function ContactImage(){
 
     return (
-        <>
         <section className='contactImage'>
             <div className='bgImageContact'>
                 <div>
@@ -12,7 +11,6 @@ function ContactImage(){
                 </div>
             </div>
         </section>
-        </>
     )
 }
 export default ContactImage

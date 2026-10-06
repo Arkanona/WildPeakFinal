@@ -3,7 +3,6 @@ import '../styles/footer.scss';
 
 function Footer () {
     return (
-        <>
         <footer>
             <div>
                 <Link to="/">WILDPEAK</Link>
@@ -14,7 +13,6 @@ function Footer () {
                 </article>
             </div>
         </footer>
-        </>
     )
 }
 export default Footer

@@ -39,7 +39,6 @@ function Login () {
     }
         
     return (
-        <>
         <div className='divLogin'>
             <article className='loginArticle'>
                 <form onSubmit={handleSubmit}>
@@ -59,7 +58,6 @@ function Login () {
                 <Link to="/inscription">Inscrivez-vous !</Link>
             </div>
         </div>
-        </>
     )
 }
 export default Login

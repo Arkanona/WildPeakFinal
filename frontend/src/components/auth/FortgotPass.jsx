@@ -27,7 +27,6 @@ function ForgotPass () {
     }
         
     return (
-        <>
         <div className='divForgotPass'>
             <article className='forgotArticle'>
                 <h1>Mot de passe oublié ?</h1>
@@ -48,7 +47,6 @@ function ForgotPass () {
                 <Link to="/connexion">Connectez-vous</Link>
             </div>
         </div>
-        </>
     )
 }
 export default ForgotPass
