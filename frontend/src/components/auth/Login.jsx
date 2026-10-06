@@ -52,7 +52,7 @@ function Login () {
                 <button disabled={loading} type="submit">{loading ? 'Connexion...' : 'Se connecter'}</button>
                  {error && <p className='errorPass'>{error}</p>}
                 </form>
-                <a href="#" className='forgotPassLink'>Mot de passe oublié ?</a>
+                 <Link to="/mot-de-passe-oublie" className='forgotPassLink'>Mot de passe oublié ?</Link>
             </article>
             <div>
                 <p>Pas de compte ?</p>

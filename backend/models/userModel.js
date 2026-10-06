@@ -30,3 +30,23 @@ exports.findUserById = async (id) => {
     return rows[0] || null;
 }
 
+exports.saveResetToken = async (userId, hashedToken, expiresAt) => {
+    const query = `
+        UPDATE users
+        SET 
+            reset_password_token = $1,
+            reset_password_expires = $2
+        WHERE id_user = $3
+        RETURNING id_user
+    `
+
+    const values = [
+        hashedToken,
+        expiresAt,
+        userId
+    ]
+
+    const result = await pool.query(query, values)
+
+    return result.rows[0]
+}

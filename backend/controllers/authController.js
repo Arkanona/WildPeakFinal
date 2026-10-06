@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
-
+const crypto = require('crypto')
+const { sendResetPasswordEmail } = require('../services/mailService')
 
 const JWT_SECRET = process.env.JWT_SECRET
 const JWT_EXPIRES_IN = '365d'
@@ -99,5 +100,52 @@ exports.login = async (req, res) => {
 
     } catch (err) {
         res.status(500).json({ message: 'Server error during login', error: err.message })
+    }
+}
+
+exports.forgotPassword = async (req, res) => {
+    try{
+        const { email } = req.body
+
+        if(!email){
+            return res.status(400).json({ message: "L'adresse e-mail est obligatoire."})
+        }
+
+        const user = await User.findUserByEmail(email)
+        // On ne révèle pas si l'adresse mail existe ou non
+        if(!user){
+            return res.status(200).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.'})
+        }
+
+        // On génère un token aléatoire
+        const resetToken = crypto.randomBytes(32).toString('hex')
+
+        // On hash le token avant l'enregistrement en BDD
+        const hashedToken = crypto
+            .createHash('sha256')
+            .update(resetToken)
+            .digest('hex')
+
+        // Date d'expiration 15 minutes
+        const expiresAt = new Date(Date.now() + 15 * 60 * 1000)
+
+        // On enregistre token + expiration dans la BDD
+        await User.saveResetToken(
+            user.id_user,
+            hashedToken,
+            expiresAt
+        )
+
+        // On construit le lien envoyé à l'utilisateur
+        const resetUrl = `${process.env.FRONTEND_URL}/reinitialiser-mot-de-passe/${resetToken}`
+
+        // On envoie l'e-mail
+        await sendResetPasswordEmail(user.email_user, resetUrl)
+
+        return res.status(200).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation à été envoyé.'})
+
+    } catch(err){
+        console.error('FORGOT PASSWORD ERROR :', err)
+        res.status(500).json({ message: 'Erreur serveur lors de la demande de réinitialisation', error: err.message})
     }
 }

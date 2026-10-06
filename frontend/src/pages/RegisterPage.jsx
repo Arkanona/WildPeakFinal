@@ -9,10 +9,10 @@ function RegisterPage() {
         <title>Inscription - WildPeak</title>
         <meta name="description" content="Inscrivez-vous à WildPeak, un site de comparateur d'attractions." />
         <main>
-            <div className="firstDivRegister">
+            <section className="firstSecRegister">
             <Link to="/" className="arrowBack"><FontAwesomeIcon icon={faArrowLeft} /></Link>
             <Register/>
-            </div>
+            </section>
         </main>
         </>
     )
