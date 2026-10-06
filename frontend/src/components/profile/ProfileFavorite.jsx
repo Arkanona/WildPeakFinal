@@ -6,13 +6,17 @@ import useFavoriteStore from '../../store/favorisStore'
 import FavoriteButton from '../attraction/FavoriteButton'
 import { getAttractions } from '../../services/api'
 import '../../styles/park/cardAttraction.scss';
+import useAuthStore from '../../store/authStore'
 
 
 function ProfileFavorite(){
 
     const [attractions, setAttractions] = useState([])
 
+    const token = useAuthStore((state) => state.token)
+
     const favorites = useFavoriteStore((state) => state.favorites)
+    const fetchFavorites = useFavoriteStore((state) => state.fetchFavorites)
 
     useEffect(() => {
         const loadAttractions = async () => {
@@ -26,8 +30,14 @@ function ProfileFavorite(){
         loadAttractions()
     }, [])
 
+    useEffect(() => {
+        if (token) {
+            fetchFavorites(token)
+        }
+    }, [token, fetchFavorites])
+
     const favoriteAttractions = attractions.filter((attraction) => 
-        favorites.includes(String(attraction.id_attraction))
+        favorites.some((favorite) => Number(favorite.id_attraction) === Number(attraction.id_attraction))
     )
 
     if(favoriteAttractions.length === 0){

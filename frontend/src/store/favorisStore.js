@@ -1,60 +1,94 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import {
+    getFavorites,
+    addFavoriteToApi,
+    removeFavoriteFromApi
+} from '../services/favoriteService'
 
-const useFavoriteStore = create(
-    persist(
-        (set, get) => ({
-            favorites: [],
+const useFavoritesStore = create((set, get) => ({
+    favorites: [],
+    loading: false,
+    error: null,
 
-            addFavorite: (id) => {
-                const favoriteId = String(id)
+    fetchFavorites: async (token) => {
+        try {
+            set({
+                loading: true,
+                error: null
+            })
 
-                set((state) => {
-                    if (state.favorites.includes(favoriteId)){
-                        return state
-                    }
-                    return{
+            const favorites = await getFavorites(token)
 
-                        favorites: [...state.favorites, favoriteId]
-                    }
-                })
-            },
+            set({
+                favorites,
+                loading: false
+            })
+        } catch (error) {
+            console.error(error)
 
-            removeFavorite: (id) => {
-                const favoriteId = String(id)
-
-                set((state) => ({
-                    favorites: state.favorites.filter(
-                        (favorite) => favorite !== favoriteId
-                    )
-                }))
-            },
-
-            toggleFavorite: (id) => {
-                const favoriteId = String(id)
-                const favorites = get().favorites
-
-                if(favorites.includes(favoriteId)){
-                    set({
-                        favorites: favorites.filter(
-                            (favorite) => favorite !== favoriteId
-                        )
-                    })
-                } else {
-                    set({
-                        favorites: [...favorites, favoriteId]
-                    })
-                }
-            },
-
-            isFavorite: (id) => {
-                return get().favorites.includes(String(id))
-            }
-        }),
-        {
-            name: 'wildpeak-favorites'
+            set({
+                loading: false,
+                error: error.message
+            })
         }
-    )
-)
+    },
 
-export default useFavoriteStore
+    addFavorite: async (idAttraction, token) => {
+        try {
+            await addFavoriteToApi(idAttraction, token)
+
+            await get().fetchFavorites(token)
+        } catch (error) {
+            console.error(error)
+
+            set({
+                error: error.message
+            })
+        }
+    },
+
+    removeFavorite: async (idAttraction, token) => {
+        try {
+            await removeFavoriteFromApi(idAttraction, token)
+
+            set((state) => ({
+                favorites: state.favorites.filter(
+                    (favorite) =>
+                        Number(favorite.id_attraction) !== Number(idAttraction)
+                )
+            }))
+        } catch (error) {
+            console.error(error)
+
+            set({
+                error: error.message
+            })
+        }
+    },
+
+    toggleFavorite: async (idAttraction, token) => {
+        const isFavorite = get().isFavorite(idAttraction)
+
+        if (isFavorite) {
+            await get().removeFavorite(idAttraction, token)
+        } else {
+            await get().addFavorite(idAttraction, token)
+        }
+    },
+
+    isFavorite: (idAttraction) => {
+        return get().favorites.some(
+            (favorite) =>
+                Number(favorite.id_attraction) === Number(idAttraction)
+        )
+    },
+
+    clearFavorites: () => {
+        set({
+            favorites: [],
+            error: null
+        })
+    }
+}))
+
+export default useFavoritesStore

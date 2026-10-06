@@ -2,19 +2,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import useFavoriteStore from '../../store/favorisStore';
+import useAuthStore from '../../store/authStore';
 
 function FavoriteButton({ attractionId }) {
 
     const favorites = useFavoriteStore((state) => state.favorites)
     const toggleFavorite = useFavoriteStore((state) => state.toggleFavorite)
 
-    const isFavorite = favorites.includes(String(attractionId))
+    const token = useAuthStore((state) => state.token)
 
-    const handleFavorite = (e) => {
+    const isFavorite = favorites.some((favorite) => Number(favorite.id_attraction) === Number(attractionId))
+
+    const handleFavorite = async (e) => {
         e.preventDefault()
         e.stopPropagation()
 
-        toggleFavorite(attractionId)
+        if(!token) {
+            console.error('Utilisateur non connecté')
+            return
+        }
+
+        await toggleFavorite(attractionId, token)
     }
 
     return (

@@ -2,7 +2,7 @@ import '../../styles/park/cardAttraction.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import FavoriteButton from '../attraction/FavoriteButton';
 
 function CardAttraction({ parks, attractions }){
@@ -11,9 +11,10 @@ function CardAttraction({ parks, attractions }){
 
     const park = parks.find((park) => park.slug_park === id
     )
+    
 
-    if (!park) {
-        return <p>Parc introuvable</p>
+    if(!park){
+        return <Navigate to="/404" replace/>
     }
 
     const parkAttractions = attractions.filter(

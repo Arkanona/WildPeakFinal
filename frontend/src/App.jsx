@@ -10,6 +10,7 @@ import AttractionDetails from "./pages/AttractionDetails";
 import AttractionComparison from "./pages/AttractionComparison";
 import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
+import ErrorPage from "./pages/ErrorPage";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/comparateur" element={<AttractionComparison />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<ErrorPage />} />
+        <Route path="/404" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
