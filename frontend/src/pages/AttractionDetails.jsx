@@ -1,41 +1,70 @@
-
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Attractions from "../components/attraction/AttractionsSec1";
 import AttractionsStats from "../components/attraction/AttractionsStats";
 import AboutAttractions from "../components/attraction/AboutAttractions";
-import data from '../data/attraction.json';
 import { Navigate, useParams } from "react-router-dom";
 import { getParks, getAttractions } from "../services/api";
 import { useEffect, useState } from "react";
 
 
 function AttractionDetails() {
-    const { slug } = useParams();
+    const { slug } = useParams()
 
-const attraction = data
-    .flatMap((park) => park.attractions)
-    .find((attraction) => attraction.slug === slug);
+    const [attractions, setAttractions] = useState([])
+    const [parks, setParks] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
-    const [ attractions, setAttractions ] = useState([])
-    
     useEffect(() => {
-        getAttractions()
-            .then(data => setAttractions(data))
-            .catch(error => console.error(error))
+
+        const fetchData = async () => {
+            try {
+
+                const [attractionsData, parksData] = await Promise.all([
+                    getAttractions(),
+                    getParks()
+                ])
+
+                setAttractions(attractionsData)
+                setParks(parksData)
+
+            } catch (error) {
+                console.error(error)
+                setError("Impossible de charger l'attraction.")
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+
     }, [])
 
-    const [ parks, setParks ] = useState([])
-    
-    useEffect(() => {
-        getParks()
-            .then(data => setParks(data))
-            .catch(error => console.error(error))
-    }, [])
-    
-    if(!attraction){
-        return <Navigate to={'/'}/>
+    if (loading) {
+        return <p>Chargement...</p>
     }
+
+    if (error) {
+        return <p>{error}</p>
+    }
+
+    const attraction = attractions.find(
+        attraction => attraction.slug_attraction === slug
+    )
+
+    if (!attraction) {
+        return <Navigate to="/404" replace />
+    }
+
+    const park = parks.find(
+        park => park.id_park === attraction.id_park
+    )
+
+    if (!park) {
+        return <Navigate to="/404" replace />
+    }
+
     return (
         <>
         <meta content="text/html;charset=UTF-8" />
@@ -44,10 +73,10 @@ const attraction = data
         <Navbar/>
         <main>
             <section className='secParkDetail'>
-                <Attractions attractions={attractions} parks={parks}/>
-                <AttractionsStats attractions={attractions}/>
+                <Attractions attraction={attraction} park={park}/>
+                <AttractionsStats attraction={attraction}/>
             </section>
-            <AboutAttractions attractions={attractions}/>
+            <AboutAttractions attraction={attraction}/>
         </main>
         <Footer/>
         </>

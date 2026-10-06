@@ -2,34 +2,18 @@ import '../../styles/park/cardAttraction.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
-import { useParams, Navigate } from 'react-router-dom';
 import FavoriteButton from '../attraction/FavoriteButton';
 
-function CardAttraction({ parks, attractions }){
-   
-    const { id } = useParams()
-
-    const park = parks.find((park) => park.slug_park === id
-    )
-    
-
-    if(!park){
-        return <Navigate to="/404" replace/>
-    }
-
-    const parkAttractions = attractions.filter(
-        (attraction) => attraction.id_park === park.id_park
-    )
+function CardAttraction({ park, attractions }){
 
     return (
-        <>
         <div className='cardAttraction'>
             <div className='divTitleAttraction'>
                 <h2>TOUTES LES ATTRACTIONS {park.name_park}</h2>
-                <p>{parkAttractions.length}</p>
+                <p>{attractions.length}</p>
             </div>
             <div className='cardsContainerAttraction'>
-                {parkAttractions.map((attraction) => (
+                {attractions.map((attraction) => (
                     <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                         <article>
                         <FavoriteButton attractionId={attraction.id_attraction}/>
@@ -51,7 +35,6 @@ function CardAttraction({ parks, attractions }){
                 ))}                        
             </div>           
         </div>
-        </>
     )
 }
 export default CardAttraction

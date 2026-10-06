@@ -1,19 +1,8 @@
-import { useParams } from 'react-router-dom';
 import '../../styles/attraction/attractionDetails.scss';
 
-function AboutAttractions ({attractions = []}){
-
-    const { slug } = useParams()
-    const attraction = attractions.find(
-        (attraction) => attraction.slug_attraction === slug
-    )
-    if (!attraction) {
-        return <p>Chargement...</p>
-    }
-
+function AboutAttractions ({attraction}){
 
     return (
-        <>
         <section className="secAboutAttraction">
             <div>
                 <div>
@@ -23,7 +12,6 @@ function AboutAttractions ({attractions = []}){
                 <p>{attraction?.description_attraction}</p>
             </div>
         </section>
-        </>
     )
 }
 export default AboutAttractions

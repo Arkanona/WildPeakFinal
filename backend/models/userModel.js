@@ -50,3 +50,40 @@ exports.saveResetToken = async (userId, hashedToken, expiresAt) => {
 
     return result.rows[0]
 }
+
+exports.findUserByResetToken = async (hashedToken) => {
+    const query = `
+    SELECT *
+    FROM users
+    WHERE reset_password_token = $1
+    AND reset_password_expires > NOW()`
+
+    const result = await pool.query(query, [hashedToken])
+
+    return result.rows[0]
+}
+
+exports.updatePassword = async (userId, hashedPassword) => {
+    const query = `
+        UPDATE users
+        SET pass_hash_user = $1
+        WHERE id_user = $2
+    `
+
+    await pool.query(query, [
+        hashedPassword,
+        userId
+    ])
+}
+
+exports.clearResetToken = async (userId) => {
+    const query = `
+        UPDATE users
+        SET
+            reset_password_token = NULL,
+            reset_password_expires = NULL
+        WHERE id_user = $1
+    `
+
+    await pool.query(query, [userId])
+}

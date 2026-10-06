@@ -149,3 +149,63 @@ exports.forgotPassword = async (req, res) => {
         res.status(500).json({ message: 'Erreur serveur lors de la demande de réinitialisation', error: err.message})
     }
 }
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { token } = req.params
+        const { password } = req.body
+
+        if (!token) {
+            return res.status(400).json({
+                message: "Token de réinitialisation manquant."
+            })
+        }
+
+        if (!password) {
+            return res.status(400).json({
+                message: "Le nouveau mot de passe est obligatoire."
+            })
+        }
+
+        if (password.length < 8) {
+            return res.status(400).json({
+                message: "Le mot de passe doit contenir au moins 8 caractères."
+            })
+        }
+
+        // On hash le token reçu pour le comparer à celui stocké en BDD
+        const hashedToken = crypto
+            .createHash('sha256')
+            .update(token)
+            .digest('hex')
+
+        // Recherche de l'utilisateur avec ce token valide
+        const user = await User.findUserByResetToken(hashedToken)
+
+        if (!user) {
+            return res.status(400).json({
+                message: "Le lien de réinitialisation est invalide ou expiré."
+            })
+        }
+
+        // Hash du nouveau mot de passe
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        // Mise à jour du mot de passe
+        await User.updatePassword(user.id_user, hashedPassword)
+
+        // Suppression du token pour empêcher sa réutilisation
+        await User.clearResetToken(user.id_user)
+
+        return res.status(200).json({
+            message: "Votre mot de passe a bien été réinitialisé."
+        })
+
+    } catch (err) {
+        console.error('RESET PASSWORD ERROR :', err)
+
+        return res.status(500).json({
+            message: "Erreur serveur lors de la réinitialisation du mot de passe."
+        })
+    }
+}

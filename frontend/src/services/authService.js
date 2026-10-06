@@ -63,3 +63,28 @@ export const forgotPassword = async (email) => {
 
     return data
 }
+
+export const resetPassword = async (token, password) => {
+    const response = await fetch(
+        `${API_URL}/api/v1/auth/reset-password/${token}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                password
+            })
+        }
+    )
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        throw new Error(
+            data.message || "Erreur lors de la réinitialisation du mot de passe."
+        )
+    }
+
+    return data
+}

@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
 import ErrorPage from "./pages/ErrorPage";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/inscription" element={<RegisterPage />} />
         <Route path="/connexion" element={<LoginPage />} />
         <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
+        <Route path="/reinitialiser-mot-de-passe/:token" element={<ResetPassword />} />
         <Route path="/parcs" element={<Parks />} />
         <Route path="/parcs/:id" element={<ParksDetails />} />
         <Route path="/attractions/:slug" element={<AttractionDetails />} />

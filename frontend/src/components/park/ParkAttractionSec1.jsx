@@ -1,14 +1,8 @@
 import '../../styles/attraction/attractionDetails.scss';
-import { useParams } from 'react-router-dom';
 
-function ParkAttractionSec({parks}){
-
-    const { id } = useParams()
-
-    const park = parks.find((park) => park.slug_park === id)
+function ParkAttractionSec({park}){
 
     return (
-        <>
         <section className='secParkDetail'>
             <div className='bgImagePark' style={{backgroundImage: `url(http://localhost:3000${park?.imgbg_park})`}}>
                 <div className='divTextPark'>
@@ -22,7 +16,6 @@ function ParkAttractionSec({parks}){
             </div>
             <p>{park?.description_park}</p>
         </section>
-        </>
     )
 }
 export default ParkAttractionSec

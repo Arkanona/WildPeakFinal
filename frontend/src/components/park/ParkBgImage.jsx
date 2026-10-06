@@ -3,7 +3,6 @@ import '../../styles/park/parkImage.scss';
 function ParkImage(){
 
     return (
-        <>
         <section className='parkImage'>
             <div className='bgImagePark'>
                 <div>
@@ -12,7 +11,6 @@ function ParkImage(){
                 </div>
             </div>
         </section>
-        </>
     )
 }
 export default ParkImage

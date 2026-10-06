@@ -55,15 +55,15 @@ function Register () {
             <article className='registerArticle'>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Prénom :</label>
-                    <input type="text" name='name' id='name' placeholder='Prénom' value={form.name} onChange={handleChange}/>
+                    <input type="text" name='name' id='name' placeholder='Prénom' value={form.name} onChange={handleChange} required/>
                     <label htmlFor="email">E-mail :</label>
-                    <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange}/>
+                    <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange} required/>
                     
                     <label htmlFor="password">Mot de passe :</label>
-                        <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange}/>
+                    <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange} required/>
                     
-                    <label htmlFor="confirmPassword">Confirmez mot de passe :</label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez mot de passe" value={form.confirmPassword} onChange={handleChange}/>
+                    <label htmlFor="confirmPassword">Confirmez le mot de passe :</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez le mot de passe" value={form.confirmPassword} onChange={handleChange} required/>
                 <button type="submit">S'inscrire</button>
                 </form>
                 {passwordError && (

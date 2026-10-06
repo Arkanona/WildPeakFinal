@@ -1,29 +1,8 @@
 import '../../styles/attraction/attractionDetails.scss';
-import { useParams } from 'react-router-dom';
 
-
-function Attractions({attractions = [], parks = []}){
-
-    const { slug } = useParams()
-
-    const attraction = attractions.find(
-        (attraction) => attraction.slug_attraction === slug
-    )
-
-    if (!attraction) {
-        return <p>Chargement...</p>
-    }
-
-    const park = parks.find(
-        (park) => park.id_park === attraction.id_park
-    )
-
-    if (!park) {
-        return <p>Parc introuvable</p>
-    }
+function Attractions({attraction, park}){
 
     return (
-        <>
         <div className='bgImagePark' style={{backgroundImage: `url(http://localhost:3000${attraction.imgbg_attraction})`}}>
             <div className='divTextPark'>
                 <h1>{attraction.name_attraction}</h1>
@@ -34,7 +13,6 @@ function Attractions({attractions = [], parks = []}){
                 </div>
             </div>
         </div>
-        </>
     )
 }
 export default Attractions
