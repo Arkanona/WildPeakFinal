@@ -43,6 +43,7 @@ function Attraction() {
                     parks={parks}
                     attractions={attractions}
                     setFilteredAttractions={setFilteredAttractions}
+                    filteredAttractions={filteredAttractions}
                 />
                 <AttractionCard
                     parks={parks}
