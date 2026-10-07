@@ -1,0 +1,68 @@
+@import '../variables';
+
+.attractionSecFilter{
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 15px;
+
+    .firstDivFilter{
+        position: relative;
+        z-index: 50;
+        background-color: white;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); 
+        padding: 25px;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 8px;
+        align-items: center;
+        width: auto;
+        transform: translateY(-35px);
+        box-sizing: border-box;
+
+        .inputFilter{
+            position: relative;
+
+            input{
+                width: 100%;
+                padding: 10px 10px 10px 40px;
+                border-radius: 8px;
+                outline: none;
+                border: 1px solid lightgray;
+                font-size: 16px;
+    
+            }
+            label{
+                position: absolute;
+                top: 50%;
+                left: 12px;
+                transform: translateY(-50%);
+                z-index: 10;
+                svg{
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .divFilter{
+            display: flex;
+            flex-direction: column;
+
+            label{
+                font-family: $font-text;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            select{
+                font-size: 16px;
+                padding: 4px;
+                outline: none;
+                cursor: pointer;
+                border: 1px solid lightgray;
+                border-radius: 8px;
+                color: rgb(88, 87, 87);
+                
+            }
+        }
+    }
+}
