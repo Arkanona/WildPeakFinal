@@ -28,7 +28,7 @@ function Navbar () {
                 <ul>
                     <li><Link to='/'>Accueil</Link></li>
                     <li><Link to='/parcs'>Parcs</Link></li>
-                    <li><Link to='#'>Attractions</Link></li>
+                    <li><Link to='/attractions'>Attractions</Link></li>
                     <li><Link to='/comparateur'>Comparateur</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
                 </ul>

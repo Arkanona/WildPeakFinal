@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../../styles/home/homeFirstSec.scss';
-import FavoriteButton from '../attraction/FavoriteButton';
+import FavoriteButton from '../attractionDetail/FavoriteButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRotate } from '@fortawesome/free-solid-svg-icons';
+import { faGaugeHigh, faRotate } from '@fortawesome/free-solid-svg-icons';
 
 function HomeFirstSec({ attractions = [], parks = [] }){
 
@@ -21,14 +21,13 @@ function HomeFirstSec({ attractions = [], parks = [] }){
                     <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                         <article>
                             <span className='ranking'>#{index + 1}</span>
+                            <span className='speed'><FontAwesomeIcon icon={faGaugeHigh} size="sm" /> {attraction?.speed_max_kmh_attraction} KM/H</span>
                             <FavoriteButton attractionId={attraction.id_attraction}/>
                             <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                             <div>
                                 <h3>{attraction.name_attraction}</h3>
                                 <p className='parkName'>{park?.name_park}</p>
-                                <div className='location'>
-                                    <p>{attraction.short_description_attraction}</p>
-                                </div>
+                                <p>{attraction.short_description_attraction}</p>
                                 <div className='divStatAttraction'>
                                     <p>{attraction.speed_max_kmh_attraction} km/h</p>
                                     <p><FontAwesomeIcon icon={faRotate} size="2xs" /> {attraction.inversion_attraction}</p>

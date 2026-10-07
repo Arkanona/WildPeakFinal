@@ -2,7 +2,7 @@ import '../../styles/park/cardAttraction.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
-import FavoriteButton from '../attraction/FavoriteButton';
+import FavoriteButton from '../attractionDetail/FavoriteButton';
 
 function CardAttraction({ park, attractions }){
 
@@ -20,9 +20,7 @@ function CardAttraction({ park, attractions }){
                         <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                         <div>
                             <h3>{attraction.name_attraction}</h3>
-                            <div className='location'>
-                                <p>{attraction.short_description_attraction}</p>
-                            </div>
+                            <p>{attraction.short_description_attraction}</p>
                             <div className='divStatAttraction'>
                                 <p>{attraction.speed_max_kmh_attraction} km/h</p>
                                 <p><FontAwesomeIcon icon={faRotate} size="2xs" /> {attraction.inversion_attraction}</p>

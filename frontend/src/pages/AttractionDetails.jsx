@@ -1,8 +1,8 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Attractions from "../components/attraction/AttractionsSec1";
-import AttractionsStats from "../components/attraction/AttractionsStats";
-import AboutAttractions from "../components/attraction/AboutAttractions";
+import AttractionsSec1 from "../components/attractionDetail/AttractionsSec1";
+import AttractionsStats from "../components/attractionDetail/AttractionsStats";
+import AboutAttractions from "../components/attractionDetail/AboutAttractions";
 import { Navigate, useParams } from "react-router-dom";
 import { getParks, getAttractions } from "../services/api";
 import { useEffect, useState } from "react";
@@ -68,12 +68,12 @@ function AttractionDetails() {
     return (
         <>
         <meta content="text/html;charset=UTF-8" />
-        <title>Attractions - WildPeak</title>
+        <title>Attraction - WildPeak</title>
         <meta name="description" content="Découvrez les attractions des parcs européens et consultez leurs principales caractéristiques, informations et statistiques." />
         <Navbar/>
         <main>
             <section className='secParkDetail'>
-                <Attractions attraction={attraction} park={park}/>
+                <AttractionsSec1 attraction={attraction} park={park}/>
                 <AttractionsStats attraction={attraction}/>
             </section>
             <AboutAttractions attraction={attraction}/>

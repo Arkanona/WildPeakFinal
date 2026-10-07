@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { faRotate } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useFavoriteStore from '../../store/favorisStore'
-import FavoriteButton from '../attraction/FavoriteButton'
+import FavoriteButton from '../attractionDetail/FavoriteButton'
 import { getAttractions } from '../../services/api'
 import '../../styles/park/cardAttraction.scss';
 import useAuthStore from '../../store/authStore'
