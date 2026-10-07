@@ -16,11 +16,13 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
         minimumHeight: ''
     })
     const [resetKey, setResetKey] = useState(0)
+    const [searchTerm, setSearchTerm] = useState('')
 
     const handleReset = () => {
         setSelectedPark('')
         setSelectedType('')
         setSortBy('speed')
+        setSearchTerm('')
 
         setSecondaryFilters({
             inversions: '',
@@ -38,6 +40,20 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
         )
 
         setResetKey((prev) => prev + 1)
+    }
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value
+
+        setSearchTerm(value)
+
+        handleFilters(
+            selectedPark,
+            selectedType,
+            sortBy,
+            secondaryFilters,
+            value
+        )
     }
 
     const getAttractionCategory = (type) => {
@@ -90,9 +106,18 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
         parkValue,
         typeValue,
         sortValue,
-        secondary = secondaryFilters
+        secondary = secondaryFilters,
+        searchValue = searchTerm
     ) => {
         let filtered = [...attractions]
+
+        if (searchValue) {
+            filtered = filtered.filter((attraction) =>
+                attraction.name_attraction
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+            )
+        }
 
         if (parkValue) {
             filtered = filtered.filter(
@@ -298,7 +323,7 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
                 <div className='firstFilterLine'>
                     <div className='inputFilter'>
                         <label htmlFor="search"><FontAwesomeIcon icon={faMagnifyingGlass} /></label>
-                        <input type="text" id='search' placeholder="Rechercher une attraction..."/>
+                        <input type="text" id='search' value={searchTerm} onChange={(e) => handleSearchChange(e)} placeholder="Rechercher une attraction..."/>
                     </div>
                     <div className='divFilter'>
                         <label htmlFor='park'>Parc</label>
