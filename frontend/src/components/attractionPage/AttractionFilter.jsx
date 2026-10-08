@@ -365,7 +365,7 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
                     </button>
                     <span className='attractionCount'>
                         {filteredAttractions.length}{''}
-                        {filteredAttractions.length > 1 ? 'attractions' : 'attraction'}
+                        {filteredAttractions.length > 1 ? ' attractions' : ' attraction'}
                     </span>
                     <button className='resetButton' onClick={handleReset}>
                         <FontAwesomeIcon icon={faRotateRight} /> Réinitialiser

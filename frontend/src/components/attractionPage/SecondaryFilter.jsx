@@ -8,6 +8,11 @@ function SecondaryFilters({ onChange }) {
     const [selectedHeight, setSelectedHeight] = useState('')
     const [selectedDuration, setSelectedDuration] = useState('')
     const [selectedMinimumHeight, setSelectedMinimumHeight] = useState('')
+    const [openDropdown, setOpenDropdown] = useState(null)
+
+    const handleToggleDropdown = (name) => {
+        setOpenDropdown(prev => prev === name ? null : name)
+    }
 
     const inversionOptions = [
         { value: '', label: 'Toutes' },
@@ -82,6 +87,8 @@ function SecondaryFilters({ onChange }) {
                 options={inversionOptions}
                 value={selectedInversions}
                 onChange={handleInversions}
+                isOpen={openDropdown === 'inversions'}
+                onToggle={() => handleToggleDropdown('inversions')}
             />
             <CustomDropdown
                 label="Hauteur"
@@ -89,6 +96,8 @@ function SecondaryFilters({ onChange }) {
                 options={heightOptions}
                 value={selectedHeight}
                 onChange={handleHeight}
+                isOpen={openDropdown === 'height'}
+                onToggle={() => handleToggleDropdown('height')}
             />
             <CustomDropdown
                 label="Durée"
@@ -96,6 +105,8 @@ function SecondaryFilters({ onChange }) {
                 options={durationOptions}
                 value={selectedDuration}
                 onChange={handleDuration}
+                isOpen={openDropdown === 'duration'}
+                onToggle={() => handleToggleDropdown('duration')}
             />
             <CustomDropdown
                 label="Taille min"
@@ -103,6 +114,8 @@ function SecondaryFilters({ onChange }) {
                 options={minimumHeightOptions}
                 value={selectedMinimumHeight}
                 onChange={handleMinimumHeight}
+                isOpen={openDropdown === 'minimumHeight'}
+                onToggle={() => handleToggleDropdown('minimumHeight')}
             />
         </div>
     )

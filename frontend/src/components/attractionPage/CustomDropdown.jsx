@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -7,9 +6,10 @@ function CustomDropdown({
     icon,
     options,
     value,
-    onChange
+    onChange,
+    isOpen,
+    onToggle
 }) {
-    const [isOpen, setIsOpen] = useState(false)
 
     const selectedOption = options.find(
         (option) => option.value === value
@@ -17,7 +17,7 @@ function CustomDropdown({
 
     const handleSelect = (optionValue) => {
         onChange(optionValue)
-        setIsOpen(false)
+        onToggle()
     }
 
     return (
@@ -25,13 +25,13 @@ function CustomDropdown({
             <button
                 type="button"
                 className="dropdownButton"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={onToggle}
             >
                 <span>
                     {icon && (
                         <FontAwesomeIcon icon={icon} />
                     )}
-                    {selectedOption?.label || label}
+                    {value === '' ? label : selectedOption?.label}
                 </span>
                 <FontAwesomeIcon icon={faChevronDown} />
             </button>
@@ -42,7 +42,7 @@ function CustomDropdown({
                             type="button"
                             key={option.value}
                             className={value === option.value ? 'active' : ''}
-                            onClick={() =>handleSelect(option.value)}>
+                            onClick={() => handleSelect(option.value)}>
                             {option.label}
                         </button>
                     ))}
