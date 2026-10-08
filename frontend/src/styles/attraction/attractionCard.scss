@@ -119,6 +119,37 @@
             }
         } 
     }
+
+    > button {
+        display: block;
+        margin: 35px auto;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 10px;
+        background-color: $color-red;
+        color: white;
+        font-family: $font-text;
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+            filter: brightness(0.95);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(230, 57, 70, 0.3);
+            outline-offset: 3px;
+        }
+    }
 }
 
 // Media Queries

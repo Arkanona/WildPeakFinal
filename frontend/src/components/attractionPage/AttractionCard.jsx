@@ -4,10 +4,10 @@ import FavoriteButton from '../attractionDetail/FavoriteButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotate } from '@fortawesome/free-solid-svg-icons';
 
-function AttractionCard({ attractions}){
+function AttractionCard({ attractions }){
 
     return (
-        <section className='attractionSecCard'>
+        <>
             <div className='titleAttraction'>
                 <span></span>
                 <h2>ATTRACTIONS LES PLUS RAPIDES</h2>
@@ -34,7 +34,7 @@ function AttractionCard({ attractions}){
                     </Link>
                 ))}                        
             </div>     
-        </section>
+        </>
     )
 }
 export default AttractionCard
