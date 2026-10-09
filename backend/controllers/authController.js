@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
-const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const { sendResetPasswordEmail } = require('../services/mailService')
@@ -22,7 +21,7 @@ exports.register = async (req, res) => {
         
         const isExistingUser = await User.findUserByEmail( email )
         if(isExistingUser){
-            return res.status(400).json({ 
+            return res.status(409).json({ 
                 title: 'Vous ne pouvez pas vous inscrire avec ce mail',
                 status: 409,
                 detail: "Ce mail ne peut pas être utilisé"
@@ -66,7 +65,11 @@ exports.login = async (req, res) => {
 
         const isMatch = await bcrypt.compare(password, user.pass_hash_user)
         if(!isMatch){
-            return res.status(401).json({ message: 'Identifiant incorrect'})
+            return res.status(401).json({ 
+                title: 'Identifiant incorrect',
+                status: 401,
+                detail: "Les identifiants ne sont pas correctes"
+            })
         }
 
         const token = generateToken(user.id_user)
@@ -92,13 +95,17 @@ exports.forgotPassword = async (req, res) => {
         const { email } = req.body
 
         if(!email){
-            return res.status(400).json({ message: "L'adresse e-mail est obligatoire."})
+            return res.status(400).json({ 
+                title: "L'adresse e-mail est obligatoire.",
+                status: 400
+            })
         }
 
         const user = await User.findUserByEmail(email)
+
         // On ne révèle pas si l'adresse mail existe ou non
         if(!user){
-            return res.status(200).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.'})
+            return res.status(409).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.'})
         }
 
         // On génère un token aléatoire
@@ -126,7 +133,10 @@ exports.forgotPassword = async (req, res) => {
         // On envoie l'e-mail
         await sendResetPasswordEmail(user.email_user, resetUrl)
 
-        return res.status(200).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation à été envoyé.'})
+        return res.status(200).json({ 
+            title: 'Si un compte existe avec cette adresse, un lien de réinitialisation à été envoyé.',
+            status: 200
+        })
 
     } catch(err){
         console.error('FORGOT PASSWORD ERROR :', err)
@@ -141,19 +151,8 @@ exports.resetPassword = async (req, res) => {
 
         if (!token) {
             return res.status(400).json({
-                message: "Token de réinitialisation manquant."
-            })
-        }
-
-        if (!password) {
-            return res.status(400).json({
-                message: "Le nouveau mot de passe est obligatoire."
-            })
-        }
-
-        if (password.length < 8) {
-            return res.status(400).json({
-                message: "Le mot de passe doit contenir au moins 8 caractères."
+                title: "Token de réinitialisation manquant.",
+                status: 400
             })
         }
 
@@ -168,7 +167,8 @@ exports.resetPassword = async (req, res) => {
 
         if (!user) {
             return res.status(400).json({
-                message: "Le lien de réinitialisation est invalide ou expiré."
+                title: "Le lien de réinitialisation est invalide ou expiré.",
+                status: 400
             })
         }
 
@@ -182,14 +182,16 @@ exports.resetPassword = async (req, res) => {
         await User.clearResetToken(user.id_user)
 
         return res.status(200).json({
-            message: "Votre mot de passe a bien été réinitialisé."
+            title: "Votre mot de passe a bien été réinitialisé.",
+            status: 200
         })
 
     } catch (err) {
         console.error('RESET PASSWORD ERROR :', err)
 
         return res.status(500).json({
-            message: "Erreur serveur lors de la réinitialisation du mot de passe."
+            title: "Erreur serveur lors de la réinitialisation du mot de passe.",
+            status: 500
         })
     }
 }

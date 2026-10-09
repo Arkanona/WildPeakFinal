@@ -37,6 +37,23 @@ const loginSchema = z.object({
         .regex(/[^a-zA-Z0-9]/, {error: 'Le mot de passe doit contenir un caractère spécial'})
 }).strict()
 
+const forgotPasswordSchema = z.object({
+    email: z
+        .email({error: 'Adresse email invalide'})
+        .trim()
+        .toLowerCase(),
+}).strict()
+
+const resetPasswordSchema = z.object({
+
+    password: z
+        .string()
+        .min(7, {error: 'Le mot de passe doit contenir au moins 7 caractères'})
+        .regex(/[A-Z]/, {error: 'Le mot de passe doit contenir une majuscule'})
+        .regex(/[0-9]/, {error: 'Le mot de passe doit contenir un chiffre'})
+        .regex(/[^a-zA-Z0-9]/, {error: 'Le mot de passe doit contenir un caractère spécial'})
+})
+
 /* 
                     null        undefined/absent
 .nullable()         Oui         Non
@@ -45,4 +62,4 @@ const loginSchema = z.object({
 */
 
 
-module.exports = { registerSchema, loginSchema }
+module.exports = { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema }

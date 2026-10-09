@@ -154,7 +154,7 @@
 
 // Media Queries
 @media screen and (max-width: 1024px) {
-    .cardAttraction{
+    .attractionSecCard{
     
         .cardsContainerAttraction{
             grid-template-columns: 1fr 1fr;
@@ -163,7 +163,15 @@
 }
 
 @media screen and (max-width: 767px) {
-    .cardAttraction{
+    .attractionSecCard{
+        .titleAttraction{
+            flex-direction: column;
+            text-align: center;
+
+            p{
+                margin-top: 10px;
+            }
+        }
     
         .cardsContainerAttraction{
             grid-template-columns: 1fr;
