@@ -9,7 +9,7 @@ exports.getParks = async (req, res) => {
     } catch (err) {
 
         return res.status(500).json({
-            title: 'Error retrieving parks',
+            title: 'Erreur lors de la récupération des parcs',
             status: 500,
             error: err.message})
     }

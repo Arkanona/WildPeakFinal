@@ -40,7 +40,10 @@ function Login () {
         
     return (
         <div className='divLogin'>
+            <img src="../../assets/Logo.webp" alt="Logo du site web" />
             <article className='loginArticle'>
+            <h1>Bon retour parmi nous !</h1>
+            <p>Connectez-vous pour retrouver votre espace WildPeak.</p>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">E-mail :</label>
                     <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange}/>

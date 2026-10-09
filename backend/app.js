@@ -15,6 +15,7 @@ const parkRoutes = require('./routes/parkRoutes')
 const attractionRoutes = require('./routes/attractionRoutes')
 const profileRoutes = require('./routes/profileRoutes')
 const contactRoutes = require('./routes/contactRoutes')
+const adminRoutes = require('./routes/adminRoutes')
 
 const corsOption = {
     origin: ['http://localhost:5173', 'http://localhost:4173']
@@ -44,6 +45,7 @@ app.use('/api/v1/parks', parkRoutes)
 app.use('/api/v1/attractions', attractionRoutes)
 app.use('/api/v1/profile', profileRoutes)
 app.use('/api/v1/contact', contactRoutes)
+app.use('/api/v1/admin-wild', adminRoutes)
 
 
 app.get('/', (req, res) => {

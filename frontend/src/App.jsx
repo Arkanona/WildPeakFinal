@@ -14,6 +14,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Attraction from "./pages/Attraction";
+import AdminAttraction from "./pages/AdminAttraction";
 
 
 function App() {
@@ -34,9 +35,10 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/404" element={<ErrorPage />} />
+        <Route path="/admin-wild/attractions" element={<AdminAttraction />} />
       </Routes>
     </Router>
   );
 }
 
-export default App;
+export default App

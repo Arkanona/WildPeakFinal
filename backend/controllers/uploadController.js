@@ -116,7 +116,7 @@ exports.updateParkImage = async (req, res) => {
         console.error('ERREUR UPLOAD :', err)
 
         return res.status(500).json({
-            title: "Erreur à la modification de l'image",
+            title: "Erreur lors de la modification de l'image",
             status: 500,
             error: err.message
         })
@@ -235,7 +235,7 @@ exports.updateAttractionImage = async (req, res) => {
         console.error('ERREUR UPLOAD :', err)
 
         return res.status(500).json({
-            title: "Erreur à la modification de l'image",
+            title: "Erreur lors de la modification de l'image",
             status: 500,
             error: err.message})
     }

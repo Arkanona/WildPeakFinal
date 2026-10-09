@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import AttractionBgImage from "../components/attractionPage/AttractionBgImage"
 import AttractionFilter from "../components/attractionPage/AttractionFilter"
-// import AttractionCard from "../components/attractionPage/AttractionCard"
 import { getAttractions, getParks } from "../services/api"
 import AttractionList from "../components/attractionPage/AttractionList"
 
@@ -46,10 +45,6 @@ function Attraction() {
                     setFilteredAttractions={setFilteredAttractions}
                     filteredAttractions={filteredAttractions}
                 />
-                {/* <AttractionCard
-                    parks={parks}
-                    attractions={filteredAttractions}
-                /> */}
                 <AttractionList 
                 parks={parks}
                 attractions={filteredAttractions}

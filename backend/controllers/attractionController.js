@@ -7,7 +7,6 @@ exports.getAttraction = async (req, res) => {
         return res.status(200).json(attraction)
 
     } catch (err) {
-        console.error('ERREUR GET ATTRACTIONS :', err)
 
         return res.status(500).json({
             title: "Erreur de récupération de l'attraction",

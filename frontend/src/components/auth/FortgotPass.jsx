@@ -28,6 +28,7 @@ function ForgotPass () {
         
     return (
         <div className='divForgotPass'>
+            <img src="../../assets/Logo.webp" alt="Logo du site web" />
             <article className='forgotArticle'>
                 <h1>Mot de passe oublié ?</h1>
                 <p>Entrez votre adresse e-mail pour recevoir un lien de <br />réinitialisation.</p>

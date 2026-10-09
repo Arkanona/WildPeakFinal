@@ -13,7 +13,7 @@ const authMiddleware = async (req, res, next) => {
 
         if(!token){
             return res.status(401).json({ 
-                title: 'Not authorized, token missing',
+                title: 'Pas autorisé, token manquant',
                 status: 401
             })
         }

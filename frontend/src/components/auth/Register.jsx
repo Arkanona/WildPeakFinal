@@ -51,7 +51,10 @@ function Register () {
     }
     return (
         <div className='divRegister'>
+            <img src="../../assets/Logo.webp" alt="Logo du site web" />
             <article className='registerArticle'>
+            <h1>Rejoignez l’aventure !</h1>
+            <p>Créez votre compte et explorez WildPeak à votre façon.</p>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Prénom :</label>
                     <input type="text" name='name' id='name' placeholder='Prénom' value={form.name} onChange={handleChange} required/>

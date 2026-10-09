@@ -54,6 +54,7 @@ function ResetPass () {
         
     return (
         <div className='divResetPass'>
+            <img src="../../assets/Logo.webp" alt="Logo du site web" />
             <article className='resetArticle'>
                 <h1>Réinitialiser le mot de passe</h1>
                 <p>Choisissez un nouveau mot de passe sécurisé pour votre compte.</p>

@@ -3,6 +3,7 @@ import '../../styles/attraction/attractionFilter.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faBolt, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import SecondaryFilter from './SecondaryFilter'
+import { getAttractionCategory } from '../../utils/filterTypes';
 
 function AttractionFilter({ parks = [], attractions = [], filteredAttractions = [], setFilteredAttractions}){
 
@@ -54,45 +55,6 @@ function AttractionFilter({ parks = [], attractions = [], filteredAttractions = 
             secondaryFilters,
             value
         )
-    }
-
-    const getAttractionCategory = (type) => {
-
-        if (!type) return 'Autres'
-
-        const normalizedType = type.toLowerCase()
-
-        if (
-            normalizedType.includes('montagne russe') ||
-            normalizedType.includes('montagnes russes') ||
-            normalizedType.includes('coaster') ||
-            normalizedType.includes('hypercoaster')
-        ) {
-            return 'Montagnes russes'
-        }
-
-        if (
-            normalizedType.includes('tour de chute') ||
-            normalizedType.includes('drop')
-        ) {
-            return 'Attractions à sensations'
-        }
-
-        if (
-            normalizedType.includes('aquatique') ||
-            normalizedType.includes('water')
-        ) {
-            return 'Attractions aquatiques'
-        }
-
-        if (
-            normalizedType.includes('dark ride') ||
-            normalizedType.includes('intérieur')
-        ) {
-            return 'Attractions intérieures'
-        }
-
-        return 'Attractions familiales'
     }
 
     const types = [
