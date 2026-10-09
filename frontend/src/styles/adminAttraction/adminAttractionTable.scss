@@ -51,7 +51,7 @@
         h3 {
             margin: 0;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 500;
         }
     
         p {
@@ -113,7 +113,6 @@
 
 
 @media (max-width: 900px) {
-    main{
 
     .adminTable {
     
@@ -147,9 +146,8 @@
     }
 }
 
-}
+
 @media (max-width: 600px) {
-    main{
 
         .adminTable {
             border: none;
@@ -207,5 +205,4 @@
         }
     }
 
-}
 

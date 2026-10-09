@@ -1,8 +1,8 @@
 @import '../variables';
 
-main{
+.secBgAdmin{
     background-color: #f4f1f2;
-    padding: 0 15px;
+    padding: 0 15px 20px 15px;
     .adminFirstSec{
         max-width: 1440px;
         margin: auto;
@@ -95,15 +95,16 @@ main{
     }
 }
 
+
 @media screen and (max-width: 767px) {
-    main{
+    .secBgAdmin{
 
         .adminFirstSec{
             
             .divText{
                 flex-direction: column;
                 gap: 20px;
-
+    
             
             }
         }

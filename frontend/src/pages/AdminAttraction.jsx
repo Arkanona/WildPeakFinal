@@ -37,23 +37,25 @@ function AdminAttraction() {
         <meta name="description" content="Page admin de WildPeak."/>
         <Navbar/>
         <main>
-            <AdminFirstSecAttraction
-            parks={parks}
-            attractions={attractions}
-            setFilteredAttractions={setFilteredAttractions}
-            filteredAttractions={filteredAttractions}
-            />
-            
-            <AdminAttractionsTable
-                attractions={filteredAttractions}
+            <section className="secBgAdmin">
+                <AdminFirstSecAttraction
                 parks={parks}
-                onEdit={(attraction) => {
-                    console.log("Modifier :", attraction)
-                }}
-                onDelete={(idAttraction) => {
-                    console.log("Supprimer :", idAttraction)
-                }}
-            />
+                attractions={attractions}
+                setFilteredAttractions={setFilteredAttractions}
+                filteredAttractions={filteredAttractions}
+                />
+
+                <AdminAttractionsTable
+                    attractions={filteredAttractions}
+                    parks={parks}
+                    onEdit={(attraction) => {
+                        console.log("Modifier :", attraction)
+                    }}
+                    onDelete={(idAttraction) => {
+                        console.log("Supprimer :", idAttraction)
+                    }}
+                />
+            </section>
         </main>
         <Footer/>
         </>
