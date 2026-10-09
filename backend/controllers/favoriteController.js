@@ -11,7 +11,8 @@ exports.getFavorites = async (req, res) => {
         console.error(error)
 
         res.status(500).json({
-            message: "Erreur lors de la récupération des favoris"
+            title: "Erreur lors de la récupération des favoris",
+            status: 500
         })
     }
 }
@@ -24,14 +25,16 @@ exports.addFavorite = async (req, res) => {
         const addFav = await Favorite.addFavorite(userId, idAttraction)
 
         res.status(201).json({
-            message: "Attraction ajoutée aux favoris",
+            title: "Attraction ajoutée aux favoris",
+            status: 201,
             favorite: addFav
         })
     } catch (error) {
         console.error(error)
 
         res.status(500).json({
-            message: "Erreur lors de l'ajout aux favoris"
+            title: "Erreur lors de l'ajout aux favoris",
+            status: 500
         })
     }
 }
@@ -44,14 +47,16 @@ exports.removeFavorite = async (req, res) => {
         const removeFav = await Favorite.removeFavorite(userId, idAttraction)
 
         res.status(200).json({
-            message: "Attraction supprimée des favoris",
+            title: "Attraction supprimée des favoris",
+            status: 201,
             favorite: removeFav
         })
     } catch (error) {
         console.error(error)
 
         res.status(500).json({
-            message: "Erreur lors de la suppression du favori"
+            title: "Erreur lors de la suppression du favori",
+            status: 500
         })
     }
 }

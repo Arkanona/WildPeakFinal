@@ -1,4 +1,3 @@
-const { pool } = require('../config/db')
 const sharp = require('sharp')
 const path = require('path')
 const fs = require('fs/promises')
@@ -10,13 +9,19 @@ exports.updateParkImage = async (req, res) => {
         const { id } = req.params
 
         if (!req.file) {
-            return res.status(400).json({message: 'Image not found'})}
+            return res.status(404).json({
+                title: 'Image non trouvée',
+                status: 404
+            })}
 
         // On récupère le parc
         const result = await Upload.selectAttraction(id)
 
         if (result.rowCount === 0) {
-            return res.status(404).json({message: 'Park not found'})
+            return res.status(404).json({
+                title: 'Parc non trouvé',
+                status: 404
+            })
         }
 
         // const park = result.rows[0]
@@ -101,12 +106,20 @@ exports.updateParkImage = async (req, res) => {
             }
         }
 
-        return res.status(200).json({message: 'Park image updated', park: updatePark})
+        return res.status(200).json({
+            title: "L'image du parc à été modifiée",
+            status: 200,
+            park: updatePark
+        })
 
     } catch (err) {
         console.error('ERREUR UPLOAD :', err)
 
-        return res.status(500).json({message: 'Error while modifying the image', error: err.message})
+        return res.status(500).json({
+            title: "Erreur à la modification de l'image",
+            status: 500,
+            error: err.message
+        })
     }
 }
 
@@ -116,13 +129,19 @@ exports.updateAttractionImage = async (req, res) => {
         const { id } = req.params
 
         if (!req.file) {
-            return res.status(400).json({message: 'Image not found'})}
+            return res.status(404).json({
+                title: 'Image non trouvée',
+                status: 404
+            })}
 
         // On récupère le parc
         const result = await Upload.selectAttraction(id)
 
         if (result.rowCount === 0) {
-            return res.status(404).json({message: 'Attraction not found'})
+            return res.status(404).json({
+                message: 'Attraction non trouvé',
+                status: 404
+            })
         }
 
         const attraction = result.rows[0]
@@ -207,11 +226,17 @@ exports.updateAttractionImage = async (req, res) => {
             }
         }
 
-        return res.status(200).json({message: 'Attraction image updated', attraction: updateAttraction.rows[0]})
+        return res.status(200).json({
+            title: "L'image de l'attraction à été modifiée",
+            status: 200,
+            attraction: updateAttraction.rows[0]})
 
     } catch (err) {
         console.error('ERREUR UPLOAD :', err)
 
-        return res.status(500).json({message: 'Error while modifying the image', error: err.message})
+        return res.status(500).json({
+            title: "Erreur à la modification de l'image",
+            status: 500,
+            error: err.message})
     }
 }

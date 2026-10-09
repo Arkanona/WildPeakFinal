@@ -12,20 +12,29 @@ const authMiddleware = async (req, res, next) => {
         }
 
         if(!token){
-            return res.status(401).json({ message: 'Not authorized, token missing' })
+            return res.status(401).json({ 
+                title: 'Not authorized, token missing',
+                status: 401
+            })
         }
 
         const decoded = jwt.verify(token, JWT_SECRET)
 
         const user = await User.findUserById(decoded.id)
         if(!user){
-            return res.status(401).json({ message: 'User no longer exists'})
+            return res.status(401).json({ 
+                title: "Utilisateur introuvable",
+                status: 401
+            })
         }
 
         req.user = user;
         next()
     } catch (err) {
-        return res.status(401).json({ message: 'Not authorized, invalid token', error: err.message })
+        return res.status(401).json({ 
+            title: 'Pas autorisé, token invalide',
+            status: 401,
+            error: err.message })
     }
 }
 

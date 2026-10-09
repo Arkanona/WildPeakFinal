@@ -36,7 +36,8 @@ exports.register = async (req, res) => {
         const token = generateToken(user.id_user)
 
         res.status(201).json({
-            message: 'User register successfully',
+            title: 'Utilisateur enregistré avec succès',
+            status: 201,
             token,
             user: {
                 id: user.id_user,
@@ -46,7 +47,10 @@ exports.register = async (req, res) => {
             }
         })
     } catch (err) {
-        res.status(500).json({ message: 'Server error during registeration', error: err.message })
+        res.status(500).json({ 
+            title: "Erreur serveur pendant l'inscription utilisateur",
+            status: 500,
+            error: err.message })
     }
 }
 
@@ -75,7 +79,8 @@ exports.login = async (req, res) => {
         const token = generateToken(user.id_user)
 
         res.status(200).json({
-            message: 'User login successfuly',
+            title: 'Utilisateur connecter avec succès',
+            status: 200,
             token,
             user: {
                 id: user.id_user,
@@ -86,7 +91,10 @@ exports.login = async (req, res) => {
         })
 
     } catch (err) {
-        res.status(500).json({ message: 'Server error during login', error: err.message })
+        res.status(500).json({ 
+            title: 'Server error during login',
+            status: 500,
+            error: err.message })
     }
 }
 
@@ -105,7 +113,10 @@ exports.forgotPassword = async (req, res) => {
 
         // On ne révèle pas si l'adresse mail existe ou non
         if(!user){
-            return res.status(409).json({ message: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.'})
+            return res.status(409).json({ 
+                title: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.',
+                status: 409
+            })
         }
 
         // On génère un token aléatoire
@@ -139,8 +150,10 @@ exports.forgotPassword = async (req, res) => {
         })
 
     } catch(err){
-        console.error('FORGOT PASSWORD ERROR :', err)
-        res.status(500).json({ message: 'Erreur serveur lors de la demande de réinitialisation', error: err.message})
+        res.status(500).json({ 
+            title: 'Erreur serveur lors de la demande de réinitialisation',
+            status: 500,
+            error: err.message})
     }
 }
 
@@ -187,7 +200,6 @@ exports.resetPassword = async (req, res) => {
         })
 
     } catch (err) {
-        console.error('RESET PASSWORD ERROR :', err)
 
         return res.status(500).json({
             title: "Erreur serveur lors de la réinitialisation du mot de passe.",
