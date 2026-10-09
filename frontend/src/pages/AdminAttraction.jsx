@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import { useEffect, useState } from "react"
 import { getAttractions, getParks } from "../services/api"
 import AdminFirstSecAttraction from "../components/adminAttractions/AdminFirstSecAttractions"
+import AdminAttractionsTable from "../components/adminAttractions/AdminAttractionsTable"
 
 function AdminAttraction() {
 
@@ -41,6 +42,17 @@ function AdminAttraction() {
             attractions={attractions}
             setFilteredAttractions={setFilteredAttractions}
             filteredAttractions={filteredAttractions}
+            />
+            
+            <AdminAttractionsTable
+                attractions={filteredAttractions}
+                parks={parks}
+                onEdit={(attraction) => {
+                    console.log("Modifier :", attraction)
+                }}
+                onDelete={(idAttraction) => {
+                    console.log("Supprimer :", idAttraction)
+                }}
             />
         </main>
         <Footer/>

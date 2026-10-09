@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { getAttractionCategory } from "../../utils/filterTypes"
+import '../../styles/adminAttraction/adminFirstSec.scss'
 
 function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttractions }) {
     const [selectedPark, setSelectedPark] = useState("")
@@ -66,64 +67,64 @@ function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttr
     ]
 
     return (
-        <section>
-            <div>
+        <section className="adminFirstSec">
+            <div className="divText">
                 <p>{attractions.length} attractions</p>
 
                 <button>
+                    <FontAwesomeIcon icon={faPlus} />
                     Ajouter une attraction
                 </button>
             </div>
-            <div className="inputFilter">
-                <label htmlFor="search">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </label>
-                <input
-                    type="text"
-                    id="search"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    placeholder="Rechercher une attraction..."
-                />
-            </div>
+            <div className="divGroupFilter">
+                <div className="inputFilter">
+                    <label htmlFor="search">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </label>
+                    <input
+                        type="text"
+                        id="search"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        placeholder="Rechercher une attraction..."
+                    />
+                </div>
 
-            <div className="divFilter">
-                <label htmlFor="park">Parc</label>
-                <select
-                    id="park"
-                    value={selectedPark}
-                    onChange={handleParkChange}
-                >
-                    <option value="">Tous les parcs</option>
+                <div className="divFilter">
+                    <select
+                        id="park"
+                        value={selectedPark}
+                        onChange={handleParkChange}
+                    >
+                        <option value="">Tous les parcs</option>
 
-                    {parks.map((park) => (
-                        <option
-                            key={park.id_park}
-                            value={park.id_park}
-                        >
-                            {park.name_park}
-                        </option>
-                    ))}
-                </select>
-            </div>
+                        {parks.map((park) => (
+                            <option
+                                key={park.id_park}
+                                value={park.id_park}
+                            >
+                                {park.name_park}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-            <div className="divFilter">
-                <label htmlFor="type">Type</label>
+                <div className="divFilter">
+                    <select
+                        id="type"
+                        value={selectedType}
+                        onChange={handleTypeChange}
+                    >
+                        <option value="">Tous les types</option>
 
-                <select
-                    id="type"
-                    value={selectedType}
-                    onChange={handleTypeChange}
-                >
-                    <option value="">Tous les types</option>
-
-                    {types.map((type) => (
-                        <option key={type} value={type}>
-                            {type}
-                        </option>
-                    ))}
-                </select>
-            </div>
+                        {types.map((type) => (
+                            <option key={type} value={type}>
+                                {type}
+                            </option>
+                        ))}
+                    </select>
+                </div>  
+            </div>      
         </section>
     )
 }
