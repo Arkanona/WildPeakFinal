@@ -1,30 +1,32 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faXmark, faCloudArrowUp } from "@fortawesome/free-solid-svg-icons"
+import { faXmark, faCloudArrowUp, faCircleCheck } from "@fortawesome/free-solid-svg-icons"
 import '../../styles/adminAttraction/adminAttractionModal.scss'
 import useAuthStore from "../../store/authStore"
 
-function AddAttractionModal({ parks = [], onClose }) {
+function AddAttractionModal({ parks = [], onClose, attraction = null, mode = "create", onUpdated }) {
 
     const token = useAuthStore((state) => state.token)
 
+    const [showSuccess, setShowSuccess] = useState(false)
+
     const [formData, setFormData] = useState({
-    name_attraction: "",
-    id_park: "",
-    type_attraction: "",
-    speed_max_kmh_attraction: "",
-    height_m_attraction: "",
-    length_m_attraction: "",
-    duration_min_attraction: "",
-    inversion_attraction: "",
-    minimum_height_cm_attraction: "",
-    opening_year_attraction: "",
-    description_attraction: "",
-    parc_zone_attraction: "",
-    intensity_level_attraction: "",
-    family_friendly_attraction: false,
-    short_description_attraction: ""
-})
+        name_attraction: attraction?.name_attraction || "",
+        id_park: attraction?.id_park || "",
+        type_attraction: attraction?.type_attraction || "",
+        speed_max_kmh_attraction: attraction?.speed_max_kmh_attraction || "",
+        height_m_attraction: attraction?.height_m_attraction || "",
+        length_m_attraction: attraction?.length_m_attraction || "",
+        duration_min_attraction: attraction?.duration_min_attraction || "",
+        inversion_attraction: attraction?.inversion_attraction || "",
+        minimum_height_cm_attraction: attraction?.minimum_height_cm_attraction || "",
+        opening_year_attraction: attraction?.opening_year_attraction || "",
+        description_attraction: attraction?.description_attraction || "",
+        parc_zone_attraction: attraction?.parc_zone_attraction || "",
+        intensity_level_attraction: attraction?.intensity_level_attraction || "",
+        family_friendly_attraction: attraction?.family_friendly_attraction || false,
+        short_description_attraction: attraction?.short_description_attraction || ""
+    })
 
     const [image, setImage] = useState(null)
 
@@ -44,6 +46,8 @@ function AddAttractionModal({ parks = [], onClose }) {
             setImage(file)
         }
     }
+
+    const isEdit = mode === "edit"
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -71,11 +75,12 @@ function AddAttractionModal({ parks = [], onClose }) {
                 data.append("image", image)
             }
 
+            const url = isEdit 
+                ? `http://localhost:3000/api/v1/admin-wild/${attraction.id_attraction}`
+                : "http://localhost:3000/api/v1/admin-wild"
 
-            const response = await fetch(
-                "http://localhost:3000/api/v1/admin-wild",
-                {
-                    method: "POST",
+            const response = await fetch(url, {
+                    method: isEdit ? "PATCH" : "POST",
                     headers: {
                         Authorization: `Bearer ${token}`
                     },
@@ -89,15 +94,30 @@ function AddAttractionModal({ parks = [], onClose }) {
                 throw new Error(result.message || "Erreur lors de l'ajout")
             }
 
-            console.log("Attraction ajoutée :", result)
+            if (isEdit && onUpdated) {
+                onUpdated(result.attraction)
+            }
 
-            onClose()
+            setShowSuccess(true)
+
+            setTimeout(() => {
+                setShowSuccess(false)
+                onClose()
+            }, 2000)
+
         } catch (error) {
             console.error(error)
         }
     }
 
     return (
+        <>
+        {showSuccess && (
+            <div className="successPopup">
+                <FontAwesomeIcon icon={faCircleCheck} />
+                {isEdit ? "Attraction modifiée avec succès !" : "Attraction ajoutée avec succès !"}
+            </div>
+        )}
         <div className="modalOverlay" onClick={onClose}>
             <div
                 className="addAttractionModal"
@@ -210,6 +230,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 type="number"
                                 id="speed_max_kmh_attraction"
                                 name="speed_max_kmh_attraction"
+                                min={0}
                                 value={formData.speed_max_kmh_attraction}
                                 onChange={handleChange}
                             />
@@ -224,6 +245,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 type="number"
                                 id="height_m_attraction"
                                 name="height_m_attraction"
+                                min={0}
                                 value={formData.height_m_attraction}
                                 onChange={handleChange}
                             />
@@ -238,6 +260,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 type="number"
                                 id="length_m_attraction"
                                 name="length_m_attraction"
+                                min={0}
                                 value={formData.length_m_attraction}
                                 onChange={handleChange}
                             />
@@ -253,6 +276,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 step="0.01"
                                 id="duration_min_attraction"
                                 name="duration_min_attraction"
+                                min={0}
                                 value={formData.duration_min_attraction}
                                 onChange={handleChange}
                             />
@@ -267,6 +291,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 type="number"
                                 id="inversion_attraction"
                                 name="inversion_attraction"
+                                min={0}
                                 value={formData.inversion_attraction}
                                 onChange={handleChange}
                             />
@@ -281,6 +306,7 @@ function AddAttractionModal({ parks = [], onClose }) {
                                 type="number"
                                 id="minimum_height_cm_attraction"
                                 name="minimum_height_cm_attraction"
+                                min={80}
                                 value={formData.minimum_height_cm_attraction}
                                 onChange={handleChange}
                             />
@@ -397,12 +423,14 @@ function AddAttractionModal({ parks = [], onClose }) {
                             type="submit"
                             className="submitButton"
                         >
-                            Ajouter l'attraction
+                            {isEdit ? "Modifier l'attraction" : "Ajouter une attraction"}
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+        </>
+        
     )
 }
 
