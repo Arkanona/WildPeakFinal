@@ -1,5 +1,6 @@
 const Upload = require('../models/uploadModel')
 const Attraction = require('../models/attractionModel')
+const Park = require('../models/parkModel')
 const { createAttractionImages } = require('./uploadController')
 
 exports.getAttraction = async (req, res) => {
@@ -23,7 +24,6 @@ exports.addAttraction = async (req, res) => {
     try {
         const {
             name_attraction,
-            name_park,
             id_park,
             type_attraction,
             speed_max_kmh_attraction,
@@ -47,7 +47,9 @@ exports.addAttraction = async (req, res) => {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "")
 
-        const alt_attraction = `Vue de l'attraction ${name_attraction} à ${name_park}`
+        const park = await Park.findParkById(id_park)
+
+        const alt_attraction = `Vue de l'attraction ${name_attraction} à ${park.name_park}`
         const familyFriendly = family_friendly_attraction === "true"
 
         // Création de l'attraction
@@ -150,8 +152,9 @@ exports.updateAttraction = async (req, res) => {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "")
 
-        const alt_attraction =
-            `Vue de l'attraction ${name_attraction} à ${name_park}`
+        const park = await Park.findParkById(id_park)
+
+        const alt_attraction = `Vue de l'attraction ${name_attraction} à ${park.name_park}`
 
         const attraction = await Attraction.updateAttraction(
             id,
