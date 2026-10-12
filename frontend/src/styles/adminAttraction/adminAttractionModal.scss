@@ -1,0 +1,195 @@
+@import '../variables';
+
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.addAttractionModal {
+    width: 100%;
+    max-width: 840px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 12px;
+
+    .modalHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 24px 30px;
+        border-bottom: 1px solid #ddd;
+
+        h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        p {
+            margin: 5px 0 0;
+            color: #555;
+            font-family: $font-text;
+        }
+
+        .closeModal {
+            border: none;
+            background: none;
+            font-size: 22px;
+            cursor: pointer;
+
+            svg{
+                padding: 0;
+            }
+        }
+    }
+
+    form {
+        padding: 28px 30px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-family: $font-text;
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    input,
+    select {
+        width: 100%;
+        height: 50px;
+        padding: 0 16px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .fullField {
+        margin-bottom: 22px;
+    }
+
+    .formGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px 20px;
+    }
+    .descriptionField {
+        margin-top: 24px;
+
+        textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 14px 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: $font-text;
+            outline: none;
+        }
+
+        .characterCount {
+            margin: 6px 0 0;
+            text-align: right;
+            font-size: 13px;
+            color: #777;
+        }
+    }
+
+    .imageField {
+        margin-top: 24px;
+    }
+
+    .uploadZone {
+        min-height: 170px;
+        border: 1px dashed #bbb;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        &:hover{
+            color: $color-red;
+            border: 1px dashed $color-red;
+        }
+
+        svg {
+            font-size: 28px;
+        }
+
+        span {
+            color: #666;
+            font-size: 14px;
+        }
+    }
+
+    .modalActions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin-top: 28px;
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .cancelButton {
+            background: #eee;
+        }
+
+        .submitButton {
+            background: #e63946;
+            color: white;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .modalOverlay {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .addAttractionModal {
+        margin-top: 10px;
+        max-height: calc(100vh - 20px);
+
+        .modalHeader {
+            padding: 20px;
+        }
+
+        form {
+            padding: 20px;
+        }
+
+        .formGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .modalActions {
+            flex-direction: column-reverse;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

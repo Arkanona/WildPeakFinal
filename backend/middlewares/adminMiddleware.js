@@ -1,4 +1,5 @@
 function adminMiddleware(req, res, next) {
+
     if (!req.user) {
         return res.status(401).json({
             title: "Utilisateur non authentifié",
@@ -6,7 +7,7 @@ function adminMiddleware(req, res, next) {
         })
     }
 
-    if (req.user.role !== "admin") {
+    if (req.user.role_user !== "admin") {
         return res.status(403).json({
             title: "Accès réservé aux administrateurs",
             status: 403

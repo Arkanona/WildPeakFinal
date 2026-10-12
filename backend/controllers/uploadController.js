@@ -15,7 +15,7 @@ exports.updateParkImage = async (req, res) => {
             })}
 
         // On récupère le parc
-        const result = await Upload.selectAttraction(id)
+        const result = await Upload.selectPark(id)
 
         if (result.rowCount === 0) {
             return res.status(404).json({
@@ -24,7 +24,7 @@ exports.updateParkImage = async (req, res) => {
             })
         }
 
-        // const park = result.rows[0]
+        const park = result.rows[0]
 
         // dossier upload
         const uploadFolder = path.join(
@@ -232,11 +232,78 @@ exports.updateAttractionImage = async (req, res) => {
             attraction: updateAttraction.rows[0]})
 
     } catch (err) {
-        console.error('ERREUR UPLOAD :', err)
 
         return res.status(500).json({
             title: "Erreur lors de la modification de l'image",
             status: 500,
             error: err.message})
+    }
+}
+
+exports.createAttractionImages = async (file, id) => {
+    if (!file) {
+        return {
+            cardImageUrl: null,
+            backgroundImageUrl: null
+        }
+    }
+
+    const uploadFolder = path.join(
+        process.cwd(),
+        'upload',
+        'attraction'
+    )
+
+    await fs.mkdir(uploadFolder, {
+        recursive: true
+    })
+
+    const safeId = String(id).replace(/[^a-zA-Z0-9-_]/g, '')
+    const timestamp = Date.now()
+
+    const cardFilename = `${safeId}-${timestamp}-card.webp`
+
+    const backgroundFilename = `${safeId}-${timestamp}-background.webp`
+
+    const cardPath = path.join(
+        uploadFolder,
+        cardFilename
+    )
+
+    const backgroundPath = path.join(
+        uploadFolder,
+        backgroundFilename
+    )
+
+    await sharp(file.buffer)
+        .rotate()
+        .resize({
+            width: 600,
+            height: 400,
+            fit: 'cover'
+        })
+        .webp({
+            quality: 85
+        })
+        .toFile(cardPath)
+
+    await sharp(file.buffer)
+        .rotate()
+        .resize({
+            width: 1900,
+            height: 400,
+            fit: 'cover'
+        })
+        .webp({
+            quality: 85
+        })
+        .toFile(backgroundPath)
+
+    return {
+        cardImageUrl:
+            `/upload/attraction/${cardFilename}`,
+
+        backgroundImageUrl:
+            `/upload/attraction/${backgroundFilename}`
     }
 }

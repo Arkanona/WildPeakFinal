@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { getAttractionCategory } from "../../utils/filterTypes"
 import '../../styles/adminAttraction/adminFirstSec.scss'
+import AddAttractionModal from "./AddAttractionModal"
 
 function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttractions }) {
     const [selectedPark, setSelectedPark] = useState("")
     const [selectedType, setSelectedType] = useState("")
     const [searchTerm, setSearchTerm] = useState("")
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleSearchChange = (e) => {
         const value = e.target.value
@@ -71,10 +73,16 @@ function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttr
             <div className="divText">
                 <p>{attractions.length} attractions</p>
 
-                <button>
+                <button onClick={() => setIsModalOpen(true)}>
                     <FontAwesomeIcon icon={faPlus} />
                     Ajouter une attraction
                 </button>
+                {isModalOpen && (
+                <AddAttractionModal
+                    parks={parks}
+                    onClose={() => setIsModalOpen(false)}
+                />
+            )}
             </div>
             <div className="divGroupFilter">
                 <div className="inputFilter">

@@ -6,6 +6,12 @@ exports.selectAttraction = async (id) => {
     return rows
 }
 
+exports.selectPark = async (id) => {
+    const { rows } = await pool.query('SELECT id_park, img_park FROM park WHERE id_park = $1', [id])
+
+    return rows
+}
+
 exports.updateParkDb = async (cardImageUrl, backgroundImageUrl, id) => {
     const { rows } = await pool.query(`
         UPDATE park
