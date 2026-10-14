@@ -125,8 +125,8 @@ function AddAttractionModal({ parks = [], onClose, attraction = null, mode = "cr
             >
                 <div className="modalHeader">
                     <div>
-                        <h2>Ajouter une attraction</h2>
-                        <p>Ajoutez une nouvelle attraction au catalogue</p>
+                        <h2>{isEdit ? "Modifier l'attraction" : "Ajouter une attraction"}</h2>
+                        <p>{isEdit ? "Modifier les caractéristiques de l'attraction" : "Ajoutez une nouvelle attraction au catalogue"}</p>
                     </div>
 
                     <button

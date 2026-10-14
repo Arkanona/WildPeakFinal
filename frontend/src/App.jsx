@@ -16,6 +16,7 @@ import ResetPassword from "./pages/ResetPassword";
 import Attraction from "./pages/Attraction";
 import AdminAttraction from "./pages/AdminAttraction";
 import AdminRoute from "./components/adminAttractions/AdminRoute";
+import LegalInformation from "./pages/LegalInformation";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/comparateur" element={<AttractionComparison />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/informations-legales" element={<LegalInformation />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/404" element={<ErrorPage />} />
         <Route path="/admin-wild/attractions" element={

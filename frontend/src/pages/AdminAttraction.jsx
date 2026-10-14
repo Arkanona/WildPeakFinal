@@ -1,5 +1,4 @@
 import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import { useEffect, useState } from "react"
 import { getAttractions, getParks } from "../services/api"
 import AdminFirstSecAttraction from "../components/adminAttractions/AdminFirstSecAttractions"
@@ -141,7 +140,6 @@ function AdminAttraction() {
             )}
             </section>
         </main>
-        <Footer/>
         </>
     )
 }

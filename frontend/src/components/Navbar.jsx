@@ -64,7 +64,7 @@ function Navbar () {
                         </NavLink>
                     </li>
                     <li className='navbarItem'>
-                        <NavLink end to="#" onClick={toggleMenu}>
+                        <NavLink end to="/attractions" onClick={toggleMenu}>
                             Attractions
                         </NavLink>
                     </li>

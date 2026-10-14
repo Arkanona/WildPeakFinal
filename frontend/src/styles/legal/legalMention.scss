@@ -1,0 +1,104 @@
+@import '../variables';
+
+.secLegalInformation{
+    background-color: #f4f1f2;
+
+    #LegalMention{
+        max-width: 1440px;
+        margin: auto;
+        padding: 25px;
+    
+        .divLegalMention{
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+    
+            .legalVerticalLine {
+                display: block;
+                background-color: $color-red;
+                width: 8px;
+                height: 108px;
+                border-radius: 10px;
+                flex-shrink: 0;
+            }
+    
+            div{
+                
+                .pNumber{
+                    display: block;
+                    color: $color-red;
+                    font-family: $font-title;
+                    font-size: 24px;
+                    letter-spacing: 2px;
+                    line-height: 1;
+                    margin-bottom: 8px;
+                }
+    
+                h2{
+                    font-size: 60px;
+                    font-weight: 400;
+                    letter-spacing: 3px;
+                    line-height: 1;
+                }
+    
+                .legalUnderline{
+                    display: block;
+                    width: 80px;
+                    height: 5px;
+                    margin-top: 22px;
+                    background-color: $color-red;
+                    border-radius: 10px;
+                }
+    
+                p{
+                    max-width: 900px;
+                    margin: 30px 0 0;
+                    font-size: 20px;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+
+    .cardLegalMention{
+        max-width: 1440px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        article{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0px 4px 6px -1px #0000001A;
+            border-radius: 8px 8px;
+            overflow: hidden;
+            background-color: white;
+            padding: 20px;
+
+            svg{
+                color: #DB2B33;
+                border: 1px solid #db2b3455;
+                background-color: rgba(219, 43, 51, 0.10);
+                padding: 10px;
+                height: 25px;
+                width: 25px;
+                border-radius: 50%; 
+            }
+
+            h3{
+                font-weight: 400;
+                font-size: 30px;
+            }
+
+            ul{
+
+                li{
+                    font-family: $font-text;
+                    padding-bottom: 8px;
+                }
+            }
+        }
+    }
+}

@@ -129,7 +129,6 @@ exports.updateAttraction = async (req, res) => {
         const {
             name_attraction,
             id_park,
-            name_park,
             type_attraction,
             speed_max_kmh_attraction,
             height_m_attraction,
