@@ -2,6 +2,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import LegalBgImage from "../components/legals/LegalBgImage";
 import LegalMention from "../components/legals/LegalMention";
+import PrivacyPolicy from "../components/legals/PrivacyPolicy";
+import TermsOfUse from "../components/legals/TermsOfUse";
 
 function LegalInformation(){
 
@@ -14,6 +16,8 @@ function LegalInformation(){
             <section className="secLegalInformation">
                 <LegalBgImage/>
                 <LegalMention/>
+                <PrivacyPolicy/>
+                <TermsOfUse/>
             </section>
         </main>
         <Footer/>

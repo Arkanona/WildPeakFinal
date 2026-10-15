@@ -1,0 +1,149 @@
+@import '../variables';
+
+.secLegalInformation{
+
+    #TermsOfUse{
+       
+    
+        .divTermsOfUse{
+            
+    
+            div{
+                
+                .pNumber{
+                    display: block;
+                    color: $color-red;
+                    font-family: $font-title;
+                    font-size: 24px;
+                    letter-spacing: 2px;
+                    line-height: 1;
+                    margin-bottom: 8px;
+                }
+    
+                h2{
+                    font-size: 60px;
+                    font-weight: 400;
+                    letter-spacing: 3px;
+                    line-height: 1;
+                }
+    
+                .termsUnderline{
+                    display: block;
+                    width: 80px;
+                    height: 5px;
+                    margin-top: 22px;
+                    background-color: $color-red;
+                    border-radius: 10px;
+                }
+    
+                p{
+                    max-width: 900px;
+                    margin: 30px 0 0;
+                    font-size: 20px;
+                    line-height: 1.6;
+                }
+            }
+        }
+    }
+
+    .cardTermsOfUse{
+        max-width: 1440px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 0 15px;
+
+        .articleAcceptance{
+            grid-column: 1 / -1;
+            margin-bottom: 60px;
+        }
+
+        article{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0px 4px 6px -1px #0000001A;
+            border-radius: 8px 8px;
+            overflow: hidden;
+            background-color: white;
+            padding: 20px;
+
+            span{
+                color: $color-red;
+            }  
+
+            svg{
+                
+                padding: 10px;
+                height: 25px;
+                width: 25px;
+                border-radius: 50%; 
+            }
+
+            h3{
+                font-weight: 400;
+                font-size: 30px;
+            }
+
+            ul{
+                list-style: disc;
+                padding-left: 20px;
+                margin: 10px 0;
+                li{
+                    font-family: $font-text;
+                    padding-bottom: 8px;
+
+                    &::marker {
+                        color: $color-red;
+                    }
+                }
+            }
+        }
+
+        &:nth-of-type(1),
+        &:nth-of-type(3),
+        &:nth-of-type(5),
+        &:nth-of-type(7),
+        &:nth-of-type(8) {
+                svg {
+                    color: #DB2B33;
+                    border: 1px solid #db2b3455;
+                    background-color: rgba(219, 43, 51, 0.10);
+                }
+            }
+
+        article:nth-of-type(2) svg,
+        article:nth-of-type(4) svg,
+        article:nth-of-type(6) svg {
+            color: #2878b5;
+            background-color: rgba(40, 120, 181, 0.1);
+            border-color: rgba(40, 120, 181, 0.4);
+        }
+
+    }
+}
+
+// Media Queries
+@media screen and (max-width: 767px){
+    .secLegalInformation{
+
+        #TermsOfUse{
+            
+            .divTermsOfUse{
+                
+                div{
+    
+                    h2{
+                        font-size: 40px;
+                    }
+                }
+            }        
+        }
+
+        .cardTermsOfUse{
+            grid-template-columns: 1fr;
+            
+        }
+    }
+}

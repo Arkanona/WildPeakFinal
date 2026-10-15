@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import '../../styles/legal/legalMention.scss';
-import { faBuilding, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faCopyright, faServer } from '@fortawesome/free-solid-svg-icons';
 
 function LegalMention(){
 
@@ -24,11 +24,12 @@ function LegalMention(){
                     <ul>
                         <li>Gallardo Enzo</li>
                         <li>Sièges sociale : 201 chemin du labonet, 83136 Ste Anastasie sur issole, France</li>
-                        <li>Contact : 07.49.29.16.50 – arkanona@gmail.com</li>
+                        <li>Téléphone : 07.49.29.16.50 </li> 
+                        <li>E-mail : arkanona@gmail.com</li>
                     </ul>
                 </article>
                 <article>
-                    <FontAwesomeIcon icon={faUserTie} />
+                    <FontAwesomeIcon icon={faServer} />
                     <h3>Les mentions relatives à l’hébergeur du site internet</h3>
                     <ul>
                         <li>nom de l'hébergeur</li>
@@ -39,7 +40,7 @@ function LegalMention(){
                     </ul>
                 </article>
                 <article>
-                    <FontAwesomeIcon icon={faUserTie} />
+                    <FontAwesomeIcon icon={faCopyright} />
                     <h3>Les mentions relatives à la propriété intellectuelle</h3>
                     <p>Visuels utilisés à titre d'illustration pédagogique, tous droits réservés à leurs propriétaires respectifs. Utilisation d’images générées par IA.</p>
                 </article>

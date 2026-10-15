@@ -3,17 +3,18 @@
 .secLegalInformation{
     background-color: #f4f1f2;
 
-    #LegalMention{
+    #LegalMention, #PrivacyPolicy, #TermsOfUse{
         max-width: 1440px;
         margin: auto;
         padding: 25px;
     
-        .divLegalMention{
+        .divLegalMention, .divPrivacyPolicy, .divTermsOfUse{
             display: flex;
             align-items: flex-start;
             gap: 24px;
+            margin-top: 85px;
     
-            .legalVerticalLine {
+            .legalVerticalLine, .privacyVerticalLine, .termsVerticalLine {
                 display: block;
                 background-color: $color-red;
                 width: 8px;
@@ -41,7 +42,7 @@
                     line-height: 1;
                 }
     
-                .legalUnderline{
+                .legalUnderline, .privacyUnderline, .termsUnderline{
                     display: block;
                     width: 80px;
                     height: 5px;
@@ -66,6 +67,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
+        padding: 0 15px;
 
         article{
             display: flex;
@@ -77,10 +79,26 @@
             background-color: white;
             padding: 20px;
 
+            &:nth-of-type(1),
+            &:nth-of-type(3) {
+                svg {
+                    color: #DB2B33;
+                    border: 1px solid #db2b3455;
+                    background-color: rgba(219, 43, 51, 0.10);
+                }
+            }
+
+            &:nth-of-type(2) {
+                svg {
+                    color: #2A6F9D;
+                    background-color: rgba(42, 111, 157, 0.10);
+                    border: 1px solid #2a6f9d84;
+                }
+            }
+
+
             svg{
-                color: #DB2B33;
-                border: 1px solid #db2b3455;
-                background-color: rgba(219, 43, 51, 0.10);
+                
                 padding: 10px;
                 height: 25px;
                 width: 25px;
@@ -93,12 +111,47 @@
             }
 
             ul{
-
+                list-style: disc;
+                padding-left: 20px;
+                margin: 10px 0;
                 li{
                     font-family: $font-text;
                     padding-bottom: 8px;
+
+                    &::marker{
+                        color: $color-red;
+                    }
                 }
             }
         }
     }
+}
+
+// Media Queries
+@media screen and (max-width: 767px){
+    .secLegalInformation{
+
+        #LegalMention, #PrivacyPolicy, #TermsOfUse{
+            
+            .divLegalMention, .divPrivacyPolicy, .divTermsOfUse{
+                
+        
+                .legalVerticalLine, .privacyVerticalLine, .termsVerticalLine {
+                    
+                    height: 70px;
+                    
+                }
+                div{
+    
+                    h2{
+                        font-size: 40px;
+                    }
+                }
+            }        
+        }
+        .cardLegalMention{
+            grid-template-columns: 1fr;
+                
+        }
+    }       
 }

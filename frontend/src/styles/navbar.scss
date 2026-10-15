@@ -29,6 +29,7 @@ header {
                 display: flex;
                 gap: 10px;
                 li{
+                    list-style: none;
                     a{
                         color:white;
                         font-family: $font-text;
