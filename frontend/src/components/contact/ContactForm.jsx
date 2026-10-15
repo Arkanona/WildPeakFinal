@@ -146,7 +146,7 @@ function ContactForm(){
                 )}
                 <span>
                 <label htmlFor="confidentiality">J'accepte que mes données soient traitées conformément à notre <br /></label>
-                <Link to="#" onClick={(e) => e.stopPropagation()}>politique de confidentialité</Link>.
+                <Link to="/informations-legales#PrivacyPolicy" onClick={(e) => e.stopPropagation()}>politique de confidentialité</Link>.
                 </span>
             </div>
             <button type="submit">Envoyer le message</button>

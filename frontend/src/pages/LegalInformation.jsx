@@ -4,8 +4,25 @@ import LegalBgImage from "../components/legals/LegalBgImage";
 import LegalMention from "../components/legals/LegalMention";
 import PrivacyPolicy from "../components/legals/PrivacyPolicy";
 import TermsOfUse from "../components/legals/TermsOfUse";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function LegalInformation(){
+
+    const location = useLocation()
+
+    useEffect(() => {
+        if (!location.hash) return
+
+        const element = document.querySelector(location.hash)
+
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            })
+        }
+    }, [location.hash])
 
     return(
         <>

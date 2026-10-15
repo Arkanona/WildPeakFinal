@@ -47,7 +47,7 @@
     }
 
     .cardPrivacyPolicy{
-        max-width: 1440px;
+        max-width: 1300px;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -83,6 +83,9 @@
             h3{
                 font-weight: 400;
                 font-size: 30px;
+            }
+            p{
+                line-height: 25px;
             }
 
             ul{

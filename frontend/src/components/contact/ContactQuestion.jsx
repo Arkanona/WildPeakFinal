@@ -30,7 +30,7 @@ function ContactQuestion() {
                     <article>
                         <FontAwesomeIcon icon={faShieldHalved} />
                         <h3>Données personnelles</h3>
-                        <p>Une question sur vos données ? Consultez notre <Link to="#">politique de confidentialité</Link>.</p>
+                        <p>Une question sur vos données ? Consultez notre <Link to="/informations-legales#PrivacyPolicy">politique de confidentialité</Link>.</p>
                     </article>
                 </div>
             </div>
