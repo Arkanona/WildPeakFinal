@@ -31,6 +31,13 @@ function Navbar () {
                     <li><Link to='/attractions'>Attractions</Link></li>
                     <li><Link to='/comparateur'>Comparateur</Link></li>
                     <li><Link to='/contact'>Contact</Link></li>
+                    {user ? (
+                    <>
+                    
+                    </>
+                ) : (
+                    <li><Link to='/profile'>Favoris</Link></li>
+                )}
                 </ul>
             </nav>
             <div>

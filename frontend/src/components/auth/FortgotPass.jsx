@@ -7,8 +7,8 @@ import { useState } from 'react';
 
 function ForgotPass () {
 
-        const [errors, setErrors] = useState({})
-    
+    const [errors, setErrors] = useState({})
+    const [successMessage, setSuccessMessage] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -20,6 +20,10 @@ function ForgotPass () {
             console.log(data)
 
             setErrors({})
+            setSuccessMessage("Mail envoyé !")
+            setTimeout(() => {
+                setSuccessMessage("");
+            }, 3000);
 
         } catch(error){
             console.error(error.message)
@@ -41,6 +45,11 @@ function ForgotPass () {
                     </p>
                     )}
                 <button type='submit'>Envoyez le lien</button>
+                {successMessage && (
+                <p className="successMessage">
+                    {successMessage}
+                </p>
+                )}
                 </form>
             </article>
             <div>
