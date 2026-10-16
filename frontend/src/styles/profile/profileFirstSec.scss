@@ -58,7 +58,13 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
-            background-color: $color-red;
+            background-color: $color-btn-red;
+            transition: all ease 0.3s;
+
+            &:hover{
+                transition: all ease 0.3s;
+                background-color: $color-red;
+            }
         }
     }
 }

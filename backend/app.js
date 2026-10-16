@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
@@ -18,7 +18,12 @@ const contactRoutes = require('./routes/contactRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 
 const corsOption = {
-    origin: ['http://localhost:5173', 'http://localhost:4173']
+    origin: [
+        'http://localhost:5173', 
+        'http://localhost:4173',
+        process.env.FRONTEND_URL
+    ].filter(Boolean),
+    credentials: true
 }
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -52,6 +57,6 @@ app.get('/', (req, res) => {
     res.send("WildPeak")
 })
 
-app.listen(port, () => {
-    console.log(`Serveur démarré sur http://localhost:${port}`)
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Serveur démarré sur http://localhost:${PORT}`)
 })
