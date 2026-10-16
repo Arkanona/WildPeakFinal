@@ -13,7 +13,7 @@ function ForgotPassword() {
         <meta name="description" content="Page mot de passe oublié de WildPeak." />
         <main>
             <section className="firstSecForgotPass">
-                <Link to="/" className="arrowBack"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                <Link to="/" className="arrowBack" aria-label="Retour à l'accueil"><FontAwesomeIcon icon={faArrowLeft} /></Link>
                 <ForgotPass/>
             </section>
         </main>

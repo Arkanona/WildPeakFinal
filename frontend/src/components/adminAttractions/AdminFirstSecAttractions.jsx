@@ -101,6 +101,7 @@ function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttr
                 <div className="divFilter">
                     <select
                         id="park"
+                        aria-label="Filtrer par parc"
                         value={selectedPark}
                         onChange={handleParkChange}
                     >
@@ -120,6 +121,7 @@ function AdminFirstSecAttraction({ parks = [], attractions = [], setFilteredAttr
                 <div className="divFilter">
                     <select
                         id="type"
+                        aria-label="Filtrer par type d'attraction"
                         value={selectedType}
                         onChange={handleTypeChange}
                     >

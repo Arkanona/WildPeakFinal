@@ -10,7 +10,7 @@ function RegisterPage() {
         <meta name="description" content="Inscrivez-vous à WildPeak, un site de comparateur d'attractions." />
         <main>
             <section className="firstSecRegister">
-            <Link to="/" className="arrowBack"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+            <Link to="/" className="arrowBack" aria-label="Retour à l'accueil"><FontAwesomeIcon icon={faArrowLeft} /></Link>
             <Register/>
             </section>
         </main>

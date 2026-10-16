@@ -16,7 +16,7 @@
 
             button{
                 font-size: 18px;
-                background-color: $color-red;
+                background-color: $color-btn-red;
                 border: none;
                 outline: none;
                 padding: 10px;
@@ -27,7 +27,7 @@
 
                 &:hover{
                     transition: all ease 0.3s;
-                    background-color: rgba(144, 1, 1, 0.811);
+                    background-color: $color-red;
                 }
 
                 svg{

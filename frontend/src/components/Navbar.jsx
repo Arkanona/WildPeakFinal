@@ -44,8 +44,8 @@ function Navbar () {
                 {user ? (
                     // Ce qui s'affiche si l'utilisateur est connecté
                     <>
-                    <Link to='/profile' className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
-                    <Link className='linkLogout' onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></Link>
+                    <Link to='/profile' aria-label="Accéder au profil" className='profileIconBg'><FontAwesomeIcon icon={faUser} /></Link>
+                    <Link className='linkLogout' aria-label="Se déconnecter" onClick={handleLogout}><FontAwesomeIcon icon={faRightFromBracket} /></Link>
                     </>
                 ) : (
                     // Ce qui s'affiche si l'utilisateur n'est pas connecté

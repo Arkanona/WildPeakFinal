@@ -14,7 +14,7 @@ function ResetPassword() {
         <meta name="description" content="Page réinitialisation de mot de passe de WildPeak." />
         <main>
             <section className="firstSecResetPass">
-                <Link to="/" className="arrowBack"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                <Link to="/" className="arrowBack" aria-label="Retour à l'accueil"><FontAwesomeIcon icon={faArrowLeft} /></Link>
                 <ResetPass/>
             </section>
         </main>

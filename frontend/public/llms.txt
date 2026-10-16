@@ -1,38 +1,99 @@
 # WildPeak
 
-> WildPeak est une application web permettant de découvrir et comparer des attractions de grands parcs de loisirs européens. Le site centralise des informations utiles sur les parcs et leurs attractions afin d'aider les visiteurs à choisir et comparer leurs expériences.
+> WildPeak est une application web permettant de découvrir, rechercher et comparer des attractions de grands parcs de loisirs européens. Le site centralise des informations sur les parcs et leurs attractions afin d'aider les visiteurs à découvrir de nouvelles expériences et à comparer facilement leurs caractéristiques.
 
 WildPeak présente notamment des informations sur Disneyland Paris, Parc Astérix, Europa-Park et PortAventura.
 
-Informations importantes :
+## Informations importantes
 
-- Les fiches des parcs présentent leurs informations générales et leurs attractions.
-- Les fiches des attractions regroupent leurs principales caractéristiques et statistiques.
+- Les fiches des parcs présentent leurs informations générales ainsi que les attractions qui leur sont associées.
+- Les fiches des attractions regroupent leurs principales caractéristiques, statistiques et informations pratiques.
+- La page des attractions permet de rechercher, filtrer et classer les attractions selon différents critères.
 - Le comparateur permet de sélectionner plusieurs attractions afin de comparer facilement leurs données.
-- Les informations disponibles peuvent évoluer et doivent être vérifiées sur les pages correspondantes du site.
-- Les noms, marques et logos des parcs appartiennent à leurs propriétaires respectifs.
-- WildPeak est un projet indépendant et n'est pas un site officiel des parcs présentés.
+- Les utilisateurs disposant d'un compte peuvent enregistrer des attractions dans leurs favoris.
+- Les informations disponibles sur WildPeak peuvent évoluer et doivent être vérifiées sur les pages correspondantes du site.
+- Les noms, marques, images et logos des parcs appartiennent à leurs propriétaires respectifs.
+- WildPeak est un projet indépendant et n'est pas affilié aux parcs présentés sur le site.
 
 ## Pages principales
 
-- [Accueil](/): Présentation générale de WildPeak et accès aux principales fonctionnalités.
+- [Accueil](/): Présentation générale de WildPeak et accès aux principales fonctionnalités du site.
 - [Parcs](/parcs): Liste des parcs disponibles sur WildPeak et accès à leurs fiches détaillées.
+- [Attractions](/attractions): Catalogue des attractions référencées sur WildPeak avec recherche, filtres et classement.
 - [Comparateur d'attractions](/comparateur): Outil permettant de sélectionner et comparer plusieurs attractions selon leurs caractéristiques et statistiques.
+- [Contact](/contact): Formulaire permettant de contacter WildPeak.
 
-## Contenu des parcs
+## Parcs
 
-- [Parcs disponibles](/parcs): Informations générales sur les parcs référencés, notamment leur nom, pays, localisation, année d'ouverture, description et attractions associées.
+- [Liste des parcs](/parcs): Présente les différents parcs référencés sur WildPeak.
+- Les pages détaillées des parcs regroupent notamment leur nom, leur pays, leur localisation, leur année d'ouverture, leur description ainsi que les attractions associées.
+- Les attractions disponibles dans chaque parc peuvent être consultées depuis sa fiche détaillée.
 
-## Contenu des attractions
+## Attractions
 
-- [Attractions via les parcs](/parcs): Accès aux attractions référencées pour chaque parc, avec leurs informations détaillées telles que le parc, la zone, l'année d'ouverture, la taille minimale requise et les autres caractéristiques disponibles.
+- [Catalogue des attractions](/attractions): Permet de consulter les attractions référencées sur WildPeak.
+- Les attractions peuvent être recherchées par leur nom.
+- Elles peuvent être filtrées selon différents critères comme le parc, le type d'attraction, le nombre d'inversions, la hauteur, la durée ou la taille minimale requise.
+- Les attractions peuvent également être classées selon certaines de leurs statistiques, notamment leur vitesse.
+- Chaque attraction peut disposer d'informations telles que :
+  - son nom ;
+  - son parc ;
+  - sa zone dans le parc ;
+  - son type ;
+  - sa vitesse maximale ;
+  - sa hauteur ;
+  - sa longueur ;
+  - sa durée ;
+  - son nombre d'inversions ;
+  - la taille minimale requise ;
+  - son année d'ouverture ;
+  - son niveau d'intensité ;
+  - son accessibilité aux familles ;
+  - sa description.
 
 ## Comparaison
 
-- [Comparer des attractions](/comparateur): Permet de rechercher, sélectionner et comparer plusieurs attractions afin d'analyser leurs statistiques et caractéristiques.
+- [Comparer des attractions](/comparateur): Permet de rechercher et sélectionner plusieurs attractions afin de comparer leurs principales statistiques et caractéristiques.
+- Le comparateur facilite la comparaison entre différentes attractions et différents parcs.
 
-## Optional
+## Compte utilisateur
 
-- [Connexion](/connexion): Page de connexion utilisateur.
-- [Inscription](/inscription): Page de création de compte utilisateur.
-- [Sitemap](/sitemap.xml): Liste des URL publiques du site, si le sitemap est disponible.
+- [Connexion](/connexion): Page permettant aux utilisateurs de se connecter à leur compte WildPeak.
+- [Inscription](/inscription): Page permettant de créer un compte utilisateur.
+- [Profil](/profil): Espace personnel de l'utilisateur connecté.
+- Le profil permet notamment d'accéder aux attractions enregistrées dans les favoris.
+- Les utilisateurs connectés peuvent ajouter ou retirer des attractions de leurs favoris.
+
+## Contact
+
+- [Contact](/contact): Permet d'envoyer un message à WildPeak via un formulaire de contact.
+- Le formulaire permet notamment de renseigner les informations nécessaires afin de transmettre une demande ou un message.
+
+## Informations légales
+
+- [Informations légales](/informations-legales): Regroupe les informations juridiques relatives au site WildPeak.
+- [Mentions légales](/informations-legales#LegalMention): Informations concernant l'éditeur du site, l'hébergement et les informations légales applicables.
+- [Politique de confidentialité](/informations-legales#PrivacyPolicy): Informations concernant la collecte, l'utilisation et la protection des données personnelles.
+- [Conditions d'utilisation](/informations-legales#TermsOfUse): Règles et conditions applicables à l'utilisation du site WildPeak.
+
+## Fonctionnalités principales
+
+WildPeak permet notamment de :
+
+- découvrir des parcs de loisirs européens 
+- consulter les attractions disponibles dans chaque parc 
+- rechercher une attraction 
+- filtrer les attractions selon leurs caractéristiques 
+- classer les attractions selon leurs statistiques 
+- consulter les informations détaillées d'une attraction 
+- comparer plusieurs attractions 
+- créer un compte utilisateur 
+- se connecter à son compte 
+- ajouter et supprimer des attractions de ses favoris 
+- consulter ses attractions favorites depuis son profil 
+- contacter WildPeak depuis le formulaire de contact.
+
+## Ressources
+
+- [Sitemap](/sitemap.xml): Liste des URL publiques du site lorsque le sitemap est disponible.
+- [Robots](/robots.txt): Instructions destinées aux robots d'exploration lorsque le fichier est disponible.

@@ -81,7 +81,7 @@
             margin-top: 14px;
             display: flex;
             justify-content: end;
-            color: $color-red;
+            color: $color-btn-red;
             font-family: $font-text;
             font-size: 12px;
         }
@@ -92,12 +92,18 @@
             padding: 9px;
             font-family: $font-text;
             font-weight: 600;
-            background-color: $color-red;
+            background-color: $color-btn-red;
             color: white;
             border: none;
             border-radius: 5px;
             font-size: 15px;
             cursor: pointer;
+            transition: all ease 0.3s;
+
+            &:hover{
+                transition: all ease 0.3s;
+                background-color: $color-red;
+            }
         }
         div{
             display: grid;
@@ -123,7 +129,7 @@
 
         a{
             font-family: $font-text;
-            color: $color-red;
+            color: $color-btn-red;
         }
     }
     }

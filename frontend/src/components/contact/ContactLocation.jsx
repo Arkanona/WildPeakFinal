@@ -21,7 +21,7 @@ function ContactLocation() {
             <h2>Notre localisation</h2>
             <MapContainer center={position} zoom={9} scrollWheelZoom={false}>
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-                <Marker position={position} icon={customIcon}>
+                <Marker position={position} icon={customIcon} title="Brignoles, France" alt="Localisation : Brignoles, France">
                 <Tooltip permanent direction="right" offset={[10, 0]}>
                     <strong>Brignoles</strong>
                     <br />
