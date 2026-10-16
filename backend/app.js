@@ -17,14 +17,6 @@ const profileRoutes = require('./routes/profileRoutes')
 const contactRoutes = require('./routes/contactRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 
-// const corsOption = {
-//     origin: [
-//         'http://localhost:5173', 
-//         'http://localhost:4173',
-//         process.env.FRONTEND_URL
-//     ].filter(Boolean),
-//     credentials: true
-// }
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 1000,
@@ -39,11 +31,29 @@ app.use(
     })
 )
 
-// app.use(cors(corsOption))
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:4173',
+    process.env.FRONTEND_URL
+].filter(Boolean)
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+        if (!origin) {
+            return callback(null, true)
+        }
+
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true)
+        }
+
+        return callback(
+            new Error(`Origin non autorisée : ${origin}`)
+        )
+    },
     credentials: true
 }))
+
 app.use(limiter)
 app.use(express.json())
 app.use('/upload', express.static(path.join(process.cwd(), 'upload')))
