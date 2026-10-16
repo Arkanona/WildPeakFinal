@@ -41,7 +41,7 @@ app.use(
 
 // app.use(cors(corsOption))
 app.use(cors({
-    origin: 'https://wild-peak-ten.vercel.app',
+    origin: process.env.FRONTEND_URL,
     credentials: true
 }))
 app.use(limiter)
