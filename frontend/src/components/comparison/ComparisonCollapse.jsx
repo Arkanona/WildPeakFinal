@@ -102,7 +102,7 @@ function ComparisonCollapse({attractions= [], parks = [], selectedAttraction = [
                             onClick={() => handleSelect(attraction)}
                             className={isSelected ? 'selected' : ''}
                         >
-                            <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
+                            <img src={`${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                             <div>
                                 <h2>{attraction.name_attraction}</h2>
                                 <p>{park?.name_park}</p>

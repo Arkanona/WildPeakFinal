@@ -7,7 +7,7 @@ exports.selectAttraction = async (id) => {
 }
 
 exports.selectPark = async (id) => {
-    const { rows } = await pool.query('SELECT id_park, img_park FROM park WHERE id_park = $1', [id])
+    const { rows } = await pool.query('SELECT id_park, img_park, imgbg_attraction FROM park WHERE id_park = $1', [id])
 
     return rows
 }

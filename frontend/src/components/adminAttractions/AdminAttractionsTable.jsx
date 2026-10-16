@@ -29,7 +29,7 @@ function AdminAttractionsTable({ attractions = [], parks = [], onEdit, onDelete 
                     >
                         <div className="attractionInfo">
                             <img
-                                src={`http://localhost:3000${attraction.img_attraction}`}
+                                src={`${attraction.img_attraction}`}
                                 alt={
                                     attraction.alt_attraction ||
                                     attraction.name_attraction

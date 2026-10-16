@@ -1,7 +1,7 @@
 const Upload = require('../models/uploadModel')
 const Attraction = require('../models/attractionModel')
 const Park = require('../models/parkModel')
-const { createAttractionImages } = require('./uploadController')
+const { createAttractionImages, deleteOldImages } = require('./uploadController')
 
 exports.getAttraction = async (req, res) => {
     try {
@@ -86,12 +86,13 @@ exports.addAttraction = async (req, res) => {
             )
 
             // Enregistrement des URLs
-            const updatedAttraction =
+            const updatedAttraction = (
                 await Upload.updateAttractionDb(
                     cardImageUrl,
                     backgroundImageUrl,
                     attraction.id_attraction
                 )
+            )[0]
 
             return res.status(201).json({
                 title: "Attraction ajoutée avec succès",
@@ -126,6 +127,18 @@ exports.updateAttraction = async (req, res) => {
     try {
         const { id } = req.params
 
+        // On récupère l'attraction AVANT modification
+        const oldAttractions = await Upload.selectAttraction(id)
+
+        if (oldAttractions.length === 0) {
+            return res.status(404).json({
+                title: "Attraction introuvable",
+                status: 404
+            })
+        }
+
+        const oldAttraction = oldAttractions[0]
+
         const {
             name_attraction,
             id_park,
@@ -153,7 +166,8 @@ exports.updateAttraction = async (req, res) => {
 
         const park = await Park.findParkById(id_park)
 
-        const alt_attraction = `Vue de l'attraction ${name_attraction} à ${park.name_park}`
+        const alt_attraction =
+            `Vue de l'attraction ${name_attraction} à ${park.name_park}`
 
         const attraction = await Attraction.updateAttraction(
             id,
@@ -162,7 +176,8 @@ exports.updateAttraction = async (req, res) => {
                 slug_attraction,
                 alt_attraction,
 
-                id_park: toNumberOrNull(id_park),
+                id_park:
+                    toNumberOrNull(id_park),
 
                 type_attraction,
 
@@ -207,8 +222,9 @@ exports.updateAttraction = async (req, res) => {
 
         let updatedAttraction = attraction
 
-        // Si une nouvelle image a été envoyée
+        // Si une nouvelle image est envoyée
         if (req.file) {
+
             const {
                 cardImageUrl,
                 backgroundImageUrl
@@ -217,11 +233,18 @@ exports.updateAttraction = async (req, res) => {
                 attraction.id_attraction
             )
 
-            updatedAttraction = await Upload.updateAttractionDb(
-                cardImageUrl,
-                backgroundImageUrl,
-                attraction.id_attraction
-            )
+            updatedAttraction =
+                await Upload.updateAttractionDb(
+                    cardImageUrl,
+                    backgroundImageUrl,
+                    attraction.id_attraction
+                )
+
+            // Suppression des anciennes images Supabase
+            await deleteOldImages([
+                oldAttraction.img_attraction,
+                oldAttraction.imgbg_attraction
+            ])
         }
 
         return res.status(200).json({

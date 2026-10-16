@@ -23,7 +23,7 @@ function HomeFirstSec({ attractions = [], parks = [] }){
                             <span className='ranking'>#{index + 1}</span>
                             <span className='speed'><FontAwesomeIcon icon={faGaugeHigh} size="sm" /> {attraction?.speed_max_kmh_attraction} KM/H</span>
                             <FavoriteButton attractionId={attraction.id_attraction}/>
-                            <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
+                            <img src={`${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                             <div>
                                 <h3>{attraction.name_attraction}</h3>
                                 <p className='parkName'>{park?.name_park}</p>

@@ -20,7 +20,7 @@ function CardParks({parks = [], attractions = []}) {
                     return (
                     <Link to={`/parcs/${park.slug_park}`} key={park.id_park}>
                         <article>
-                        <img src={`http://localhost:3000${park.img_park}`} alt={park.name_park} />
+                        <img src={`${park.img_park}`} alt={park.name_park} />
                         <div>
                             <h3>{park.name_park}</h3>
                             <div className='location'>

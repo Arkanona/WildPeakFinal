@@ -60,7 +60,7 @@ function ComparisonTable({ selectedAttraction = [], parks = []}) {
                     return (
                         <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                         <div className='comparisonCell' key={attraction.id_attraction}>
-                            <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
+                            <img src={`${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                             <h2>{attraction.name_attraction}</h2>
                             <p>{park?.name_park}</p>
                         </div>

@@ -1,281 +1,12 @@
 const sharp = require('sharp')
-const path = require('path')
-const fs = require('fs/promises')
 const Upload = require('../models/uploadModel')
+const supabase = require('../config/supabase')
 
-exports.updateParkImage = async (req, res) => {
-    try {
+const BUCKET = 'wildpeak'
 
-        const { id } = req.params
+const createImagesBuffers = async (fileBuffer) => {
 
-        if (!req.file) {
-            return res.status(404).json({
-                title: 'Image non trouvée',
-                status: 404
-            })}
-
-        // On récupère le parc
-        const result = await Upload.selectPark(id)
-
-        if (result.rowCount === 0) {
-            return res.status(404).json({
-                title: 'Parc non trouvé',
-                status: 404
-            })
-        }
-
-        const park = result.rows[0]
-
-        // dossier upload
-        const uploadFolder = path.join(
-            process.cwd(),
-            'upload',
-            'park'
-        )
-
-        await fs.mkdir(uploadFolder, {
-            recursive: true
-        })
-
-        // Noms des nouvelles images
-        const safeId = id.replace(/[^a-zA-Z0-9-_]/g, '')
-
-        const timestamp = Date.now()
-
-        const cardFilename = `${safeId}-${timestamp}-card.webp`
-        const backgroundFilename = `${safeId}-${timestamp}-background.webp`
-
-        const cardPath = path.join(uploadFolder, cardFilename)
-        const backgroundPath = path.join(uploadFolder, backgroundFilename)
-
-        // Création de l'image card
-        await sharp(req.file.buffer)
-            .rotate()
-            .resize({
-                width: 600,
-                height: 400,
-                fit: 'cover'
-            })
-            .webp({
-                quality: 85
-            })
-            .toFile(cardPath)
-
-        // Création de l'image background
-        await sharp(req.file.buffer)
-            .rotate()
-            .resize({
-                width: 1900,
-                height: 400,
-                fit: 'cover'
-            })
-            .webp({
-                quality: 85
-            })
-            .toFile(backgroundPath)
-
-        // URL enregistrées en BDD
-        const cardImageUrl = `/upload/park/${cardFilename}`
-        const backgroundImageUrl = `/upload/park/${backgroundFilename}`
-
-        // mise à jour BDD
-        const updatePark = await Upload.updateParkDb(cardImageUrl, backgroundImageUrl, id)
-
-        // 8. Suppression des anciennes images
-        const oldImages = [
-            park.img_park,
-            park.imgbg_park
-        ]
-
-        for (const oldImage of oldImages) {
-
-            if (!oldImage) continue
-
-            const oldImagePath = path.join(
-                process.cwd(),
-                oldImage.replace(/^\/+/, '')
-            )
-
-            try {
-                await fs.unlink(oldImagePath)
-            } catch (err) {
-
-                if (err.code !== 'ENOENT') {
-                    throw err
-                }
-            }
-        }
-
-        return res.status(200).json({
-            title: "L'image du parc à été modifiée",
-            status: 200,
-            park: updatePark
-        })
-
-    } catch (err) {
-        console.error('ERREUR UPLOAD :', err)
-
-        return res.status(500).json({
-            title: "Erreur lors de la modification de l'image",
-            status: 500,
-            error: err.message
-        })
-    }
-}
-
-exports.updateAttractionImage = async (req, res) => {
-    try {
-
-        const { id } = req.params
-
-        if (!req.file) {
-            return res.status(404).json({
-                title: 'Image non trouvée',
-                status: 404
-            })}
-
-        // On récupère le parc
-        const result = await Upload.selectAttraction(id)
-
-        if (result.rowCount === 0) {
-            return res.status(404).json({
-                message: 'Attraction non trouvé',
-                status: 404
-            })
-        }
-
-        const attraction = result.rows[0]
-
-        // dossier upload
-        const uploadFolder = path.join(
-            process.cwd(),
-            'upload',
-            'attraction'
-        )
-
-        await fs.mkdir(uploadFolder, {
-            recursive: true
-        })
-
-        // Noms des nouvelles images
-        const safeId = id.replace(/[^a-zA-Z0-9-_]/g, '')
-
-        const timestamp = Date.now()
-
-        const cardFilename = `${safeId}-${timestamp}-card.webp`
-        const backgroundFilename = `${safeId}-${timestamp}-background.webp`
-
-        const cardPath = path.join(uploadFolder, cardFilename)
-        const backgroundPath = path.join(uploadFolder, backgroundFilename)
-
-        // Création de l'image card
-        await sharp(req.file.buffer)
-            .rotate()
-            .resize({
-                width: 600,
-                height: 400,
-                fit: 'cover'
-            })
-            .webp({
-                quality: 85
-            })
-            .toFile(cardPath)
-
-        // Création de l'image background
-        await sharp(req.file.buffer)
-            .rotate()
-            .resize({
-                width: 1900,
-                height: 400,
-                fit: 'cover'
-            })
-            .webp({
-                quality: 85
-            })
-            .toFile(backgroundPath)
-
-        // URL enregistrées en BDD
-        const cardImageUrl = `/upload/attraction/${cardFilename}`
-        const backgroundImageUrl = `/upload/attraction/${backgroundFilename}`
-
-        // mise à jour BDD
-        const updateAttraction = await Upload.updateAttractionDb(cardImageUrl, backgroundImageUrl, id)
-
-        // 8. Suppression des anciennes images
-        const oldImages = [
-            attraction.img_attraction,
-            attraction.imgbg_attraction
-        ]
-
-        for (const oldImage of oldImages) {
-
-            if (!oldImage) continue
-
-            const oldImagePath = path.join(
-                process.cwd(),
-                oldImage.replace(/^\/+/, '')
-            )
-
-            try {
-                await fs.unlink(oldImagePath)
-            } catch (err) {
-
-                if (err.code !== 'ENOENT') {
-                    throw err
-                }
-            }
-        }
-
-        return res.status(200).json({
-            title: "L'image de l'attraction à été modifiée",
-            status: 200,
-            attraction: updateAttraction.rows[0]})
-
-    } catch (err) {
-
-        return res.status(500).json({
-            title: "Erreur lors de la modification de l'image",
-            status: 500,
-            error: err.message})
-    }
-}
-
-exports.createAttractionImages = async (file, id) => {
-    if (!file) {
-        return {
-            cardImageUrl: null,
-            backgroundImageUrl: null
-        }
-    }
-
-    const uploadFolder = path.join(
-        process.cwd(),
-        'upload',
-        'attraction'
-    )
-
-    await fs.mkdir(uploadFolder, {
-        recursive: true
-    })
-
-    const safeId = String(id).replace(/[^a-zA-Z0-9-_]/g, '')
-    const timestamp = Date.now()
-
-    const cardFilename = `${safeId}-${timestamp}-card.webp`
-
-    const backgroundFilename = `${safeId}-${timestamp}-background.webp`
-
-    const cardPath = path.join(
-        uploadFolder,
-        cardFilename
-    )
-
-    const backgroundPath = path.join(
-        uploadFolder,
-        backgroundFilename
-    )
-
-    await sharp(file.buffer)
+    const cardBuffer = await sharp(fileBuffer)
         .rotate()
         .resize({
             width: 600,
@@ -285,9 +16,9 @@ exports.createAttractionImages = async (file, id) => {
         .webp({
             quality: 85
         })
-        .toFile(cardPath)
+        .toBuffer()
 
-    await sharp(file.buffer)
+    const backgroundBuffer = await sharp(fileBuffer)
         .rotate()
         .resize({
             width: 1900,
@@ -297,13 +28,242 @@ exports.createAttractionImages = async (file, id) => {
         .webp({
             quality: 85
         })
-        .toFile(backgroundPath)
+        .toBuffer()
 
     return {
-        cardImageUrl:
-            `/upload/attraction/${cardFilename}`,
+        cardBuffer,
+        backgroundBuffer
+    }
+}
 
-        backgroundImageUrl:
-            `/upload/attraction/${backgroundFilename}`
+const uploadToSupabase = async (
+    cardBuffer,
+    backgroundBuffer,
+    folder,
+    id
+) => {
+
+    const safeId = String(id).replace(/[^a-zA-Z0-9-_]/g, '')
+    const timestamp = Date.now()
+
+    const cardPath =
+        `${folder}/${safeId}-${timestamp}-card.webp`
+
+    const backgroundPath =
+        `${folder}/${safeId}-${timestamp}-background.webp`
+
+    const { error: cardError } = await supabase.storage
+        .from(BUCKET)
+        .upload(
+            cardPath,
+            cardBuffer,
+            {
+                contentType: 'image/webp',
+                upsert: false
+            }
+        )
+
+    if (cardError) {
+        throw cardError
+    }
+
+    const { error: backgroundError } = await supabase.storage
+        .from(BUCKET)
+        .upload(
+            backgroundPath,
+            backgroundBuffer,
+            {
+                contentType: 'image/webp',
+                upsert: false
+            }
+        )
+
+    if (backgroundError) {
+
+        // Si le background échoue, on supprime la card déjà uploadée
+        await supabase.storage
+            .from(BUCKET)
+            .remove([cardPath])
+
+        throw backgroundError
+    }
+
+    const { data: cardData } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(cardPath)
+
+    const { data: backgroundData } = supabase.storage
+        .from(BUCKET)
+        .getPublicUrl(backgroundPath)
+
+    return {
+        cardImageUrl: cardData.publicUrl,
+        backgroundImageUrl: backgroundData.publicUrl,
+        cardPath,
+        backgroundPath
+    }
+}
+
+const getStoragePathFromUrl = (url) => {
+
+    if (!url) return null
+
+    const marker =
+        `/storage/v1/object/public/${BUCKET}/`
+
+    const index = url.indexOf(marker)
+
+    if (index === -1) {
+        return null
+    }
+
+    return url.substring(
+        index + marker.length
+    )
+}
+
+exports.deleteOldImages = async (images) => {
+    const paths = images
+        .map(getStoragePathFromUrl)
+        .filter(Boolean)
+
+    if (paths.length === 0) {
+        return
+    }
+
+    const { error } = await supabase.storage
+        .from(BUCKET)
+        .remove(paths)
+
+    if (error) {
+        console.error(
+            'Erreur lors de la suppression des anciennes images :',
+            error.message
+        )
+    }
+}
+
+exports.updateParkImage = async (req, res) => {
+    try {
+
+        const { id } = req.params
+
+        if (!req.file) {
+            return res.status(400).json({
+                title: 'Image non trouvée',
+                status: 400
+            })
+        }
+
+        const result = await Upload.selectPark(id)
+
+        if (result.length === 0) {
+            return res.status(404).json({
+                title: 'Parc non trouvé',
+                status: 404
+            })
+        }
+
+        const park = result[0]
+
+        const {
+            cardBuffer,
+            backgroundBuffer
+        } = await createImagesBuffers(
+            req.file.buffer
+        )
+
+        const {
+            cardImageUrl,
+            backgroundImageUrl,
+            cardPath,
+            backgroundPath
+        } = await uploadToSupabase(
+            cardBuffer,
+            backgroundBuffer,
+            'parks',
+            id
+        )
+
+        try {
+
+            const updatePark =
+                await Upload.updateParkDb(
+                    cardImageUrl,
+                    backgroundImageUrl,
+                    id
+                )
+
+            await deleteOldImages([
+                park.img_park,
+                park.imgbg_park
+            ])
+
+            return res.status(200).json({
+                title: "L'image du parc a été modifiée",
+                status: 200,
+                park: updatePark[0]
+            })
+
+        } catch (err) {
+
+            // Si la mise à jour BDD échoue, on supprime les nouvelles images
+            await supabase.storage
+                .from(BUCKET)
+                .remove([
+                    cardPath,
+                    backgroundPath
+                ])
+
+            throw err
+        }
+
+    } catch (err) {
+
+        console.error(
+            'ERREUR UPLOAD PARC :',
+            err
+        )
+
+        return res.status(500).json({
+            title: "Erreur lors de la modification de l'image",
+            status: 500,
+            error: err.message
+        })
+    }
+}
+
+exports.createAttractionImages = async (
+    file,
+    id
+) => {
+
+    if (!file) {
+        return {
+            cardImageUrl: null,
+            backgroundImageUrl: null
+        }
+    }
+
+    const {
+        cardBuffer,
+        backgroundBuffer
+    } = await createImagesBuffers(
+        file.buffer
+    )
+
+    const {
+        cardImageUrl,
+        backgroundImageUrl
+    } = await uploadToSupabase(
+        cardBuffer,
+        backgroundBuffer,
+        'attractions',
+        id
+    )
+
+    return {
+        cardImageUrl,
+        backgroundImageUrl
     }
 }

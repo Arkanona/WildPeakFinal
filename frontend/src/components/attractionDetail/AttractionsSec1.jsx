@@ -3,7 +3,7 @@ import '../../styles/attraction/attractionDetails.scss';
 function Attractions({attraction, park}){
 
     return (
-        <div className='bgImagePark' style={{backgroundImage: `url(http://localhost:3000${attraction.imgbg_attraction})`}}>
+        <div className='bgImagePark' style={{backgroundImage: `url(${attraction.imgbg_attraction})`}}>
             <div className='divTextPark'>
                 <h1>{attraction.name_attraction}</h1>
                 <div>

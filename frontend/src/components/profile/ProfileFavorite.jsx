@@ -51,7 +51,7 @@ function ProfileFavorite(){
                 <Link to={`/attractions/${attraction.slug_attraction}`} key={attraction.id_attraction}>
                     <article >
                         <FavoriteButton attractionId={attraction.id_attraction}/>
-                        <img src={`http://localhost:3000${attraction.img_attraction}`} alt={attraction.alt_attraction} />
+                        <img src={`${attraction.img_attraction}`} alt={attraction.alt_attraction} />
                         <div>
                             <h3>{attraction.name_attraction}</h3>
                             <div className='location'>
