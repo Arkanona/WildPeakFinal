@@ -1,51 +1,57 @@
-import { BrowserRouter as Router, Route, Routes } 
-from "react-router-dom";
 
-import Home from './pages/Home';
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
-import Parks from "./pages/Parks";
-import ParksDetails from "./pages/ParkDetails";
-import AttractionDetails from "./pages/AttractionDetails";
-import AttractionComparison from "./pages/AttractionComparison";
-import Profile from "./pages/Profile";
-import Contact from "./pages/Contact";
-import ErrorPage from "./pages/ErrorPage";
-import ForgotPassword from "./pages/ForgotPassword";
-import ResetPassword from "./pages/ResetPassword";
-import Attraction from "./pages/Attraction";
-import AdminAttraction from "./pages/AdminAttraction";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// Chargement différé des pages
+import Home from "./pages/Home"
+// const Home = lazy(() => import("./pages/Home"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const Parks = lazy(() => import("./pages/Parks"));
+const ParksDetails = lazy(() => import("./pages/ParkDetails"));
+const AttractionDetails = lazy(() => import("./pages/AttractionDetails"));
+const AttractionComparison = lazy(() => import("./pages/AttractionComparison"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Contact = lazy(() => import("./pages/Contact"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const Attraction = lazy(() => import("./pages/Attraction"));
+const AdminAttraction = lazy(() => import("./pages/AdminAttraction"));
+const LegalInformation = lazy(() => import("./pages/LegalInformation"));
+
+// Protection de la route administrateur
 import AdminRoute from "./components/adminAttractions/AdminRoute";
-import LegalInformation from "./pages/LegalInformation";
-
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/inscription" element={<RegisterPage />} />
-        <Route path="/connexion" element={<LoginPage />} />
-        <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
-        <Route path="/reinitialiser-mot-de-passe/:token" element={<ResetPassword />} />
-        <Route path="/parcs" element={<Parks />} />
-        <Route path="/parcs/:id" element={<ParksDetails />} />
-        <Route path="/attractions" element={<Attraction />} />
-        <Route path="/attractions/:slug" element={<AttractionDetails />} />
-        <Route path="/comparateur" element={<AttractionComparison />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/informations-legales" element={<LegalInformation />} />
-        <Route path="*" element={<ErrorPage />} />
-        <Route path="/404" element={<ErrorPage />} />
-        <Route path="/admin-wild/attractions" element={
-          <AdminRoute>
-          <AdminAttraction />
-          </AdminRoute>
-            } />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/inscription" element={<RegisterPage />} />
+          <Route path="/connexion" element={<LoginPage />} />
+          <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
+          <Route path="/reinitialiser-mot-de-passe/:token" element={<ResetPassword />} />
+          <Route path="/parcs" element={<Parks />} />
+          <Route path="/parcs/:id" element={<ParksDetails />} />
+          <Route path="/attractions" element={<Attraction />} />
+          <Route path="/attractions/:slug" element={<AttractionDetails />} />
+          <Route path="/comparateur" element={<AttractionComparison />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/informations-legales" element={<LegalInformation />} />
+          <Route path="/404" element={<ErrorPage />} />
+          <Route
+            path="/admin-wild/attractions" element={
+              <AdminRoute>
+                <AdminAttraction />
+              </AdminRoute> }/>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Suspense>
     </Router>
-  );
+  )
 }
 
 export default App

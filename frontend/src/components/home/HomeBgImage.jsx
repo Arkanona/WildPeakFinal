@@ -11,6 +11,7 @@ function HomeImage(){
                     className="heroImage"
                     fetchPriority="high"
                     loading="eager"
+                    decoding="async"
                 />
                 <div className='heroContent'>
                     <h1>TA PROCHAINE AVENTURE COMMENCE ICI</h1>
