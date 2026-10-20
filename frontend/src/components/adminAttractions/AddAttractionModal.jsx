@@ -74,10 +74,11 @@ function AddAttractionModal({ parks = [], onClose, attraction = null, mode = "cr
             if (image) {
                 data.append("image", image)
             }
+            const API_URL = import.meta.env.VITE_API_URL
 
-            const url = isEdit 
-                ? `http://localhost:3000/api/v1/admin-wild/${attraction.id_attraction}`
-                : "http://localhost:3000/api/v1/admin-wild"
+            const url = isEdit
+                ? `${API_URL}/api/v1/admin-wild/attractions/${attraction.id_attraction}`
+                : `${API_URL}/api/v1/admin-wild/attractions`
 
             const response = await fetch(url, {
                     method: isEdit ? "PATCH" : "POST",

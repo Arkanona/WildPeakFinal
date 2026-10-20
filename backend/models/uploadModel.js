@@ -7,7 +7,7 @@ exports.selectAttraction = async (id) => {
 }
 
 exports.selectPark = async (id) => {
-    const { rows } = await pool.query('SELECT id_park, img_park, imgbg_attraction FROM park WHERE id_park = $1', [id])
+    const { rows } = await pool.query('SELECT id_park, img_park, imgbg_park FROM park WHERE id_park = $1', [id])
 
     return rows
 }
@@ -18,10 +18,10 @@ exports.updateParkDb = async (cardImageUrl, backgroundImageUrl, id) => {
         SET img_park = $1,
             imgbg_park = $2
         WHERE id_park = $3
-        RETURNING id_park, name_park, img_park, imgbg_park`,
+        RETURNING *`,
         [ cardImageUrl,backgroundImageUrl, id])
 
-    return rows
+    return rows[0] || null
 }
 
 exports.updateAttractionDb = async (cardImageUrl, backgroundImageUrl, id) => {
@@ -30,8 +30,8 @@ exports.updateAttractionDb = async (cardImageUrl, backgroundImageUrl, id) => {
         SET img_attraction = $1,
             imgbg_attraction = $2
         WHERE id_attraction = $3
-        RETURNING id_attraction, name_attraction, img_attraction, imgbg_attraction`,
+        RETURNING *`,
         [ cardImageUrl,backgroundImageUrl,id ])
 
-    return rows
+    return rows[0] || null
 }

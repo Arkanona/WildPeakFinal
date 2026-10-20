@@ -30,7 +30,7 @@ function AdminAttraction() {
 
         try {
             const response = await fetch(
-                `http://localhost:3000/api/v1/admin-wild/${idAttraction}`,
+                `${import.meta.env.VITE_API_URL}/api/v1/admin-wild/attractions/${idAttraction}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -108,8 +108,8 @@ function AdminAttraction() {
 
     return(
         <>
-        <title>Admin - WildPeak</title>
-        <meta name="description" content="Page admin de WildPeak."/>
+        <title>Administration des attractions - WildPeak</title>
+        <meta name="description" content="Gestion des attractions WildPeak."/>
         <Navbar/>
         <main>
             <section className="secBgAdmin">

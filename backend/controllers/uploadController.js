@@ -122,14 +122,12 @@ const getStoragePathFromUrl = (url) => {
     )
 }
 
-exports.deleteOldImages = async (images) => {
+const deleteOldImages = async (images) => {
     const paths = images
         .map(getStoragePathFromUrl)
         .filter(Boolean)
 
-    if (paths.length === 0) {
-        return
-    }
+    if (paths.length === 0) return
 
     const { error } = await supabase.storage
         .from(BUCKET)
@@ -142,6 +140,8 @@ exports.deleteOldImages = async (images) => {
         )
     }
 }
+
+exports.deleteOldImages = deleteOldImages
 
 exports.updateParkImage = async (req, res) => {
     try {
@@ -202,7 +202,7 @@ exports.updateParkImage = async (req, res) => {
             return res.status(200).json({
                 title: "L'image du parc a été modifiée",
                 status: 200,
-                park: updatePark[0]
+                park: updatePark
             })
 
         } catch (err) {
@@ -259,6 +259,36 @@ exports.createAttractionImages = async (
         cardBuffer,
         backgroundBuffer,
         'attractions',
+        id
+    )
+
+    return {
+        cardImageUrl,
+        backgroundImageUrl
+    }
+}
+
+exports.createParkImages = async (file, id) => {
+
+    if (!file) {
+        return {
+            cardImageUrl: null,
+            backgroundImageUrl: null
+        }
+    }
+
+    const {
+        cardBuffer,
+        backgroundBuffer
+    } = await createImagesBuffers(file.buffer)
+
+    const {
+        cardImageUrl,
+        backgroundImageUrl
+    } = await uploadToSupabase(
+        cardBuffer,
+        backgroundBuffer,
+        'parks',
         id
     )
 

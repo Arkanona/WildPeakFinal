@@ -1,0 +1,174 @@
+.adminParksGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+    max-width: 1440px;
+    margin: auto;
+
+    .adminParkCard {
+        background: #fff;
+        border: 1px solid #e2e5e9;
+        border-radius: 12px;
+        overflow: hidden;
+        min-width: 0;
+        transition: box-shadow 0.2s ease;
+    
+        &:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+    
+        .parkImage {
+            position: relative;
+            height: 220px;
+    
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    
+            .countryBadge,
+            .attractionBadge {
+                position: absolute;
+                top: 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border-radius: 30px;
+                padding: 7px 12px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 600;
+            }
+    
+            .countryBadge {
+                left: 15px;
+                background: #102c3c;
+            }
+    
+            .attractionBadge {
+                right: 15px;
+                background: #e63946;
+            }
+        }
+    
+        .parkContent {
+            padding: 25px;
+        }
+    
+        .parkDetails {
+            h3 {
+                font-family: "Bebas Neue", sans-serif;
+                font-size: 28px;
+                font-weight: 400;
+                margin: 0 0 8px;
+            }
+    
+            p {
+                color: #555;
+                font-size: 16px;
+                margin: 0;
+            }
+        }
+    
+        .parkStats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+            margin: 22px 0;
+    
+            div {
+                display: flex;
+                flex-direction: column;
+                padding: 13px 15px;
+                background: #f1f2f4;
+                border-radius: 8px;
+            }
+    
+            span {
+                font-size: 13px;
+                color: #555;
+            }
+    
+            strong {
+                font-family: "Bebas Neue", sans-serif;
+                font-size: 23px;
+                font-weight: 400;
+            }
+        }
+    
+        .parkActions {
+            display: flex;
+            gap: 10px;
+    
+            button {
+                height: 48px;
+                border: 1px solid #d5d9de;
+                border-radius: 8px;
+                background: transparent;
+                cursor: pointer;
+                font-size: 15px;
+                transition: 0.2s;
+            }
+    
+            .editButton {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+    
+                &:hover {
+                    background: #f1f2f4;
+                }
+            }
+    
+            .deleteButton {
+                width: 50px;
+    
+                &:hover {
+                    background: #fde8e8;
+                    color: #e63946;
+                    border-color: #e63946;
+                }
+            }
+        }
+    }
+    
+    .emptyParks {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 40px;
+        color: #666;
+    }
+}
+
+@media (max-width: 1100px) {
+    .adminParksGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .adminParksGrid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+
+        .adminParkCard {
+            .parkImage {
+                height: 190px;
+            }
+    
+            .parkContent {
+                padding: 20px;
+            }
+    
+            .parkDetails h3 {
+                font-size: 25px;
+            }
+        }
+    }
+
+}

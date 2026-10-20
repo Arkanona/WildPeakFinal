@@ -1,0 +1,97 @@
+@import '../variables';
+
+.secBgAdminPark{
+    background-color: #f4f1f2;
+    padding: 0 15px 20px 15px;
+
+    .adminFirstSec{
+        max-width: 1440px;
+        margin: auto;
+
+        .divText{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            margin-bottom: 30px;
+
+            button{
+                font-size: 18px;
+                background-color: $color-btn-red;
+                border: none;
+                outline: none;
+                padding: 10px;
+                border-radius: 8px;
+                color: white;
+                cursor: pointer;
+                transition: all ease 0.3s;
+
+                &:hover{
+                    transition: all ease 0.3s;
+                    background-color: $color-red;
+                }
+
+                svg{
+                    font-size: 16px;
+                    padding-right: 5px;
+                }
+            }
+        }
+
+        .divGroupFilter{
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+
+            .inputFilter{
+                position: relative;
+                width: 100%;
+    
+                input{
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 10px 10px 10px 40px;
+                    border-radius: 8px;
+                    outline: none;
+                    border: 1px solid lightgray;
+                    font-size: 16px;
+        
+                }
+                label{
+                    position: absolute;
+                    top: 50%;
+                    left: 12px;
+                    transform: translateY(-50%);
+                    z-index: 10;
+                    svg{
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+@media screen and (max-width: 767px) {
+    .secBgAdmin{
+
+        .adminFirstSec{
+            
+            .divText{
+                flex-direction: column;
+                gap: 20px;
+    
+            
+            }
+        }
+    }
+}

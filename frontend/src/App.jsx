@@ -2,9 +2,9 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// Chargement différé des pages
 import Home from "./pages/Home"
-// const Home = lazy(() => import("./pages/Home"));
+
+// Chargement différé des pages
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const Parks = lazy(() => import("./pages/Parks"));
@@ -22,6 +22,7 @@ const LegalInformation = lazy(() => import("./pages/LegalInformation"));
 
 // Protection de la route administrateur
 import AdminRoute from "./components/adminAttractions/AdminRoute";
+import AdminParks from "./pages/AdminPark";
 
 function App() {
   return (
@@ -46,6 +47,11 @@ function App() {
             path="/admin-wild/attractions" element={
               <AdminRoute>
                 <AdminAttraction />
+              </AdminRoute> }/>
+          <Route
+            path="/admin-wild/parcs" element={
+              <AdminRoute>
+                <AdminParks />
               </AdminRoute> }/>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
