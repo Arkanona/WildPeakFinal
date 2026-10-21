@@ -27,7 +27,7 @@ header {
             display: flex;
             ul{
                 display: flex;
-                gap: 10px;
+                gap: 16px;
                 li{
                     list-style: none;
                     a{
@@ -85,6 +85,7 @@ header {
                 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
                 padding: 4px 9px;
                 transition: all 0.3s ease-in-out;
+                font-size: 18px;
 
                 &:hover{
                     transition: all 0.3s ease-in-out;
@@ -122,7 +123,7 @@ header {
 }
 
 // Media Queries
-@media screen and (max-width: 900px){
+@media screen and (max-width: 950px){
     header{
 
         .divHeader{

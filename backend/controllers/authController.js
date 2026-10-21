@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const { sendResetPasswordEmail } = require('../services/mailService')
 
 const JWT_SECRET = process.env.JWT_SECRET
-const JWT_EXPIRES_IN = '365d'
+const JWT_EXPIRES_IN = '30d'
 
 
 const generateToken = (id) => {
@@ -113,9 +113,9 @@ exports.forgotPassword = async (req, res) => {
 
         // On ne révèle pas si l'adresse mail existe ou non
         if(!user){
-            return res.status(409).json({ 
+            return res.status(200).json({ 
                 title: 'Si un compte existe avec cette adresse, un lien de réinitialisation a été envoyé.',
-                status: 409
+                status: 200
             })
         }
 

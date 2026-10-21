@@ -48,7 +48,7 @@ exports.removeFavorite = async (req, res) => {
 
         res.status(200).json({
             title: "Attraction supprimée des favoris",
-            status: 201,
+            status: 200,
             favorite: removeFav
         })
     } catch (error) {

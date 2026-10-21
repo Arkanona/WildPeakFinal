@@ -19,7 +19,7 @@ const adminRoutes = require('./routes/adminRoutes')
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    limit: 1000,
+    limit: 100,
     message: { status: 429, error: 'Too many request'}
 })
 
