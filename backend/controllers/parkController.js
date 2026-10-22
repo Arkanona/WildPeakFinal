@@ -159,7 +159,7 @@ exports.updatePark = async (req, res) => {
                     park.id_park
                 )
 
-                updatedPark = result[0]
+                updatedPark = result
 
                 // On supprime les anciennes images
                 await deleteOldImages(oldImages)

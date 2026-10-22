@@ -81,7 +81,7 @@ function AddParkModal({ park = null, mode = "create", onClose, onSaved, onUpdate
                 },
                 body: data
             })
-
+            
             const result = await response.json()
 
             if (!response.ok) {
