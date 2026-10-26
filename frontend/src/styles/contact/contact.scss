@@ -9,7 +9,6 @@
         background-size: cover;
         background-position: center 45%;
         background-repeat: no-repeat;
-        // border-radius: 0 0 50% 50% / 0 0 12% 12%;
         overflow: hidden;
         
 
@@ -122,7 +121,7 @@
                 font-size: 15px;
 
                 >span{
-                    color: #e63946;
+                    color: $color-btn-red;
                 }
             }
 

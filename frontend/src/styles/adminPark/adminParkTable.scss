@@ -1,3 +1,5 @@
+@import '../variables';
+
 .adminParksGrid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -49,7 +51,7 @@
     
             .attractionBadge {
                 right: 15px;
-                background: #e63946;
+                background: $color-btn-red;
             }
         }
     
