@@ -45,8 +45,6 @@ const useAuthStore = create()(
 
                     const data = await loginUser(credentials)
 
-                    console.log("LOGIN DATA :", data)
-
                     set({
                         user: data.user,
                         token: data.token,

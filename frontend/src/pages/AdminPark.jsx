@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar"
 import { useEffect, useState } from "react"
 import { getParks, getAttractions } from "../services/api"
 import AdminFirstSecParks from "../components/adminParks/AdminFirstSecParks"
 import AdminParkTable from "../components/adminParks/AdminParkTable"
 import AddParkModal from "../components/adminParks/AddParkModal"
 import useAuthStore from "../store/authStore"
+import AdminHeader from "../components/AdminHeader"
 
 function AdminParks() {
     const [parks, setParks] = useState([])
@@ -109,7 +109,7 @@ function AdminParks() {
         <>
             <title>Administration des parcs - WildPeak</title>
             <meta name="description" content="Gestion des parcs WildPeak."/>
-            <Navbar />
+            <AdminHeader />
             <main>
                 <section className="secBgAdminPark">
                     <AdminFirstSecParks

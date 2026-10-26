@@ -40,7 +40,7 @@ export async function loginUser(credentials) {
     const data = await response.json()
 
     if (!response.ok) {
-        throw new Error(data.message)
+        throw new Error('E-mail ou mot de passe in correct.')
     }
 
     return data

@@ -73,7 +73,7 @@ function ContactForm(){
                     confidentiality
                 })
             }
-        );
+        )
 
         const data = await response.json()
 
@@ -90,8 +90,8 @@ function ContactForm(){
 
         setSuccessMessage("Message bien envoyé !")
         setTimeout(() => {
-            setSuccessMessage("");
-        }, 3000);
+            setSuccessMessage("")
+        }, 3000)
 
         } catch (error) {
             console.error(error.message)

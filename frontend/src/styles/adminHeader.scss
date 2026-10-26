@@ -1,0 +1,227 @@
+@import './variables';
+
+
+.adminHeader {
+    height: 75px;
+    padding: 0 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F8F9FA;
+    border-bottom: 1px solid #e5e7eb;
+    position: relative;
+    z-index: 10;
+
+    .adminHeaderLeft {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .adminBurger {
+        border: none;
+        background: transparent;
+        font-size: 22px;
+        color: #1D3557;
+        cursor: pointer;
+    }
+
+    .adminHeaderTitle {
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin: 0;
+            color: #111827;
+        }
+
+        p {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+        }
+    }
+
+    .adminHeaderRight {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .adminAvatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #1D3557;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 20px;
+    }
+
+    .adminUser {
+        span {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        p {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0;
+        }
+    }
+}
+
+// Fond sombre
+.adminOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 100;
+}
+
+// Menu latéral
+.adminSidebar {
+    width: 330px;
+    max-width: 85vw;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #030609;
+    color: white;
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s;
+
+    &.open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+    a{
+        font-family: $font-text;
+    }
+
+    .adminSidebarHeader {
+        height: 80px;
+        padding: 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #252a30;
+
+        button {
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 22px;
+            cursor: pointer;
+        }
+    }
+
+    .adminLogo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 27px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .adminLogoIcon {
+        width: 40px;
+        height: 40px;
+        background: $color-btn-red;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .adminSidebarNav {
+        padding: 24px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        > p {
+            color: #64748b;
+            font-size: 13px;
+            margin: 0 15px 8px;
+            letter-spacing: 1px;
+        }
+    }
+
+    .adminNavLink {
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.2s;
+
+        svg {
+            width: 20px;
+            font-size: 19px;
+        }
+
+        &:hover {
+            background: #161d25;
+            color: white;
+        }
+
+        &.active {
+            background: #E63946;
+            color: white;
+            font-weight: 600;
+        }
+    }
+
+    .adminSidebarFooter {
+        margin-top: auto;
+        padding: 25px 30px;
+        border-top: 1px solid #252a30;
+        color: #64748b;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 767px) {
+    .adminHeader {
+        padding: 0 15px;
+
+        .adminHeaderLeft {
+            gap: 15px;
+        }
+
+        .adminHeaderTitle {
+            h1 {
+                font-size: 23px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+
+        .adminUser {
+            display: none;
+        }
+
+        .adminAvatar {
+            width: 38px;
+            height: 38px;
+        }
+    }
+}

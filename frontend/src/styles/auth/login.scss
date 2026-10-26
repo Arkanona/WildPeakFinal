@@ -71,6 +71,19 @@
                 border: 2px solid lightgray;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.125); 
                 outline: none;
+
+                &[aria-invalid='true'] {
+                    border: 1px solid $color-btn-red;
+                    outline-color: $color-btn-red;
+                }
+            }
+
+            .fieldError{
+                display: block;
+                color: $color-btn-red;
+                font-size: 14px;
+                line-height: 1.4;
+                margin:  5px 0 12px;
             }
         }
         .errorPass{

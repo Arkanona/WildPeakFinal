@@ -11,30 +11,62 @@ function Login () {
     const loading = useAuthStore((state) => state.loading)
     const error = useAuthStore((state) => state.error)
     
+    const navigate = useNavigate()
 
     const [ form, setForm ] = useState({
         email: '',
         password: ''
     })
 
+    const [errors, setErrors] = useState({})
+
     const handleChange = (e) => {
-        setForm({
-            ...form, [e.target.name]: e.target.value
-        })
+        const { name, value } = e.target
+
+        setForm((prev) => ({
+            ...prev, [name]: value
+        }))
+
+        setErrors((prev) => ({
+            ...prev, [name]: ''
+        }))
     }
-    const navigate = useNavigate()
+
+    const validateForm = () => {
+        const newErrors = {}
+
+        if (!form.email.trim()) {
+            newErrors.email = "L'adresse e-mail est obligatoire."
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+            newErrors.email = "L'adresse e-mail n'est pas valide."
+        }
+
+        if (!form.password) {
+            newErrors.password = 'Le mot de passe est obligatoire.'
+        }
+
+        setErrors(newErrors)
+
+        return Object.keys(newErrors).length === 0
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (form.password)
+        if (!validateForm()) {
+            return
+        }
 
-        try{
-            await login(form)
+        try {
+            await login({
+                email: form.email.trim(),
+                password: form.password
+            })
 
             navigate('/')
-        } catch(error){
-            console.error(error)
+
+        } catch (error) {
+            console.error(error.message)
         }
     }
         
@@ -46,13 +78,26 @@ function Login () {
             <p>Connectez-vous pour retrouver votre espace WildPeak.</p>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="email">E-mail :</label>
-                    <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange}/>
+                    <input type="email" name="email" id="email" placeholder="mail@exemple.com" value={form.email} onChange={handleChange} aria-invalid={!!errors.email}aria-describedby={errors.email ? 'loginEmailError' : undefined}/>
+                     {errors.email && (
+                        <p id="loginEmailError" className="fieldError" role="alert">
+                            {errors.email}
+                        </p>
+                    )}
                     
                     <label htmlFor="password">Mot de passe :</label>
-                        <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange}/>
+                        <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange} aria-invalid={!!errors.password}aria-describedby={errors.password ? 'loginPasswordError' : undefined}/>
+                        {errors.email && (
+                        <p id="loginPasswordError" className="fieldError" role="alert">
+                            {errors.password}
+                        </p>
+                    )}
+
+                    {error && (
+                        <p className="errorPass" role="alert">{error}</p>
+                    )}
                     
                 <button disabled={loading} type="submit">{loading ? 'Connexion...' : 'Se connecter'}</button>
-                 {error && <p className='errorPass'>{error}</p>}
                 </form>
                  <Link to="/mot-de-passe-oublie" className='forgotPassLink'>Mot de passe oublié ?</Link>
             </article>

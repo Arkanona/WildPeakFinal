@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar"
 import { useEffect, useState } from "react"
 import { getAttractions, getParks } from "../services/api"
 import AdminFirstSecAttraction from "../components/adminAttractions/AdminFirstSecAttractions"
 import AdminAttractionsTable from "../components/adminAttractions/AdminAttractionsTable"
 import AddAttractionModal from "../components/adminAttractions/AddAttractionModal"
 import useAuthStore from "../store/authStore"
+import AdminHeader from "../components/AdminHeader"
 
 function AdminAttraction() {
 
@@ -110,7 +110,7 @@ function AdminAttraction() {
         <>
         <title>Administration des attractions - WildPeak</title>
         <meta name="description" content="Gestion des attractions WildPeak."/>
-        <Navbar/>
+        <AdminHeader/>
         <main>
             <section className="secBgAdmin">
                 <AdminFirstSecAttraction
