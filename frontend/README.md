@@ -4,7 +4,7 @@ Ce dossier contient l'interface de WildPeak, développée avec **React** et **Vi
 
 **Site en ligne :** https://wild-peak-ten.vercel.app
 
-Pour le fonctionnement de l'API et de la base de données, consulter le [README du backend](../back/README.md).
+Pour le fonctionnement de l'API et de la base de données, consulter le [README du backend](../backend/README.md).
 
 ## Stack technique
 
@@ -38,7 +38,7 @@ npm run dev
 
 L'application est normalement accessible sur `http://localhost:5173`.
 
-Pour obtenir les données en local, démarrer également le backend. Les instructions sont dans le [README du backend](../back/README.md).
+Pour obtenir les données en local, démarrer également le backend. Les instructions sont dans le [README du backend](../backend/README.md).
 
 ## Pages principales
 
@@ -95,5 +95,5 @@ Sur Vercel, la variable `VITE_API_URL` doit pointer vers l'URL publique de l'API
 ## Liens utiles
 
 - [README général](../README.md)
-- [README du backend](../back/README.md)
+- [README du backend](../backend/README.md)
 - [Site WildPeak](https://wild-peak-ten.vercel.app)

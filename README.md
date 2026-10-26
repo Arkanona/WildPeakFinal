@@ -47,15 +47,15 @@ wildpeak/
 Le frontend et le backend disposent chacun de leur propre configuration et de leurs dépendances.
 
 1. Cloner le dépôt Git.
-2. Installer et configurer le backend en suivant le [README du backend](./back/README.md).
-3. Installer et lancer le frontend en suivant le [README du frontend](./front/README.md).
+2. Installer et configurer le backend en suivant le [README du backend](./backend/README.md).
+3. Installer et lancer le frontend en suivant le [README du frontend](./frontend/README.md).
 
 Pour utiliser les fonctionnalités nécessitant un compte ou accéder aux données des parcs et attractions en local, l'API doit être accessible depuis le frontend.
 
 ## Documentation
 
-- [Frontend : installation, pages et fonctionnement](./front/README.md)
-- [Backend : API, base de données et configuration](./back/README.md)
+- [Frontend : installation, pages et fonctionnement](./frontend/README.md)
+- [Backend : API, base de données et configuration](./backend/README.md)
 
 ## Auteur
 

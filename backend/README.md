@@ -4,7 +4,7 @@ Ce dossier contient l'API de WildPeak. Elle gère les données des parcs et attr
 
 **API en production :** https://wildpeak-api.onrender.com
 
-Pour l'interface qui consomme cette API, consulter le [README du frontend](../front/README.md).
+Pour l'interface qui consomme cette API, consulter le [README du frontend](../frontend/README.md).
 
 ## Stack technique
 
@@ -121,5 +121,5 @@ L'API est déployée sur **Render**. La base PostgreSQL et les images sont hébe
 ## Liens utiles
 
 - [README général](../README.md)
-- [README du frontend](../front/README.md)
+- [README du frontend](../frontend/README.md)
 - [API WildPeak](https://wildpeak-api.onrender.com)
