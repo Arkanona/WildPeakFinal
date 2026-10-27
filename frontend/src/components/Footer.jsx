@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom';
 import '../styles/footer.scss';
 
 function Footer () {
+
+    const openCookieSettings = () => {
+        window.dispatchEvent(
+            new Event('wildpeak-open-cookie-settings')
+        )
+    }
+
     return (
         <footer>
             <div>
@@ -12,6 +19,13 @@ function Footer () {
                     <Link to="/informations-legales#PrivacyPolicy" >Politiques de confidentialités</Link>
                     <Link to="/informations-legales#TermsOfUse" >Condition d'utilisations</Link>
                     <Link to="/contact">Contact</Link>
+                    <button
+                        type="button"
+                        onClick={openCookieSettings}
+                        className="footerCookieButton"
+                    >
+                        Gestion des cookies
+                    </button>
                 </article>
             </div>
         </footer>

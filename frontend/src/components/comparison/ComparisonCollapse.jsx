@@ -41,7 +41,6 @@ function ComparisonCollapse({attractions= [], parks = [], selectedAttraction = [
 
     const filteredAttractions = attractions.filter((attraction) =>
         attraction.name_attraction.toLowerCase().includes(search.toLowerCase()) 
-        // park.name_park.toLowerCase().includes(search.toLowerCase())
     )
 
     return (

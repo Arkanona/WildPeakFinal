@@ -1,0 +1,37 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/parcs</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/parcs/europa-park</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/attractions</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/attractions/voltron-nevera-powered-by-rimac</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/comparateur</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/contact</loc>
+    </url>
+
+    <url>
+        <loc>https://wild-peak-ten.vercel.app/informations-legales</loc>
+    </url>
+
+</urlset>

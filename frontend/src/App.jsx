@@ -24,10 +24,13 @@ const LegalInformation = lazy(() => import("./pages/LegalInformation"));
 import AdminRoute from "./components/adminAttractions/AdminRoute";
 import AdminParks from "./pages/AdminPark";
 
+import CookieBanner from "./components/cookies/CookieBanner";
+
 function App() {
   return (
     <Router>
       <Suspense fallback={null}>
+        <CookieBanner/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/inscription" element={<RegisterPage />} />
