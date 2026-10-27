@@ -260,6 +260,11 @@
         .cardLegalMention{
             grid-template-columns: 1fr;
                 
+            .cardImageCredits {
+                .creditsGrid{
+                    grid-template-columns: 1fr;
+                }
+            }
         }
     }       
 }
