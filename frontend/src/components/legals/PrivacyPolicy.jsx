@@ -1,9 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../styles/legal/legalMention.scss'
 import '../../styles/legal/privacyPolicy.scss'
-import { faClock, faCookieBite, faDatabase, faFileLines, faRotate, faShieldHalved, faTriangleExclamation, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faCookieBite, faDatabase, faFileLines, faRotate, faShieldHalved, faTriangleExclamation, faUser, faUserXmark } from '@fortawesome/free-solid-svg-icons'
+import DeleteAccountModal from './DeleteAccountModal'
+import { useState } from 'react'
+import { Link } from "react-router-dom"
+import useAuthStore from "../../store/authStore"
 
 function PrivacyPolicy() {
+
+    const token = useAuthStore((state) => state.token)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+
     return(
         <>
         <section id='PrivacyPolicy'>
@@ -88,6 +96,21 @@ function PrivacyPolicy() {
                         <p>L’utilisateur s’engage à accéder au site avec un matériel récent, sans virus, et avec un navigateur de dernière génération mis à jour.</p>
                         <p>Les liens hypertextes vers d’autres ressources sur Internet ne sauraient engager la responsabilité de WildPeak.</p>
                     </div>
+                </article>
+                <article className="deleteAccountArticle">
+                    <FontAwesomeIcon icon={faUserXmark} />
+                    <h3>Suppression de votre compte</h3>
+                    <p>Vous pouvez demander la suppression définitive de votre compte WildPeak et des données personnelles qui y sont associées, notamment vos favoris. Cette action est irréversible.</p>
+                    {token ? (
+                        <button type="button" onClick={() => setShowDeleteModal(true)}>Supprimer mon compte</button>
+                    ) : (
+                        <Link to="/connexion" className="deleteAccountLogin">Se connecter pour supprimer mon compte</Link>
+                    )}
+                    {showDeleteModal && token && (
+                        <DeleteAccountModal
+                            onClose={() => setShowDeleteModal(false)}
+                        />
+                    )}
                 </article>
             </section>
         </>

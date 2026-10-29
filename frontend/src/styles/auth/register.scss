@@ -92,8 +92,24 @@
             color: $color-btn-red;
         }
 
+        .registerPrivacy {
+            margin: 15px 0 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #555;
+            text-align: center;
+
+            a {
+                color: $color-btn-red;
+                font-weight: 600;
+
+                &:hover {
+                    color: #1d3557;
+                }
+            }
+        }
+
         button{
-            margin-top: 35px;
             margin-bottom: 20px;
             width: 100%;
             padding: 9px;

@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
+const { pool } = require('../config/db')
 const { sendResetPasswordEmail } = require('../services/mailService')
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -205,5 +206,100 @@ exports.resetPassword = async (req, res) => {
             title: "Erreur serveur lors de la réinitialisation du mot de passe.",
             status: 500
         })
+    }
+}
+
+exports.deleteAccount = async (req, res) => {
+    const client = await pool.connect()
+
+    try {
+        const idUser = req.user?.id_user
+        const { password } = req.body
+
+        if (!idUser) {
+            return res.status(401).json({
+                title: "Utilisateur non authentifié"
+            })
+        }
+
+        if (typeof password !== "string" || !password) {
+            return res.status(400).json({
+                title: "Mot de passe obligatoire"
+            })
+        }
+
+        await client.query('BEGIN')
+
+        // Adapter "users" au nom exact de ta table utilisateur.
+        const { rows } = await client.query(
+            `
+            SELECT id_user, pass_hash_user
+            FROM users
+            WHERE id_user = $1
+            FOR UPDATE
+            `,
+            [idUser]
+        )
+
+        const user = rows[0]
+
+        if (!user) {
+            await client.query('ROLLBACK')
+
+            return res.status(404).json({
+                title: "Compte introuvable"
+            })
+        }
+
+        const passwordValid = await bcrypt.compare(
+            password,
+            user.pass_hash_user
+        )
+
+        if (!passwordValid) {
+            await client.query('ROLLBACK')
+
+            return res.status(403).json({
+                title: "Mot de passe incorrect"
+            })
+        }
+
+        // Supprimer les favoris liés au compte
+        await client.query(
+            `
+            DELETE FROM favorites
+            WHERE id_user = $1
+            `,
+            [idUser]
+        )
+
+        // Supprimer le compte utilisateur
+        await client.query(
+            `
+            DELETE FROM users
+            WHERE id_user = $1
+            `,
+            [idUser]
+        )
+
+        await client.query('COMMIT')
+
+        return res.status(200).json({
+            title: "Votre compte a été supprimé avec succès",
+            status: 200
+        })
+
+    } catch (error) {
+        await client.query('ROLLBACK').catch(console.error)
+
+        console.error("Erreur suppression du compte :", error)
+
+        return res.status(500).json({
+            title: "Erreur lors de la suppression du compte",
+            status: 500
+        })
+
+    } finally {
+        client.release()
     }
 }

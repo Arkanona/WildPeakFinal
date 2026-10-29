@@ -1,0 +1,155 @@
+@import '../variables';
+
+.deleteAccountOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+
+    .deleteAccountModal {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        max-height: 90dvh;
+        overflow-y: auto;
+        padding: 35px;
+        background: white;
+        border-radius: 12px;
+        text-align: center;
+        box-sizing: border-box;
+
+        .closeModal {
+            position: absolute;
+            top: 18px;
+            right: 30px;
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .warningIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #fde8e8;
+            color: $color-btn-red;
+            font-size: 28px;
+        }
+
+        h2 {
+            color: #1d3557;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #555;
+            font-family: $font-text;
+            line-height: 1.6;
+        }
+
+        form {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: $font-text;
+            font-weight: 500;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            height: 48px;
+            padding: 0 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .confirmCheckbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            cursor: pointer;
+
+            input {
+                margin-top: 4px;
+                accent-color: $color-btn-red;
+            }
+        }
+
+        .deleteError {
+            padding: 12px;
+            background: #fde8e8;
+            color: #a21d25;
+            border-radius: 8px;
+        }
+
+        .modalActions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+
+            button {
+                flex: 1;
+                padding: 13px;
+                border-radius: 8px;
+                border: none;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .cancelButton {
+                background: #e8e8e8;
+                color: #333;
+            }
+
+            .deleteButton {
+                background: $color-btn-red;
+                color: white;
+
+                &:hover:not(:disabled) {
+                    background: #b91f28;
+                }
+            }
+
+            button:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .deleteAccountOverlay {
+        padding: 12px;
+
+        .deleteAccountModal {
+            padding: 30px 20px;
+
+            .modalActions {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+}

@@ -56,7 +56,7 @@ function Register () {
         newErrors.password = "Le mot de passe doit contenir au moins 7 caractères, une majuscule, une minuscule, un chiffre et un symbole."
     }
 
-    if (form.confirmPassword){
+    if (!form.confirmPassword){
         newErrors.confirmPassword = 'Veuillez confirmez votre mot de passe.'
     } else if (form.password !== form.confirmPassword) {
         newErrors.confirmPassword = 'Les mots de passe ne correspondent pas.'
@@ -80,7 +80,7 @@ function Register () {
         try{
             await register({
                 name: form.name.trim(),
-                email: form.email.tim(),
+                email: form.email.trim(),
                 password: form.password
             })
             navigate('/connexion')
@@ -111,12 +111,12 @@ function Register () {
                         <p id='emailError' className='fieldError' role='alert'>{errors.email}</p>
                     )}
                     <label htmlFor="password">Mot de passe :</label>
-                    <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange} required aria-invalid={!!errors.password} aria-describedby={errors.password ? 'passwordlError' : undefined}/>
+                    <input type="password" name="password" id="password" placeholder="Mot de passe" value={form.password} onChange={handleChange} required aria-invalid={!!errors.password} aria-describedby={errors.password ? 'passwordError' : undefined}/>
                     {errors.password && (
                         <p id='passwordError' className='fieldError' role='alert'>{errors.password}</p>
                     )}
                     <label htmlFor="confirmPassword">Confirmez le mot de passe :</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez le mot de passe" value={form.confirmPassword} onChange={handleChange} required aria-invalid={!!errors.confirmPassword} aria-describedby={errors.confirmPassword ? 'confirmPasswordlError' : undefined}/>
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez le mot de passe" value={form.confirmPassword} onChange={handleChange} required aria-invalid={!!errors.confirmPassword} aria-describedby={errors.confirmPassword ? 'confirmPasswordError' : undefined}/>
                     {errors.confirmPassword && (
                         <p id='confirmPasswordError' className='fieldError' role='alert'>{errors.confirmPassword}</p>
                     )}
@@ -124,6 +124,9 @@ function Register () {
                     {error && (
                         <p className='errorPass' role='alert'>{error}</p>
                     )}
+                <p className="registerPrivacy">En créant un compte, vous reconnaissez avoir pris connaissance de notre{" "}
+                    <Link to="/informations-legales#PrivacyPolicy">politique de confidentialité</Link>.
+                    Vous pouvez demander la suppression de votre compte à tout moment depuis cette page.</p>
                 <button type="submit" disabled={loading}>{loading ? 'Inscription...' : "S'inscrire"}</button>
                 </form>
             </article>

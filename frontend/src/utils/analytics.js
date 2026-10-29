@@ -58,10 +58,7 @@ export const startAnalytics = () => {
 
     window.gtag('js', new Date())
 
-    // window.gtag('config', GA_ID)
-    window.gtag('config', GA_ID, {
-        debug_mode: true
-    })
+    window.gtag('config', GA_ID)
 
     const script = document.createElement('script')
 
@@ -71,7 +68,6 @@ export const startAnalytics = () => {
     script.onload = () => {
         analyticsStarted = true
         analyticsLoading = false
-        console.log('Google Analytics chargé avec succès')
     }
 
     script.onerror = () => {
@@ -82,7 +78,6 @@ export const startAnalytics = () => {
 
     document.head.appendChild(script)
 }
-
 
 const deleteAnalyticsCookies = () => {
     const names = document.cookie
