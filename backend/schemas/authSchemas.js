@@ -54,12 +54,5 @@ const resetPasswordSchema = z.object({
         .regex(/[^a-zA-Z0-9]/, {error: 'Le mot de passe doit contenir un caractère spécial'})
 })
 
-/* 
-                    null        undefined/absent
-.nullable()         Oui         Non
-.optional()         Non         Oui
-.nullish()          Oui         Oui
-*/
-
 
 module.exports = { registerSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema }

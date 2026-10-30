@@ -5,6 +5,8 @@ const cors = require('cors')
 const helmet = require('helmet')
 const rateLimit = require('express-rate-limit')
 const path = require('path')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./config/swagger.js')
 
 require('dotenv').config()
 require('./config/db')
@@ -57,7 +59,7 @@ app.use(cors({
 app.use(limiter)
 app.use(express.json())
 app.use('/upload', express.static(path.join(process.cwd(), 'upload')))
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/parks', parkRoutes)

@@ -25,6 +25,7 @@
     "nodemailer": "^10.0.13",
     "pg": "^8.23.0",
     "sharp": "^0.35.4",
+    "swagger-ui-express": "^5.0.1",
     "validator": "^13.15.35",
     "zod": "^4.6.5"
   },

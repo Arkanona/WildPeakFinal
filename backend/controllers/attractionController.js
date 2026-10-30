@@ -233,12 +233,13 @@ exports.updateAttraction = async (req, res) => {
                 attraction.id_attraction
             )
 
-            updatedAttraction =
+            updatedAttraction = (
                 await Upload.updateAttractionDb(
                     cardImageUrl,
                     backgroundImageUrl,
                     attraction.id_attraction
                 )
+            )[0]
 
             // Suppression des anciennes images Supabase
             await deleteOldImages([

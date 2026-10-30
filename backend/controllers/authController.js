@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
-const { pool } = require('../config/db')
 const { sendResetPasswordEmail } = require('../services/mailService')
 
 const JWT_SECRET = process.env.JWT_SECRET
@@ -210,79 +209,55 @@ exports.resetPassword = async (req, res) => {
 }
 
 exports.deleteAccount = async (req, res) => {
-    const client = await pool.connect()
-
     try {
         const idUser = req.user?.id_user
-        const { password } = req.body
+        const { password } = req.body || {}
 
         if (!idUser) {
             return res.status(401).json({
-                title: "Utilisateur non authentifié"
+                title: "Utilisateur non authentifié",
+                status: 401
             })
         }
 
         if (typeof password !== "string" || !password) {
             return res.status(400).json({
-                title: "Mot de passe obligatoire"
+                title: "Mot de passe obligatoire",
+                status: 400
             })
         }
 
-        await client.query('BEGIN')
+        const result = await User.deleteUserAccount(
+            idUser,
+            async (passwordHash) => {
+                if (
+                    typeof passwordHash !== "string" ||
+                    !passwordHash
+                ) {
+                    throw new Error(
+                        "Hash du mot de passe introuvable"
+                    )
+                }
 
-        // Adapter "users" au nom exact de ta table utilisateur.
-        const { rows } = await client.query(
-            `
-            SELECT id_user, pass_hash_user
-            FROM users
-            WHERE id_user = $1
-            FOR UPDATE
-            `,
-            [idUser]
+                return bcrypt.compare(password, passwordHash)
+            }
         )
 
-        const user = rows[0]
+        if (!result.success) {
+            if (result.reason === 'USER_NOT_FOUND') {
+                return res.status(404).json({
+                    title: "Compte introuvable",
+                    status: 404
+                })
+            }
 
-        if (!user) {
-            await client.query('ROLLBACK')
-
-            return res.status(404).json({
-                title: "Compte introuvable"
-            })
+            if (result.reason === 'INVALID_PASSWORD') {
+                return res.status(403).json({
+                    title: "Mot de passe incorrect",
+                    status: 403
+                })
+            }
         }
-
-        const passwordValid = await bcrypt.compare(
-            password,
-            user.pass_hash_user
-        )
-
-        if (!passwordValid) {
-            await client.query('ROLLBACK')
-
-            return res.status(403).json({
-                title: "Mot de passe incorrect"
-            })
-        }
-
-        // Supprimer les favoris liés au compte
-        await client.query(
-            `
-            DELETE FROM favorites
-            WHERE id_user = $1
-            `,
-            [idUser]
-        )
-
-        // Supprimer le compte utilisateur
-        await client.query(
-            `
-            DELETE FROM users
-            WHERE id_user = $1
-            `,
-            [idUser]
-        )
-
-        await client.query('COMMIT')
 
         return res.status(200).json({
             title: "Votre compte a été supprimé avec succès",
@@ -290,16 +265,11 @@ exports.deleteAccount = async (req, res) => {
         })
 
     } catch (error) {
-        await client.query('ROLLBACK').catch(console.error)
-
         console.error("Erreur suppression du compte :", error)
 
         return res.status(500).json({
             title: "Erreur lors de la suppression du compte",
             status: 500
         })
-
-    } finally {
-        client.release()
     }
 }

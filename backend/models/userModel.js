@@ -87,3 +87,78 @@ exports.clearResetToken = async (userId) => {
 
     await pool.query(query, [userId])
 }
+
+exports.deleteUserAccount = async (idUser, verifyPassword) => {
+    const client = await pool.connect()
+
+    try {
+        await client.query('BEGIN')
+
+        // Verrouiller la ligne utilisateur pendant l'opération
+        const { rows } = await client.query(
+            `
+            SELECT id_user, pass_hash_user
+            FROM users
+            WHERE id_user = $1
+            FOR UPDATE
+            `,
+            [idUser]
+        )
+
+        const user = rows[0]
+
+        if (!user) {
+            await client.query('ROLLBACK')
+
+            return {
+                success: false,
+                reason: 'USER_NOT_FOUND'
+            }
+        }
+
+        // La fonction de vérification est fournie par le controller
+        const passwordValid = await verifyPassword(
+            user.pass_hash_user
+        )
+
+        if (!passwordValid) {
+            await client.query('ROLLBACK')
+
+            return {
+                success: false,
+                reason: 'INVALID_PASSWORD'
+            }
+        }
+
+        // Supprimer les favoris
+        await client.query(
+            `
+            DELETE FROM favorites
+            WHERE id_user = $1
+            `,
+            [idUser]
+        )
+
+        // Supprimer le compte
+        await client.query(
+            `
+            DELETE FROM users
+            WHERE id_user = $1
+            `,
+            [idUser]
+        )
+
+        await client.query('COMMIT')
+
+        return {
+            success: true
+        }
+
+    } catch (error) {
+        await client.query('ROLLBACK')
+        throw error
+
+    } finally {
+        client.release()
+    }
+}
