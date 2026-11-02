@@ -26,3 +26,6 @@ dist-ssr
 
 # Back-end
 .env
+
+# Rapports de couverture Jest
+backend/coverage/

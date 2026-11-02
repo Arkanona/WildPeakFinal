@@ -17,6 +17,7 @@ Ce dossier contient l’API REST de **WildPeak**, le comparateur d’attractions
 - **Brevo** : envoi des e-mails de contact et de réinitialisation de mot de passe.
 - **Helmet, CORS et rate limiting** : protections HTTP et limitation des requêtes.
 - **Swagger UI / JSDoc** : documentation des endpoints et du code JavaScript.
+- **Jest** : tests automatisés des controllers, models, middlewares et services, avec rapport de couverture.
 
 ## Installation en local
 
@@ -162,6 +163,114 @@ La commande suppose le script suivant dans `package.json` :
 Avec la configuration `jsdoc.json` prévue, le résultat est généré dans `docs/jsdoc/`. Ouvrir ensuite `docs/jsdoc/index.html` dans un navigateur.
 
 La documentation JSDoc complète Swagger : **Swagger décrit les échanges HTTP**, tandis que **JSDoc explique le fonctionnement du code backend**.
+
+## Tests automatisés — Jest
+
+Le backend dispose d'une suite de tests automatisés avec **Jest**. Les tests couvrent les fonctionnalités métier et les cas d'erreur, sans requêtes vers les services de production. Ils utilisent des **mocks** pour isoler notamment les accès PostgreSQL, l'authentification, les appels Brevo et les traitements d'images.
+
+### Lancer les tests
+
+Depuis le dossier `backend`, installer les dépendances puis utiliser :
+
+```bash
+# Exécuter tous les tests
+npm test
+
+# Relancer les tests pendant le développement
+npm run test:watch
+
+# Exécuter les tests et produire le rapport de couverture
+npm run test:coverage
+```
+
+Les scripts attendus dans le `package.json` sont :
+
+```json
+{
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --runInBand"
+  }
+}
+```
+
+Ces entrées sont des **exemples à intégrer aux scripts existants**, sans remplacer les autres commandes du `package.json`.
+
+### Résultats obtenus
+
+Résultats de l'exécution locale du **2 novembre 2026** :
+
+| Indicateur | Résultat |
+| --- | ---: |
+| Suites de tests | **16 / 16 réussies** |
+| Tests | **103 / 103 réussis** |
+| Couverture des instructions (`Statements`) | **92,77 %** |
+| Couverture des branches (`Branches`) | **85,71 %** |
+| Couverture des fonctions (`Functions`) | **100 %** |
+| Couverture des lignes (`Lines`) | **92,96 %** |
+
+Le détail de la couverture par partie du backend est le suivant :
+
+| Partie | Lignes couvertes | Fonctions couvertes |
+| --- | ---: | ---: |
+| Controllers | 89,43 % | 100 % |
+| Middlewares | 100 % | 100 % |
+| Models | 100 % | 100 % |
+| Services | 100 % | 100 % |
+
+Les fichiers `contactController.js`, `favoriteController.js` et les **quatre middlewares** atteignent également 100 % sur les quatre indicateurs (instructions, branches, fonctions et lignes).
+
+Les scénarios couverts comprennent notamment :
+
+- **Comptes et authentification** : création d'utilisateurs, recherche en base, gestion des JWT, réinitialisation du mot de passe et suppression de compte avec transactions PostgreSQL (`COMMIT` / `ROLLBACK`).
+- **Parcs et attractions** : opérations de lecture, d'ajout, de modification et de suppression, avec vérification des erreurs.
+- **Favoris** : consultation, ajout, suppression et gestion des doublons.
+- **Administration** : refus d'accès aux utilisateurs non authentifiés ou dépourvus du rôle `admin`.
+- **Validation Zod** : données valides et invalides, erreurs HTTP 422.
+- **Images** : types JPEG/PNG/WebP autorisés, limite de 6 Mo, traitement des fichiers et gestion des erreurs d'upload.
+- **Contact et e-mails** : acceptation de la confidentialité, envoi de messages, erreurs du service Brevo et réinitialisation du mot de passe.
+
+La structure des tests suit les dossiers de l'application :
+
+```text
+tests/
+├── controllers/
+│   ├── attractionController.test.js
+│   ├── authController.test.js
+│   ├── contactController.test.js
+│   ├── favoriteController.test.js
+│   ├── parkController.test.js
+│   └── uploadController.test.js
+├── middlewares/
+│   ├── adminMiddleware.test.js
+│   ├── authMiddleware.test.js
+│   ├── uploadMiddleware.test.js
+│   └── validateMiddleware.test.js
+├── models/
+│   ├── attractionModel.test.js
+│   ├── favoriteModel.test.js
+│   ├── parkModel.test.js
+│   ├── uploadModel.test.js
+│   └── userModel.test.js
+└── services/
+    └── mailService.test.js
+```
+
+### Rapport de couverture
+
+Après `npm run test:coverage`, ouvrir **`backend/coverage/index.html`** dans un navigateur pour consulter le rapport HTML, avec le détail des lignes et des branches non couvertes.
+
+Le dossier `coverage/` est généré automatiquement et doit être exclu du dépôt Git. Ajouter dans le `.gitignore` :
+
+```gitignore
+# Rapport de couverture Jest
+coverage/
+```
+
+En revanche, **les fichiers `*.test.js` doivent rester versionnés** : ils permettent de reproduire les vérifications du projet.
+
+> **Portée des résultats :** ces chiffres reflètent les tests Jest exécutés localement le 2 novembre 2026. La suite est majoritairement constituée de tests unitaires avec mocks ; elle ne remplace pas des tests d'intégration sur une base de test ni des tests de bout en bout du frontend. Les pourcentages évolueront si le code ou les tests changent.
 
 ## Déploiement
 
