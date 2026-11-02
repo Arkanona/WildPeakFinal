@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest",
-    "migrate:images": "node scripts/migrateImagesToSupabase.js"
+    "migrate:images": "node scripts/migrateImagesToSupabase.js",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "jest": "^30.5.1"
+    "jest": "^30.5.1",
+    "jsdoc": "^4.0.5"
   }
 }

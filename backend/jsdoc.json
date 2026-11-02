@@ -1,0 +1,27 @@
+{
+    "source": {
+        "include": [
+            "controllers",
+            "models",
+            "middlewares",
+            "services"
+        ],
+        "exclude": [
+            "node_modules",
+            "docs"
+        ],
+        "includePattern": ".+\\.js$"
+    },
+    "opts": {
+        "destination": "./docs/jsdoc",
+        "recurse": true,
+        "encoding": "utf8"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    }
+}

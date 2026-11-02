@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: middlewares/uploadMiddleware</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: middlewares/uploadMiddleware</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Middleware chargé de la gestion des fichiers images
+envoyés vers le backend de WildPeak.</p>
+<p>Il utilise Multer pour traiter les fichiers
+transmis dans les requêtes multipart/form-data.</p>
+<p>Les fichiers sont stockés temporairement en mémoire
+avant leur traitement avec Sharp et leur envoi
+vers le stockage Supabase.</p>
+<p>Seuls les formats JPEG, PNG et WebP sont acceptés.
+La taille maximale autorisée est de 6 Mo par fichier.</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_uploadMiddleware.js.html">middlewares/uploadMiddleware.js</a>, <a href="middlewares_uploadMiddleware.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="~storage"><span class="type-signature">(inner, constant) </span>storage<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>Configure le stockage temporaire des fichiers en mémoire.</p>
+<p>Multer conserve les fichiers sous forme de Buffer
+dans req.file.buffer, sans les enregistrer
+directement sur le disque du serveur.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_uploadMiddleware.js.html">middlewares/uploadMiddleware.js</a>, <a href="middlewares_uploadMiddleware.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~upload"><span class="type-signature">(inner, constant) </span>upload<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>Configure le middleware Multer utilisé pour
+l'upload des images de WildPeak.</p>
+<p>La configuration applique les règles suivantes :</p>
+<ul>
+<li>Stockage temporaire en mémoire.</li>
+<li>Taille maximale de 6 Mo par fichier.</li>
+<li>Formats acceptés : JPEG, PNG et WebP.</li>
+</ul>
+<p>Les fichiers dont le type MIME n'est pas autorisé
+sont rejetés avec une erreur.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_uploadMiddleware.js.html">middlewares/uploadMiddleware.js</a>, <a href="middlewares_uploadMiddleware.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~fileFilter"><span class="type-signature">(inner) </span>fileFilter<span class="signature">(req, file, cb)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Vérifie que le type MIME du fichier envoyé est autorisé.</p>
+<p>Compare le type MIME du fichier avec la liste
+des formats acceptés : image/jpeg, image/png
+et image/webp.</p>
+<p>Si le format est invalide, une erreur est
+transmise au callback.</p>
+<p>Si le format est accepté, le callback autorise
+la poursuite du traitement.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Requête HTTP Express.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>file</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Informations du fichier transmis.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mimetype</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type MIME déclaré du fichier.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Callback de validation Multer.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_uploadMiddleware.js.html">middlewares/uploadMiddleware.js</a>, <a href="middlewares_uploadMiddleware.js.html#line55">line 55</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Autorise ou refuse le fichier via le callback.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_attractionController.html">controllers/attractionController</a></li><li><a href="module-controllers_authController.html">controllers/authController</a></li><li><a href="module-controllers_favoriteController.html">controllers/favoriteController</a></li><li><a href="module-controllers_parkController.html">controllers/parkController</a></li><li><a href="module-controllers_uploadController.html">controllers/uploadController</a></li><li><a href="module-middlewares_adminMiddleware.html">middlewares/adminMiddleware</a></li><li><a href="module-middlewares_authMiddleware.html">middlewares/authMiddleware</a></li><li><a href="module-middlewares_uploadMiddleware.html">middlewares/uploadMiddleware</a></li><li><a href="module-middlewares_validateMiddleware.html">middlewares/validateMiddleware</a></li><li><a href="module-models_attractionModel.html">models/attractionModel</a></li><li><a href="module-models_favoriteModel.html">models/favoriteModel</a></li><li><a href="module-models_parkModel.html">models/parkModel</a></li><li><a href="module-models_uploadModel.html">models/uploadModel</a></li><li><a href="module-models_userModel.html">models/userModel</a></li><li><a href="module-services_mailService.html">services/mailService</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Mon Nov 02 2026 10:14:51 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

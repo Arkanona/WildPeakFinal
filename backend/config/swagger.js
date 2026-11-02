@@ -1,4 +1,3 @@
-
 const ref = (name) => ({
     $ref: `#/components/schemas/${name}`
 })

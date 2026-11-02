@@ -1,8 +1,42 @@
+
+/**
+ * @module controllers/parkController
+ * @description
+ * Contrôleur chargé de la gestion des parcs de WildPeak.
+ *
+ * Il permet de récupérer la liste des parcs, d'ajouter
+ * de nouveaux parcs, de modifier leurs informations
+ * et de les supprimer.
+ *
+ * Il gère également la création, la mise à jour
+ * et la suppression des images associées aux parcs
+ * à l'aide des services d'upload.
+ */
+
 const Park = require('../models/parkModel')
 const Upload = require('../models/uploadModel')
 const { createParkImages, deleteOldImages } = require('./uploadController')
 
 
+/**
+ * Récupère la liste de tous les parcs enregistrés.
+ *
+ * Fait appel au modèle Park pour récupérer les données
+ * depuis PostgreSQL.
+ *
+ * Les parcs sont retournés sous forme de tableau JSON,
+ * triés par identifiant croissant.
+ *
+ * @async
+ * @function getParks
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant la liste des parcs ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Liste des parcs récupérée avec succès.
+ * - 500 : Erreur lors de la récupération des parcs.
+ */
 exports.getParks = async (req, res) => {
     try {
         const park = await Park.findAllPark()
@@ -18,6 +52,43 @@ exports.getParks = async (req, res) => {
     }
 }
 
+/**
+ * Ajoute un nouveau parc dans la base de données.
+ *
+ * Vérifie que le nom du parc est renseigné avant
+ * de procéder à son enregistrement.
+ *
+ * Génère automatiquement un slug à partir du nom
+ * en supprimant les accents, en convertissant
+ * les caractères en minuscules et en remplaçant
+ * les espaces par des tirets.
+ *
+ * L'année d'ouverture est convertie en nombre
+ * lorsqu'elle est renseignée, sinon elle vaut null.
+ *
+ * Si une image est fournie, elle est traitée pour
+ * générer une image de présentation et une image
+ * de fond, puis leurs URL sont enregistrées
+ * dans la base de données.
+ *
+ * @async
+ * @function addPark
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.body - Informations du parc à créer.
+ * @param {string} req.body.name_park - Nom du parc.
+ * @param {string} [req.body.country_park] - Pays du parc.
+ * @param {string} [req.body.place_park] - Ville ou localisation du parc.
+ * @param {string|number} [req.body.opening_year_park] - Année d'ouverture du parc.
+ * @param {string} [req.body.description_park] - Description du parc.
+ * @param {Object} [req.file] - Image facultative transmise avec Multer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant le parc créé ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 201 : Parc ajouté avec succès.
+ * - 400 : Nom du parc manquant.
+ * - 500 : Erreur lors de la création du parc.
+ */
 exports.addPark = async (req, res) => {
     try {
         const {
@@ -90,6 +161,48 @@ exports.addPark = async (req, res) => {
     }
 }
 
+/**
+ * Modifie les informations d'un parc existant.
+ *
+ * Récupère l'identifiant du parc depuis les paramètres
+ * de l'URL et les nouvelles informations depuis
+ * le corps de la requête.
+ *
+ * Vérifie que le nom du parc est renseigné, puis
+ * régénère automatiquement son slug.
+ *
+ * Met à jour les informations du parc dans PostgreSQL.
+ *
+ * Si une nouvelle image est envoyée, les nouvelles
+ * images sont générées et leurs URL sont enregistrées.
+ * Les anciennes images sont ensuite supprimées.
+ *
+ * En cas d'erreur pendant l'enregistrement des nouvelles
+ * URL ou le nettoyage, le bloc catch interne tente
+ * de supprimer les nouvelles images avant de transmettre
+ * l'erreur au traitement principal.
+ *
+ * @async
+ * @function updatePark
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.id - Identifiant du parc à modifier.
+ * @param {Object} req.body - Nouvelles informations du parc.
+ * @param {string} req.body.name_park - Nom du parc.
+ * @param {string} [req.body.country_park] - Pays du parc.
+ * @param {string} [req.body.place_park] - Ville ou localisation du parc.
+ * @param {string|number} [req.body.opening_year_park] - Année d'ouverture.
+ * @param {string} [req.body.description_park] - Description du parc.
+ * @param {Object} [req.file] - Nouvelle image facultative transmise avec Multer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant le parc modifié ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Parc modifié avec succès.
+ * - 400 : Nom du parc manquant.
+ * - 404 : Parc introuvable.
+ * - 500 : Erreur lors de la modification du parc.
+ */
 exports.updatePark = async (req, res) => {
     try {
         const { id } = req.params
@@ -192,6 +305,37 @@ exports.updatePark = async (req, res) => {
     }
 }
 
+/**
+ * Supprime un parc existant et ses images associées.
+ *
+ * Récupère l'identifiant du parc depuis les paramètres
+ * de l'URL.
+ *
+ * Vérifie d'abord si le parc possède encore des attractions.
+ * Si des attractions sont présentes, la suppression
+ * est refusée afin de préserver les relations entre
+ * les données.
+ *
+ * Si le parc ne contient aucune attraction, son
+ * enregistrement est supprimé de PostgreSQL.
+ *
+ * Les images associées au parc sont ensuite supprimées
+ * du stockage Supabase.
+ *
+ * @async
+ * @function deletePark
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.id - Identifiant du parc à supprimer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant le parc supprimé ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Parc supprimé avec succès.
+ * - 404 : Parc introuvable.
+ * - 409 : Le parc contient encore des attractions.
+ * - 500 : Erreur lors de la suppression du parc.
+ */
 exports.deletePark = async (req, res) => {
     try {
         const { id } = req.params

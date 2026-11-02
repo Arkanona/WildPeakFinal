@@ -1,5 +1,27 @@
+
+/**
+ * Contrôleur de gestion des favoris de WildPeak.
+ * Permet aux utilisateurs connectés de consulter,
+ * ajouter et supprimer leurs attractions favorites.
+ *
+ * @module controllers/favoriteController
+ */
+
 const Favorite = require('../models/favoriteModel')
 
+/**
+ * Récupère les attractions favorites de l'utilisateur connecté.
+ *
+ * Les attractions sont retournées par ordre d'ajout
+ * décroissant, de la plus récente à la plus ancienne.
+ *
+ * @async
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.user - Utilisateur authentifié.
+ * @param {number} req.user.id_user - Identifiant de l'utilisateur.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<void>} Envoie les favoris en JSON (200) ou une erreur (500).
+ */
 exports.getFavorites = async (req, res) => {
     try {
         const userId = req.user.id_user
@@ -17,6 +39,22 @@ exports.getFavorites = async (req, res) => {
     }
 }
 
+/**
+ * Ajoute une attraction aux favoris de l'utilisateur connecté.
+ *
+ * L'insertion ignore les doublons grâce à la contrainte
+ * d'unicité présente dans la base de données.
+ * Si le favori existe déjà, le modèle retourne null.
+ *
+ * @async
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.user - Utilisateur authentifié.
+ * @param {number} req.user.id_user - Identifiant de l'utilisateur.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.idAttraction - Identifiant de l'attraction.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<void>} Envoie une réponse 201 ou une erreur 500.
+ */
 exports.addFavorite = async (req, res) => {
     try {
         const userId = req.user.id_user
@@ -39,6 +77,21 @@ exports.addFavorite = async (req, res) => {
     }
 }
 
+/**
+ * Supprime une attraction des favoris de l'utilisateur connecté.
+ *
+ * Si l'attraction n'est pas présente dans les favoris,
+ * le modèle retourne null.
+ *
+ * @async
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.user - Utilisateur authentifié.
+ * @param {number} req.user.id_user - Identifiant de l'utilisateur.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.idAttraction - Identifiant de l'attraction.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<void>} Envoie une réponse 200 ou une erreur 500.
+ */
 exports.removeFavorite = async (req, res) => {
     try {
         const userId = req.user.id_user

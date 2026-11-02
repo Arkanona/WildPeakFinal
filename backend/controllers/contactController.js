@@ -11,7 +11,6 @@ exports.sendMessage = async (req, res) => {
 
         } = req.body
 
-        // Vérification confidentialité
         if (confidentiality !== true) {
         return res.status(400).json({
             title: "Vous devez accepter la politique de confidentialité.",

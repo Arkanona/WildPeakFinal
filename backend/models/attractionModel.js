@@ -1,11 +1,82 @@
+
+/**
+ * @module models/attractionModel
+ * @description
+ * Modèle chargé de la gestion des attractions dans
+ * la base de données PostgreSQL de WildPeak.
+ *
+ * Il permet de récupérer toutes les attractions,
+ * d'en ajouter, de modifier leurs informations
+ * et de les supprimer.
+ *
+ * Les opérations utilisent des requêtes SQL paramétrées
+ * pour transmettre les valeurs à PostgreSQL.
+ */
+
 const { pool } = require('../config/db')
 
+/**
+ * Récupère toutes les attractions enregistrées dans la base de données.
+ *
+ * Exécute une requête SQL sur la table attraction
+ * afin de récupérer l'ensemble des attractions.
+ *
+ * Les résultats sont triés par identifiant croissant
+ * grâce à la clause ORDER BY id_attraction.
+ *
+ * @async
+ * @function findAllAttraction
+ * @returns {Promise<Object[]>} Tableau contenant les informations de toutes les attractions.
+ * @throws {Error} Si la requête SQL échoue.
+ */
 exports.findAllAttraction = async () => {
     const { rows } = await pool.query('SELECT * FROM attraction ORDER BY id_attraction')
 
     return rows
 }
 
+/**
+ * Ajoute une nouvelle attraction dans la base de données.
+ *
+ * Insère les informations de l'attraction dans la table
+ * attraction à l'aide d'une requête SQL paramétrée.
+ *
+ * Le nom, le slug, les caractéristiques techniques,
+ * les descriptions et les informations du parc associé
+ * sont transmis depuis le controller.
+ *
+ * Le slug et le texte alternatif de l'image sont
+ * générés en amont avant l'appel de cette fonction.
+ *
+ * La clause RETURNING permet de récupérer toutes
+ * les informations de l'attraction après son insertion.
+ *
+ * Les images ne sont pas traitées directement par
+ * ce modèle. Leur gestion est assurée séparément.
+ *
+ * @async
+ * @function addAttraction
+ * @param {Object} attractionData - Informations de l'attraction à créer.
+ * @param {string} attractionData.name_attraction - Nom de l'attraction.
+ * @param {string} attractionData.slug_attraction - Identifiant textuel de l'attraction.
+ * @param {number|string} attractionData.id_park - Identifiant du parc associé.
+ * @param {string} [attractionData.type_attraction] - Type d'attraction.
+ * @param {string} attractionData.alt_attraction - Texte alternatif de l'image.
+ * @param {string} [attractionData.parc_zone_attraction] - Zone thématique du parc.
+ * @param {string} [attractionData.intensity_level_attraction] - Niveau d'intensité.
+ * @param {boolean} [attractionData.family_friendly_attraction] - Indique si l'attraction est familiale.
+ * @param {string} [attractionData.short_description_attraction] - Description courte.
+ * @param {number|string|null} [attractionData.speed_max_kmh_attraction] - Vitesse maximale en km/h.
+ * @param {number|string|null} [attractionData.height_m_attraction] - Hauteur en mètres.
+ * @param {number|string|null} [attractionData.length_m_attraction] - Longueur en mètres.
+ * @param {number|string|null} [attractionData.duration_min_attraction] - Durée en minutes.
+ * @param {number|string|null} [attractionData.inversion_attraction] - Nombre d'inversions.
+ * @param {number|string|null} [attractionData.minimum_height_cm_attraction] - Taille minimale requise en centimètres.
+ * @param {number|string|null} [attractionData.opening_year_attraction] - Année d'ouverture.
+ * @param {string} [attractionData.description_attraction] - Description complète.
+ * @returns {Promise<Object|undefined>} Informations de l'attraction créée.
+ * @throws {Error} Si l'insertion dans PostgreSQL échoue.
+ */
 exports.addAttraction = async ({
     name_attraction,
     slug_attraction,
@@ -78,6 +149,52 @@ exports.addAttraction = async ({
     return rows[0]
 }
 
+/**
+ * Modifie les informations d'une attraction existante.
+ *
+ * Exécute une requête UPDATE sur la table attraction
+ * afin de remplacer les informations de l'attraction
+ * correspondant à l'identifiant fourni.
+ *
+ * Les données modifiables comprennent le nom, le slug,
+ * le parc associé, les caractéristiques techniques,
+ * le niveau d'intensité, les descriptions et les
+ * informations destinées aux familles.
+ *
+ * Les nouvelles valeurs sont fournies par le controller,
+ * qui effectue notamment la génération du slug et
+ * la conversion des champs numériques.
+ *
+ * La clause RETURNING permet de récupérer les
+ * informations de l'attraction après modification.
+ *
+ * Si aucune attraction ne correspond à l'identifiant,
+ * la fonction retourne null.
+ *
+ * @async
+ * @function updateAttraction
+ * @param {number|string} id - Identifiant de l'attraction à modifier.
+ * @param {Object} attractionData - Nouvelles informations de l'attraction.
+ * @param {string} attractionData.name_attraction - Nouveau nom de l'attraction.
+ * @param {string} attractionData.slug_attraction - Nouveau slug.
+ * @param {string} attractionData.alt_attraction - Nouveau texte alternatif.
+ * @param {number|null} attractionData.id_park - Identifiant du parc associé.
+ * @param {string} [attractionData.type_attraction] - Type d'attraction.
+ * @param {number|null} [attractionData.speed_max_kmh_attraction] - Vitesse maximale en km/h.
+ * @param {number|null} [attractionData.height_m_attraction] - Hauteur en mètres.
+ * @param {number|null} [attractionData.length_m_attraction] - Longueur en mètres.
+ * @param {number|null} [attractionData.duration_min_attraction] - Durée en minutes.
+ * @param {number|null} [attractionData.inversion_attraction] - Nombre d'inversions.
+ * @param {number|null} [attractionData.minimum_height_cm_attraction] - Taille minimale en centimètres.
+ * @param {number|null} [attractionData.opening_year_attraction] - Année d'ouverture.
+ * @param {string} [attractionData.description_attraction] - Description complète.
+ * @param {string} [attractionData.parc_zone_attraction] - Zone thématique du parc.
+ * @param {string} [attractionData.intensity_level_attraction] - Niveau d'intensité.
+ * @param {boolean} [attractionData.family_friendly_attraction] - Indique si l'attraction est familiale.
+ * @param {string} [attractionData.short_description_attraction] - Description courte.
+ * @returns {Promise<Object|null>} Attraction modifiée ou null si aucun résultat.
+ * @throws {Error} Si la requête de modification échoue.
+ */
 exports.updateAttraction = async (
     id,
     {
@@ -149,6 +266,29 @@ exports.updateAttraction = async (
     return rows[0] || null
 }
 
+/**
+ * Supprime une attraction de la base de données.
+ *
+ * Exécute une requête DELETE sur la table attraction
+ * pour supprimer l'enregistrement correspondant
+ * à l'identifiant fourni.
+ *
+ * La clause RETURNING permet de récupérer les
+ * informations de l'attraction supprimée.
+ *
+ * Si aucune attraction ne correspond à l'identifiant,
+ * la fonction retourne null.
+ *
+ * Cette fonction supprime uniquement l'enregistrement
+ * PostgreSQL. Elle ne gère pas directement la
+ * suppression des images du stockage externe.
+ *
+ * @async
+ * @function deleteAttraction
+ * @param {number|string} id - Identifiant de l'attraction à supprimer.
+ * @returns {Promise<Object|null>} Informations de l'attraction supprimée ou null si aucun résultat.
+ * @throws {Error} Si la suppression dans PostgreSQL échoue.
+ */
 exports.deleteAttraction = async (id) => {
     const { rows } = await pool.query(
         `

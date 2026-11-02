@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: services/mailService</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: services/mailService</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Service chargé de l'envoi des e-mails de WildPeak
+à l'aide de l'API transactionnelle Brevo.</p>
+<p>Il permet d'envoyer les messages provenant
+du formulaire de contact et les e-mails
+de réinitialisation des mots de passe.</p>
+<p>Les informations de configuration et la clé API
+Brevo sont récupérées depuis les variables
+d'environnement du backend.</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_mailService.js.html">services/mailService.js</a>, <a href="services_mailService.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~sendContactMail"><span class="type-signature">(async, inner) </span>sendContactMail<span class="signature">(contactData)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Envoie un e-mail depuis le formulaire de contact WildPeak.</p>
+<p>Récupère les informations saisies par le visiteur
+et construit un message contenant son nom, son prénom,
+son adresse e-mail et le contenu de sa demande.</p>
+<p>Le message est envoyé via l'API Brevo à l'adresse
+définie dans la variable BREVO_RECEIVER_EMAIL.</p>
+<p>L'adresse du visiteur est renseignée dans replyTo
+afin de permettre une réponse directe à son message.</p>
+<p>La requête utilise la méthode POST et transmet
+les informations au format JSON.</p>
+<p>Si l'API retourne une erreur HTTP, celle-ci est
+affichée dans la console et une exception est levée.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>contactData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Informations du formulaire de contact.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>firstname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Prénom du visiteur.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lastname</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Nom du visiteur.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Adresse e-mail du visiteur.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Contenu du message.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_mailService.js.html">services/mailService.js</a>, <a href="services_mailService.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <p>Si l'envoi de l'e-mail échoue ou si la requête rencontre une erreur.</p>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Réponse JSON retournée par l'API Brevo.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~sendResetPasswordEmail"><span class="type-signature">(async, inner) </span>sendResetPasswordEmail<span class="signature">(email, resetUrl)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Envoie un e-mail de réinitialisation de mot de passe.</p>
+<p>Cette fonction est appelée lors d'une demande
+de réinitialisation du mot de passe d'un utilisateur.</p>
+<p>Elle construit un e-mail HTML contenant un lien
+permettant d'accéder au formulaire de modification
+du mot de passe.</p>
+<p>Le lien de réinitialisation est généré en amont
+par le contrôleur d'authentification.</p>
+<p>Le message informe l'utilisateur que le lien
+possède une durée de validité de 15 minutes.</p>
+<p>L'e-mail est envoyé à l'adresse de l'utilisateur
+via l'API transactionnelle Brevo.</p>
+<p>Si l'API retourne une erreur HTTP, une exception
+est levée avec le message fourni par Brevo
+ou un message d'erreur générique.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Adresse e-mail du destinataire.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resetUrl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>URL contenant le token de réinitialisation.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="services_mailService.js.html">services/mailService.js</a>, <a href="services_mailService.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-controllers_authController.html">module:controllers/authController</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <p>Si l'envoi de l'e-mail échoue ou si la requête rencontre une erreur.</p>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type">Error</span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Réponse JSON retournée par l'API Brevo.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;Object></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_attractionController.html">controllers/attractionController</a></li><li><a href="module-controllers_authController.html">controllers/authController</a></li><li><a href="module-controllers_favoriteController.html">controllers/favoriteController</a></li><li><a href="module-controllers_parkController.html">controllers/parkController</a></li><li><a href="module-controllers_uploadController.html">controllers/uploadController</a></li><li><a href="module-middlewares_adminMiddleware.html">middlewares/adminMiddleware</a></li><li><a href="module-middlewares_authMiddleware.html">middlewares/authMiddleware</a></li><li><a href="module-middlewares_uploadMiddleware.html">middlewares/uploadMiddleware</a></li><li><a href="module-middlewares_validateMiddleware.html">middlewares/validateMiddleware</a></li><li><a href="module-models_attractionModel.html">models/attractionModel</a></li><li><a href="module-models_favoriteModel.html">models/favoriteModel</a></li><li><a href="module-models_parkModel.html">models/parkModel</a></li><li><a href="module-models_uploadModel.html">models/uploadModel</a></li><li><a href="module-models_userModel.html">models/userModel</a></li><li><a href="module-services_mailService.html">services/mailService</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Mon Nov 02 2026 10:14:51 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

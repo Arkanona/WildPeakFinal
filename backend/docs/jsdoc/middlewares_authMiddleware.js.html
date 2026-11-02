@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: middlewares/authMiddleware.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: middlewares/authMiddleware.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * @module middlewares/authMiddleware
+ * @description
+ * Middleware d'authentification JWT de WildPeak.
+ *
+ * Il permet de protéger les routes nécessitant
+ * une authentification utilisateur.
+ *
+ * Le middleware récupère le token JWT depuis
+ * l'en-tête Authorization, vérifie sa validité
+ * et recherche l'utilisateur correspondant
+ * dans la base de données PostgreSQL.
+ *
+ * Si l'authentification réussit, les informations
+ * de l'utilisateur sont ajoutées à req.user
+ * et la requête est transmise au middleware suivant.
+ */
+
+const jwt = require("jsonwebtoken")
+const User = require('../models/userModel')
+
+const JWT_SECRET = process.env.JWT_SECRET
+
+/**
+ * Vérifie l'authentification d'un utilisateur via JWT.
+ *
+ * Récupère le token depuis l'en-tête HTTP Authorization
+ * au format "Bearer &lt;token>".
+ *
+ * Si aucun token n'est fourni, une réponse HTTP 401
+ * est retournée.
+ *
+ * Le token est ensuite vérifié avec jwt.verify()
+ * en utilisant la clé secrète JWT_SECRET.
+ *
+ * L'identifiant contenu dans le token permet
+ * de rechercher l'utilisateur dans PostgreSQL
+ * à l'aide du modèle User.
+ *
+ * Si l'utilisateur existe, ses informations
+ * sont enregistrées dans req.user et next()
+ * permet de poursuivre le traitement de la requête.
+ *
+ * Si le token est invalide, expiré ou si
+ * l'utilisateur est introuvable, une réponse
+ * HTTP 401 est envoyée.
+ *
+ * @async
+ * @function authMiddleware
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.headers - En-têtes de la requête.
+ * @param {string} [req.headers.authorization] - Token JWT au format Bearer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @param {Function} next - Fonction permettant de passer au middleware suivant.
+ * @returns {Promise&lt;Object|undefined>} Réponse HTTP 401 en cas d'échec ou passage au middleware suivant.
+ *
+ * @description Codes HTTP :
+ * - 401 : Token manquant.
+ * - 401 : Token invalide ou expiré.
+ * - 401 : Utilisateur introuvable.
+ *
+ * @see module:models/userModel
+ */
+const authMiddleware = async (req, res, next) => {
+    try {
+        let token
+
+        if(req.headers.authorization?.startsWith('Bearer')){
+            token = req.headers.authorization.split(' ')[1]
+        }
+
+        if(!token){
+            return res.status(401).json({ 
+                title: 'Pas autorisé, token manquant',
+                status: 401
+            })
+        }
+
+        const decoded = jwt.verify(token, JWT_SECRET)
+
+        const user = await User.findUserById(decoded.id)
+        if(!user){
+            return res.status(401).json({ 
+                title: "Utilisateur introuvable",
+                status: 401
+            })
+        }
+
+        req.user = user;
+        next()
+    } catch (err) {
+        return res.status(401).json({ 
+            title: 'Pas autorisé, token invalide',
+            status: 401,
+            error: err.message })
+    }
+}
+
+module.exports = authMiddleware
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controllers_attractionController.html">controllers/attractionController</a></li><li><a href="module-controllers_authController.html">controllers/authController</a></li><li><a href="module-controllers_favoriteController.html">controllers/favoriteController</a></li><li><a href="module-controllers_parkController.html">controllers/parkController</a></li><li><a href="module-controllers_uploadController.html">controllers/uploadController</a></li><li><a href="module-middlewares_adminMiddleware.html">middlewares/adminMiddleware</a></li><li><a href="module-middlewares_authMiddleware.html">middlewares/authMiddleware</a></li><li><a href="module-middlewares_uploadMiddleware.html">middlewares/uploadMiddleware</a></li><li><a href="module-middlewares_validateMiddleware.html">middlewares/validateMiddleware</a></li><li><a href="module-models_attractionModel.html">models/attractionModel</a></li><li><a href="module-models_favoriteModel.html">models/favoriteModel</a></li><li><a href="module-models_parkModel.html">models/parkModel</a></li><li><a href="module-models_uploadModel.html">models/uploadModel</a></li><li><a href="module-models_userModel.html">models/userModel</a></li><li><a href="module-services_mailService.html">services/mailService</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Mon Nov 02 2026 10:14:51 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

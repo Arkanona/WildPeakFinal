@@ -1,8 +1,42 @@
+
+/**
+ * @module controllers/attractionController
+ * @description
+ * Contrôleur chargé de la gestion des attractions de WildPeak.
+ *
+ * Il permet de récupérer les attractions, d'en ajouter,
+ * de modifier leurs informations et de les supprimer.
+ *
+ * Il gère également la génération automatique des slugs,
+ * les textes alternatifs des images, la conversion des
+ * données numériques et le traitement des images via
+ * les fonctions du contrôleur d'upload.
+ */
+
 const Upload = require('../models/uploadModel')
 const Attraction = require('../models/attractionModel')
 const Park = require('../models/parkModel')
 const { createAttractionImages, deleteOldImages } = require('./uploadController')
 
+/**
+ * Récupère toutes les attractions enregistrées dans la base de données.
+ *
+ * Fait appel au modèle Attraction pour récupérer les données
+ * depuis PostgreSQL.
+ *
+ * Les attractions sont retournées sous forme de tableau JSON,
+ * triées par identifiant croissant.
+ *
+ * @async
+ * @function getAttraction
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant la liste des attractions ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Attractions récupérées avec succès.
+ * - 500 : Erreur lors de la récupération des attractions.
+ */
 exports.getAttraction = async (req, res) => {
     try {
         const attraction = await Attraction.findAllAttraction()
@@ -19,6 +53,52 @@ exports.getAttraction = async (req, res) => {
     }
 }
 
+/**
+ * Ajoute une nouvelle attraction dans la base de données.
+ *
+ * Récupère les informations de l'attraction depuis le corps
+ * de la requête et génère automatiquement un slug à partir
+ * de son nom.
+ *
+ * Recherche le parc associé afin de générer un texte
+ * alternatif décrivant l'attraction et son parc.
+ *
+ * Convertit la chaîne "true" du champ family_friendly_attraction
+ * en booléen pour son enregistrement.
+ *
+ * L'attraction est ensuite créée dans PostgreSQL.
+ *
+ * Si une image est fournie, deux versions sont générées :
+ * une image de présentation et une image de fond.
+ * Leurs URL sont ensuite enregistrées dans la base de données.
+ *
+ * @async
+ * @function addAttraction
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.body - Informations de l'attraction à créer.
+ * @param {string} req.body.name_attraction - Nom de l'attraction.
+ * @param {number|string} req.body.id_park - Identifiant du parc associé.
+ * @param {string} [req.body.type_attraction] - Type d'attraction.
+ * @param {number|string} [req.body.speed_max_kmh_attraction] - Vitesse maximale en km/h.
+ * @param {number|string} [req.body.height_m_attraction] - Hauteur en mètres.
+ * @param {number|string} [req.body.length_m_attraction] - Longueur en mètres.
+ * @param {number|string} [req.body.duration_min_attraction] - Durée en minutes.
+ * @param {number|string} [req.body.inversion_attraction] - Nombre d'inversions.
+ * @param {number|string} [req.body.minimum_height_cm_attraction] - Taille minimale requise en centimètres.
+ * @param {number|string} [req.body.opening_year_attraction] - Année d'ouverture.
+ * @param {string} [req.body.description_attraction] - Description complète de l'attraction.
+ * @param {string} [req.body.parc_zone_attraction] - Zone thématique du parc.
+ * @param {string} [req.body.intensity_level_attraction] - Niveau d'intensité.
+ * @param {string} [req.body.family_friendly_attraction] - Chaîne "true" ou "false" indiquant si l'attraction est familiale.
+ * @param {string} [req.body.short_description_attraction] - Description courte de l'attraction.
+ * @param {Object} [req.file] - Image facultative transmise avec Multer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object|undefined>} Réponse HTTP contenant l'attraction créée ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 201 : Attraction ajoutée avec succès.
+ * - 500 : Erreur lors de la création de l'attraction.
+ */
 exports.addAttraction = async (req, res) => {
 
     try {
@@ -86,13 +166,11 @@ exports.addAttraction = async (req, res) => {
             )
 
             // Enregistrement des URLs
-            const updatedAttraction = (
-                await Upload.updateAttractionDb(
+            const updatedAttraction = await Upload.updateAttractionDb(
                     cardImageUrl,
                     backgroundImageUrl,
                     attraction.id_attraction
                 )
-            )[0]
 
             return res.status(201).json({
                 title: "Attraction ajoutée avec succès",
@@ -115,6 +193,25 @@ exports.addAttraction = async (req, res) => {
     }
 }
 
+/**
+ * Convertit une valeur en nombre ou retourne null.
+ *
+ * Cette fonction est utilisée lors de la modification
+ * d'une attraction pour convertir les données numériques
+ * reçues depuis le formulaire.
+ *
+ * Si la valeur est une chaîne vide, undefined ou null,
+ * la fonction retourne null.
+ *
+ * Dans les autres cas, elle utilise Number() pour
+ * effectuer la conversion. Une valeur non convertible
+ * peut donc produire NaN.
+ *
+ * @private
+ * @function toNumberOrNull
+ * @param {string|number|null|undefined} value - Valeur à convertir.
+ * @returns {number|null} Valeur numérique ou null si la valeur est vide ou absente.
+ */
 const toNumberOrNull = (value) => {
     if (value === "" || value === undefined || value === null) {
         return null
@@ -123,6 +220,57 @@ const toNumberOrNull = (value) => {
     return Number(value)
 }
 
+/**
+ * Modifie les informations d'une attraction existante.
+ *
+ * Récupère l'attraction avant modification afin de conserver
+ * les URL de ses anciennes images et de vérifier son existence.
+ *
+ * Les nouvelles informations sont récupérées depuis le corps
+ * de la requête. Le slug et le texte alternatif sont
+ * automatiquement régénérés à partir du nom de l'attraction
+ * et du parc associé.
+ *
+ * Les champs numériques sont convertis avec la fonction
+ * toNumberOrNull avant leur enregistrement dans PostgreSQL.
+ *
+ * Si une nouvelle image est transmise, deux nouvelles versions
+ * sont générées et leurs URL sont enregistrées en base.
+ * Les anciennes images sont ensuite supprimées du stockage.
+ *
+ * Si aucune nouvelle image n'est fournie, les URL des images
+ * existantes ne sont pas modifiées par cette fonction.
+ *
+ * @async
+ * @function updateAttraction
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.id - Identifiant de l'attraction à modifier.
+ * @param {Object} req.body - Nouvelles informations de l'attraction.
+ * @param {string} req.body.name_attraction - Nom de l'attraction.
+ * @param {number|string} req.body.id_park - Identifiant du parc associé.
+ * @param {string} [req.body.type_attraction] - Type d'attraction.
+ * @param {number|string} [req.body.speed_max_kmh_attraction] - Vitesse maximale en km/h.
+ * @param {number|string} [req.body.height_m_attraction] - Hauteur en mètres.
+ * @param {number|string} [req.body.length_m_attraction] - Longueur en mètres.
+ * @param {number|string} [req.body.duration_min_attraction] - Durée en minutes.
+ * @param {number|string} [req.body.inversion_attraction] - Nombre d'inversions.
+ * @param {number|string} [req.body.minimum_height_cm_attraction] - Taille minimale requise en centimètres.
+ * @param {number|string} [req.body.opening_year_attraction] - Année d'ouverture.
+ * @param {string} [req.body.description_attraction] - Description complète.
+ * @param {string} [req.body.parc_zone_attraction] - Zone thématique.
+ * @param {string} [req.body.intensity_level_attraction] - Niveau d'intensité.
+ * @param {string} [req.body.family_friendly_attraction] - Chaîne "true" ou "false" indiquant si l'attraction est familiale.
+ * @param {string} [req.body.short_description_attraction] - Description courte.
+ * @param {Object} [req.file] - Nouvelle image facultative transmise avec Multer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant l'attraction modifiée ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Attraction modifiée avec succès.
+ * - 404 : Attraction introuvable.
+ * - 500 : Erreur lors de la modification.
+ */
 exports.updateAttraction = async (req, res) => {
     try {
         const { id } = req.params
@@ -233,13 +381,12 @@ exports.updateAttraction = async (req, res) => {
                 attraction.id_attraction
             )
 
-            updatedAttraction = (
-                await Upload.updateAttractionDb(
+            updatedAttraction = await Upload.updateAttractionDb(
                     cardImageUrl,
                     backgroundImageUrl,
                     attraction.id_attraction
                 )
-            )[0]
+            
 
             // Suppression des anciennes images Supabase
             await deleteOldImages([
@@ -265,6 +412,37 @@ exports.updateAttraction = async (req, res) => {
     }
 }
 
+/**
+ * Supprime une attraction de la base de données.
+ *
+ * Récupère l'identifiant de l'attraction depuis
+ * les paramètres de l'URL.
+ *
+ * Fait appel au modèle Attraction pour supprimer
+ * l'enregistrement correspondant dans PostgreSQL.
+ *
+ * La clause RETURNING du modèle permet de récupérer
+ * les informations de l'attraction supprimée.
+ *
+ * Si aucune attraction ne correspond à l'identifiant,
+ * une réponse HTTP 404 est envoyée.
+ *
+ * Cette fonction ne supprime pas explicitement
+ * les images associées dans le stockage externe.
+ *
+ * @async
+ * @function deleteAttraction
+ * @param {Object} req - Requête HTTP Express.
+ * @param {Object} req.params - Paramètres de l'URL.
+ * @param {string} req.params.id - Identifiant de l'attraction à supprimer.
+ * @param {Object} res - Réponse HTTP Express.
+ * @returns {Promise<Object>} Réponse HTTP contenant l'attraction supprimée ou une erreur.
+ *
+ * @description Codes HTTP :
+ * - 200 : Attraction supprimée avec succès.
+ * - 404 : Attraction introuvable.
+ * - 500 : Erreur lors de la suppression.
+ */
 exports.deleteAttraction = async (req, res) => {
     try {
         const { id } = req.params
