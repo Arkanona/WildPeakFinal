@@ -17,13 +17,13 @@ const crypto = require('crypto')
 const { sendResetPasswordEmail } = require('../services/mailService')
 
 const JWT_SECRET = process.env.JWT_SECRET
-const JWT_EXPIRES_IN = '30d'
+const JWT_EXPIRES_IN = '7d'
 
 /**
  * Génère un token JWT pour un utilisateur.
  *
  * Le token contient l'identifiant de l'utilisateur
- * et possède une durée de validité de 30 jours.
+ * et possède une durée de validité de 7 jours.
  *
  * @private
  * @function generateToken
