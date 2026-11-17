@@ -39,7 +39,7 @@ describe('authController', () => {
         expect(bcrypt.hash).toHaveBeenCalledWith('Test123!', 'salt')
         expect(User.createUser).toHaveBeenCalledWith('Test', 'test@mail.fr', 'hash-bdd')
         expect(jwt.sign.mock.calls[0][0]).toEqual({ id: 7 })
-        expect(jwt.sign.mock.calls[0][2]).toEqual({ expiresIn: '30d' })
+        expect(jwt.sign.mock.calls[0][2]).toEqual({ expiresIn: '7d' })
         expect(res.status).toHaveBeenCalledWith(201)
         expect(res.json).toHaveBeenCalledWith({
             title: 'Utilisateur enregistré avec succès', status: 201,

@@ -1,0 +1,271 @@
+
+// Couleurs WildPeak
+$red: #E63946;
+$navy: #1D3557;
+$blue: #457B9D;
+$light: #F8F9FA;
+
+// Conteneur principal
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: $light;
+    overflow: hidden;
+}
+
+.loaderContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h2 {
+        color: $navy;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        margin: 0;
+    }
+
+    p {
+        color: $blue;
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+// Circuit infini
+.infiniteCoaster {
+    position: relative;
+    width: 360px;
+    height: 220px;
+    margin: 15px 0;
+
+    svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    // Piliers
+    .support {
+        fill: none;
+        stroke: $blue;
+        stroke-width: 5;
+        stroke-linecap: butt;
+    }
+
+    // Structure des rails
+    .trackOuter {
+        fill: none;
+        stroke: $navy;
+        stroke-width: 15;
+        stroke-linecap: round;
+    }
+
+    // Rails principaux
+    .trackMain {
+        fill: none;
+        stroke: $red;
+        stroke-width: 9;
+        stroke-linecap: round;
+    }
+
+    // Marquages
+    .trackMarkings {
+        fill: none;
+        stroke: #ffb3b9;
+        stroke-width: 2;
+        stroke-dasharray: 3 14;
+    }
+
+    // Sol
+    .ground {
+        fill: none;
+        stroke: $navy;
+        stroke-width: 3;
+        stroke-linecap: butt;
+    }
+}
+
+// Wagons
+.coasterWagon {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 31px;
+    height: 22px;
+
+    // Même trajectoire que les rails SVG
+    offset-path: path(
+        "M180 103 C132 20 55 28 55 103 C55 178 132 186 180 103 C228 20 305 28 305 103 C305 178 228 186 180 103 Z"
+    );
+
+    offset-rotate: auto;
+    offset-anchor: center;
+
+    animation: infiniteRide 4.2s linear infinite;
+
+    // Corps du wagon
+    .wagonBody {
+        position: relative;
+        height: 16px;
+        box-sizing: border-box;
+
+        background: $red;
+        border: 2px solid $navy;
+        border-radius: 9px 9px 5px 5px;
+    }
+
+    // Fenêtre
+    .wagonWindow {
+        position: absolute;
+        left: 9px;
+        top: 3px;
+
+        width: 10px;
+        height: 5px;
+
+        border-radius: 3px;
+        background: $light;
+    }
+
+    // Roues
+    .wagonWheel {
+        position: absolute;
+        top: 13px;
+
+        width: 8px;
+        height: 8px;
+        box-sizing: border-box;
+
+        background: $navy;
+        border: 2px solid $light;
+        border-radius: 50%;
+
+        &--left {
+            left: 5px;
+        }
+
+        &--right {
+            right: 5px;
+        }
+    }
+
+    // Premier wagon
+    &--front {
+        animation-delay: -.44s;
+    }
+
+    // Deuxième wagon
+    &--middle {
+        animation-delay: -.22s;
+
+        .wagonBody {
+            background: $blue;
+        }
+    }
+
+    // Troisième wagon
+    &--rear {
+        .wagonBody {
+            background: $navy;
+        }
+    }
+}
+
+// Animation infinie
+@keyframes infiniteRide {
+    from {
+        offset-distance: 0%;
+    }
+
+    to {
+        offset-distance: 100%;
+    }
+}
+
+// Points de chargement
+.loadingDots {
+    display: flex;
+    gap: 7px;
+    margin-top: 12px;
+
+    span {
+        width: 7px;
+        height: 7px;
+
+        background: $red;
+        border-radius: 50%;
+
+        animation: dotPulse 1s ease-in-out infinite;
+
+        &:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: .4s;
+        }
+    }
+}
+
+// Animation des points
+@keyframes dotPulse {
+    0%, 80%, 100% {
+        opacity: .3;
+        transform: scale(.7);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+// Responsive mobile
+@media (max-width: 420px) {
+    .infiniteCoaster {
+        transform: scale(.8);
+        margin: -20px 0;
+    }
+
+    .loaderContent h2 {
+        font-size: 25px;
+    }
+
+    .loaderContent p {
+        font-size: 13px;
+    }
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+    .coasterWagon {
+        animation: none;
+
+        &--front {
+            offset-distance: 44%;
+        }
+
+        &--middle {
+            offset-distance: 39%;
+        }
+
+        &--rear {
+            offset-distance: 34%;
+        }
+    }
+
+    .loadingDots span {
+        animation: none;
+    }
+}

@@ -4,6 +4,7 @@ import HomeImage from "../components/home/HomeBgImage";
 import HomeFirstSec from "../components/home/HomeFirstSec";
 import { useEffect, useState } from "react";
 import { getAttractions, getParks } from "../services/api";
+import Loader from "../components/Loader";
 
 
 function Home() {
@@ -39,7 +40,7 @@ function Home() {
         }, [])
 
     if (loading) {
-        return <p>Chargement...</p>
+        return <Loader/>
     }
 
     if (error) {

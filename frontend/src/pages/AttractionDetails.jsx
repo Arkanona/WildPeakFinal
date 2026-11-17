@@ -6,6 +6,7 @@ import AboutAttractions from "../components/attractionDetail/AboutAttractions";
 import { Navigate, useParams } from "react-router-dom";
 import { getParks, getAttractions } from "../services/api";
 import { useEffect, useState } from "react";
+import Loader from "../components/Loader";
 
 
 function AttractionDetails() {
@@ -42,7 +43,7 @@ function AttractionDetails() {
     }, [])
 
     if (loading) {
-        return <p>Chargement...</p>
+        return <Loader/>
     }
 
     if (error) {

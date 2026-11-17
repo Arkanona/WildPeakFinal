@@ -35,9 +35,9 @@ function Navbar () {
                     <>
                     
                     </>
-                ) : (
-                    <li><Link to='/profile'>Favoris</Link></li>
-                )}
+                    ) : (
+                        <li><Link to='/profile'>Favoris</Link></li>
+                    )}
                 </ul>
             </nav>
             <div>
