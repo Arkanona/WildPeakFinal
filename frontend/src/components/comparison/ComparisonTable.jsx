@@ -15,7 +15,7 @@ function ComparisonTable({ selectedAttraction = [], parks = []}) {
         },
         {
             label: 'VITESSE',
-            value: (attraction) => `${attraction.speed_max_kmh_attraction} km/h`,
+            value: (attraction) => `${attraction.speed_max_kmh_attraction ?? 0} km/h`,
             field: 'speed_max_kmh_attraction'
         },
         {
@@ -30,7 +30,7 @@ function ComparisonTable({ selectedAttraction = [], parks = []}) {
         },
         {
             label: 'INVERSION',
-            value: (attraction) => `${attraction.inversion_attraction} inversion(s)`,
+            value: (attraction) => `${attraction.inversion_attraction ?? 0} inversion(s)`,
             field: null
         },
         {
