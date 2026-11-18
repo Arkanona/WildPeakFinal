@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../../styles/auth/login.scss';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import useAuthStore from '../../store/authStore';
 
 
@@ -12,6 +12,7 @@ function Login () {
     const error = useAuthStore((state) => state.error)
     
     const navigate = useNavigate()
+    const location = useLocation()
 
     const [ form, setForm ] = useState({
         email: '',
@@ -50,6 +51,7 @@ function Login () {
         return Object.keys(newErrors).length === 0
     }
 
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -63,12 +65,15 @@ function Login () {
                 password: form.password
             })
 
-            navigate('/')
+            const redirectTo = location.state?.from || '/'
+
+            navigate(redirectTo, { replace: true })
 
         } catch (error) {
             console.error(error.message)
         }
     }
+
         
     return (
         <div className='divLogin'>

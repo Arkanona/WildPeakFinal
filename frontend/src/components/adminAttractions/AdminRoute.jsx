@@ -1,12 +1,23 @@
-import { Navigate } from "react-router-dom"
+
+import { Navigate, useLocation } from "react-router-dom"
 import useAuthStore from "../../store/authStore"
 
 function AdminRoute({ children }) {
     const user = useAuthStore((state) => state.user)
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
+    const location = useLocation()
+
     if (!isAuthenticated) {
-        return <Navigate to="/connexion" replace />
+        return (
+            <Navigate
+                to="/connexion"
+                state={{
+                    from: location.pathname + location.search + location.hash
+                }}
+                replace
+            />
+        )
     }
 
     if (user?.role !== "admin") {
